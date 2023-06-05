@@ -1,0 +1,29 @@
+ANOTAÇÕES AULA 11/04
+
+Em: debian-11.6.0-amd64-netinst.iso o 'netinst' é que precisa de internet para terminar a instalação
+
+Para servidores, procurar sempre as versões mais estáveis da distro
+
+LTS são versoes que tem suporte técnico da empresa
+
+Debian não tem atualizações constantes
+
+- freeware: NÃO é opensource, é gratuiro mas necessita de algumas autenticações 
+- Shareware: Pode ser utilizado em modo DEMO por um determinado tempo, depois tem que ser pago
+- Free Software: É opensource e é totalmente mutável, código fonte aberto e gratuito
+
+DIFERENÇA DE OPENSOURCE E FREESOFTWARE: 
+- FREESOFTWARE é totalmente gratuito:
+- OPENSOURCE é código aberto mas paga ou tem restrição para usar (ex: urna eletronica)
+
+O LINUX é apenas o kernel e não o sistema como um todo  
+
+Usaremos o terminal BASH (pode ser trocado porque é uma aplicação)
+
+Antentar ao diretorio /var, guarda os logs, em servidores lota muito rápido o diretorio e trava a máquina
+
+MEU LOGIN NO LINUX:
+ifrn
+ifrn
+
+para mudar de usuario no linux é só apertar alt + seta-lado

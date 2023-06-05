@@ -1,0 +1,12 @@
+O que controla a comunicação entre os nós? - PROTOCOLOS Ethernet
+Se chegar a ocorrer erros, o protocolo irá corrigir.
+Exemplos:
+Se o cliente enviar um 'A', ele ficará na área de dados e o cabeçalho é responsavel pela validação (certificação de que é um 'A' na área de dados), se chegar errado, a área de erros apontará.
+O IP que irá tratar por onde o dado irá passar, qual a melhor rota para aquele dado. o Protocolo vai assegurar o que fazer com os erros ocorridos no processo, ex: erro X, usar o protocolo 802.2 | erro Y, protocolo 802.1...
+O que caracteriza uma LAN é que são varias máquinas conectadas e uma rede WAN é conexões ponto-a-ponto (roteador da sua casa ao provedor de internet)
+Porque o destino vem antes da origem? - Porque tem que saber pra onde ta indo, o que fazer com os dados
+PROTOCOLO ETHERNET NÃO CORRIGE: ele detecta e descarta 
+
+
+
+Arquivo base: https://drive.google.com/file/d/1lUDHos27JJeXJUjcdT5i3W_TmnHD6OX3/view

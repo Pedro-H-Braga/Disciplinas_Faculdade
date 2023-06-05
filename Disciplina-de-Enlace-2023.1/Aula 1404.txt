@@ -1,0 +1,11 @@
+- O endereço MAC é da placa de rede (a identificação) da placa
+- Endereço lógico para falar entre redes e Endereço físico para redes locais
+- Hoje em dia a rede é em estrela com um gateway central
+- As primeras redes Ethernet eram coaxical de 500m e eram os cabos conectados entre si (Dava muito problema pois parava parte da rede)
+* Solução: Concentrador dos cabos(HUB), não sendo necessário para a rede toda, para só uma máquina para e resolve o problema
+OBSS: Diferença entre HUB e ROTEADOR
+@ HUB trabalha na camada física, não tendo nenhum protocolo rodando na rede 
+@ Roteador trabalha na camada de Enlace pois tem protocolos rodando 
+
+- Depois do HUB veio o SWITCH, diferença: Switch trabalha na camada de enlace, pois tem placa de rede, tem protocolo
+* Cada porta do switch tem uma placa de REDE, sendo uma rede PONTO-A-PONTO (Sem colisões)

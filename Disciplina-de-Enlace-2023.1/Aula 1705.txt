@@ -1,0 +1,5 @@
+Como é enviado o protocolo ARP? 
+- É enviado em Broadcast(enviado para todos os endereços da rede) e a resposta é em unicast(direcionado a um endereço na rede)
+
+Quem leva o endereço ARP?
+- O único protocolo que trafega na rede é o ETHERNET 

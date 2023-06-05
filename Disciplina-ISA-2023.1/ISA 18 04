@@ -1,0 +1,24 @@
+# PARTIÇÃO LINUX
+*no Windows: 
+\C: \D:... -> raiz
+Cada dispositivo de armazenamento (ex: Pen Driver) é uma 'particao' com uma letra
+*no Linux
+/ -> Raiz
+Cada diretorio externo (Pen Driver) é uma pasta(diretorio)
+ex: /mnt/usb/dados
+
+Comando importantes:
+touch -> cria arquivo
+
+sempre precisa de uma conta ao se autenticar no sistema, ex:
+login | shell | senha | 
+Pasta Pessoal (home directory) diretorio home  -> é onde ficará os sistemas, aplicações (coisas de usuario) 
+
+# NÃO É O /home -> diretorio home = EX: /usdt/a/usuario ou /home/usuario
+
+TODO usuário tem como carcaterística o diretório 'home' != '/home'
+
+Onde é o diretorio home do usuario root? - /root 
+
+ex: copie os dados para o home do usuario 
+- é para copiar para o direitorio home e NÃO PARA O /HOME

@@ -1,0 +1,10 @@
+- 1º Passo: Fazer modelo lógico (drawSQL)
+* Identificar os tipos de entidades
+* Identificar atributos
+* Identificar relacionamentos
+* Normalizar para reduzir redundância
+* Desnormalizar para aumentar performance
+
+
+- 2° Passo: Exportar do drawSQL para o SGBD
+- 3° Passo: Normalizar as tabelas (chave primária, chave pública...)

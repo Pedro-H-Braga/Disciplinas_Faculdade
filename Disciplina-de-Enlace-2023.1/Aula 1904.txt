@@ -1,0 +1,19 @@
+O hub funciona pegando as onda binarias de um cabo e estendendo ela, reformando-a 
+Trabalha só em half-duplex: Tendo bidirecional porém de forma assíncrona, não simultanea
+
+Cada porta do switch é um domínio de colisão -> não existe colisões em um swtich, pode existe de portas isoladas, mas não que entre pelo switch-> trabalha full-duplex
+### COMO FUNCIONA O CSMA/CD
+CSMA/CD -> NÃO funciona em conexões full-duplex -> pois não tem colisões 
+CSMA/CD -> Funciona em half-duplex pois tem colisões, o ele captura essas colisões...
+### MTU
+MTU da rede física -> unidade máxima de transmissão(quantidade máxima de passar pelo cabo), ex: uma pagina vindo, vem o protocolo de
+### TAMANHO DO QUADRO
+Questão de prova: qual o tamanho do quadro?
+somar os bytes do cabeçalhos + area de dados = +- 1518 -> 1500 de dados e 18 de cabeçalho
+### CORREÇÃO DE ERROS 
+Quando ocorre a conferencia de bits e não há uma equidade, descarta-se o quadro... Para corrigir, o TCP faz conferencia de 'chegada' dos quadros, ex:
+mandou quadro de 0 a 10 e chegou de 0 a 3 | 5 a 10, faltou o 4, daí ele manda um quadro de volta requisitando o quadro 4
+### PREAMBULO
+CONEXÕES ASSÍNCRONAS: ( ETHERNET É ASSÍNCRONO )
+Serve para o receptor entrar em sincronismo com o quadro, para não ter leitura errada
+

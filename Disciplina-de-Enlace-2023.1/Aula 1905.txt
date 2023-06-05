@@ -1,0 +1,8 @@
+- Os dispostivos que encaminham broadcast(manda protolo para todos da rede para saber algum dado) são o HUB, SWITCH... O único que não manda é o ROTEADOR
+- VER EM QUAIS NÍVEIS FUNCIONA CADA EQUIPAMENTO DE REDE:
+Ex: 
+ROTEADOR trabalha na camada 2 e 3 
+SWITCH na camada 3 
+
+OBSERVAÇÃO:
+- Quando se coloca um HUB na porta de um switch ele fica em modo half-duplex pois tem várias máquinas naquela porta.

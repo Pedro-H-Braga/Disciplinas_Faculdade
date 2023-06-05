@@ -1,0 +1,37 @@
+PRIMEIRO PASSO DE NORMALIZAÇÃO DE UMA BASE DADOS EXPORTADA:
+- Pegar os nomes das colunas 
+- Ver as dependencias de cada coluna, ex: de DADOS IFRN
+*Matricula;Nome;Curriculo_lattes -> É do aluno. Então já tem-se uma tabela
+NOME DA TABELA: ALUNOS
+COLUNAS DA TABELA:
+	- Matricula
+	- Nome
+	- Curriculo_lattes
+
+SEGUNDO PASSO PARA A FORMA NORMAL (SEGUNDA FORMA NORMAL):
+OBS: toda tabela que tem apenas um atributo não chave já está na 2° forma normal
+- A tabela principal, ex -> tabela ALUNOS terá uma (pk), que a partir dela não poderá
+ser desassociada do próprio aluno.
+- A matrícula é a (PK) do ALUNO, pois o nome pode se repetir, matricula curricular...
+o único e essencial atributo que não pode se repetir e que se atrela permanentemente 
+ao aluno é a matrícula.
+
+TERCEIRA FORMA NORMAL:
+Serve para tirar as colunas(atributos) que não precisam estar, que dependem de outros atributos 
+
+
+OBS: Banco de dados é só conjuntos matematicos (diagrama de von neuman) 
+
+DÚVIDA:
+- No caso, a tabela que terá todos os dados será a tabela aluno, as colunas que 
+já são do próprio aluno já entram diretamente na tabela e as que tem não tem dependencias
+é uma tabela a parte:
+
+RESPOSTA:
+- Os dados que 
+
+
+RECEITA FEDERAL TRABALHA COM POSTGRESS
+
+TAREFA -> implementar o banco de alunos do ifrn
+

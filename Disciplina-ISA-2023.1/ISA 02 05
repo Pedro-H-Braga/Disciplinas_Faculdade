@@ -1,0 +1,19 @@
+Comandos 
+'mv' -> mover | renomear
+'ln' -> cria um link do arquivo
+'cat' -> concatenação de texto ou exibição de arquivso textos na tela
+'head' -> Mosta as primeiras linhas
+'tail' -> Mostras X linhas do arquivo
+# Pipes no linux: 
+- Serve para ligar o resultado de um comando e redirecionar para outro arquivo|comando|saída...
+- SERVE PARA PROCESSAR DOIS COMANDOS ( EXECUTAR UM COMANDO QUE SUA SAÍDA SERÁ PROCESSADA PELO PROXIMO COMANDO
+sintaxe: '|'
+- && -> Serve para concatenar a execução de dois comandos distintos em 1 linha 
+ex:
+'cat /var/log/dpkg;log.1 | grep TEXTO_QUE_QUEIRA_BUSCAR_NO_ARQUIVO'
+atrela o comando de visualizar arquivos a um de busca de texto
+Comandos:
+'cat /var/log/dpkg;log.1 | grep TEXTO_QUE_QUEIRA_BUSCAR_NO_ARQUIVO'
+'find /var/log/ -size +10k' -> pega os arquivos que tem mais de 10k bytes
+
+

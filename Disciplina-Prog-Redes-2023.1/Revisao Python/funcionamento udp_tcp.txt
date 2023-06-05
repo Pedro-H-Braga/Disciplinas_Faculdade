@@ -1,0 +1,13 @@
+UDP -> Transmissões Ao vivo
+Etapas: 
+* Latência: TimeOut
+* Banda: Giga,fast | Wifi, cabeada |Quantidade de acessos.
+* Buffer... 
+
+SERVIDOR USADO: apache
+
+CLIENTE:
+- Se for fornecido nome, será convertido em IP
+- Se enviado protocolo, será convertido em um número
+- Para cada requisição ele cria um socket
+

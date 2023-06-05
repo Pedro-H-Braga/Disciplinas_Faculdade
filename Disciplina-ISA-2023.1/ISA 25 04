@@ -1,0 +1,24 @@
+- Referenciamento relativo ou completo de um diretório
+- Com os 'redicionadores' '< >' você consegue acessar e mandar o conteúdo de um comando para um arquivo (Dois redirecionadores '>>' acrescenta os dados ao arquivo indicado)
+- comando 'cat' serve bem para visualizar arquivo pequenos
+- comando 'echo' escreve na tela algo
+- Existem duas formas para rodar os comandos no linux 
+* Foreground = Primeiro plano
+EX: se eu rodar o sleep, não consigo rodar comando em primeiro plano
+* background = Segundo plano
+- Comando '&', ex: 'sleep 10 &' faz o comando rodar em background
+Gera umas saídas de sendo: 'identificadores sequencia_execução'
+- Comando 'jobs' mostra os comandos em execução
+- Para trazer um comando de segundo plano para primeiro plano é o comando:
+'fg identificador' -> 'fg' de foreground
+- Para fazer um comando que está rodando em primeiro plano rodar em segundo:
+'CTRL z' depois 'bg' 
+- Cancelar um comando em execução:
+'CTRL c'
+- Para continuar um comando que foi parado:
+'fg 1': traz para executar em primeiro plano
+- Comando para enxerguar os diretórios e sub diretórios (listagem recursiva):
+'ls -R diretorio'
+- Para criar arquivos grandes, comando: 'yes texto'
+- Comando: 'wc -l arquivo' mostra a quantidade de linhas de um arquivo
+- Comandos 'head' | 'tail': consegue ver as primeiras linhas ou ultimas de um arquivo

@@ -1,0 +1,9 @@
+MEMORIA:
+
+Leitura(R) e Escrita(w) em baixo nivel
+
+pinos: WA e WB são para escrita (são habilitados em 1 e desabilitados em 0)
+pinos: RA e RB são para leitura (são habilitados em 1 e desabilitados em 0)
+pinos: EW e ER são para habilitar você escrever ou ler (são habilitados em 0 e desabilitados em 1)
+
+Lembrar que em (EW e ER) irá habilitar a escrita nas células das memórias, e lembrando que a memória é formada por um plano(4x4)(estilo mapa de K) que, quando se habilita a escrita com (WA ou WB) na posição que irá gravar na célula a informação, ex: na posição 01 da célula(WA=0;WB=1), gravar 1010 (D1=1;D2=0;D3=1;D4=0) 

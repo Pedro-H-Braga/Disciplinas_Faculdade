@@ -1,0 +1,11 @@
+https://www.nasa.gov/sites/default/files/thumbnails/image/nasa-logo-web-rgb.png
+
+# O programa terá que gerar as variáveis:
+URL_HOST = nasa.gov -> url do site 
+URL_IMG  = /sites/default/files/thumbnails/image/nasa-logo-web-rgb.png -> variável que guarde da input a url da imagem
+URL_ARQ  = nasa-logo-web-rgb.png -> variável que guarde da input a url do possivel arquivo
+# Gerar arquivos:
+ARQ_IMG  = nasa-logo-web-rgb.png -> fazer o download da imagem 
+ARQ_TXT  = nasa-logo-web-rgb.txt -> pegando o header da imagem e jogar nesse arquivo
+
+JUNÇÃO DOS EXEMPLOS 4 & 7

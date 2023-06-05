@@ -1,0 +1,41 @@
+*  Conceitos a Estudar:
+2 - Ver o conteúdo da mensagem não, pois só quem visualizará a mensagem será o endereço MAC de destino, mas todos os computadores que estão na mesma sub-rede que as máquinas mencionadas irão receber o pacote, pois estão conectados por um HUB, que passa a mensagem para todos os dispositivos conectados, porém só o MAC de destino que conseguirá visualizar o conteúdo.
+
+3 - A tabela ARP receberá todos os MAC'S que estão pingando no endereço 10.10.10.15
+
+4 - Ver os ranges dos comprimentos dos tipos  ( QUADRO ETHERNET TIPO )
+
+5 - ethernet NÃO faz parte da camada TCP/IP, sim de ENLACE (nível 2)
+
+6 - Só pode se tornar FULL-DUPLEX, a comunicação, depois que:
+*1° - Mudou de cabo coaxial para par, tendo um via de dupla...
+*2° - A mudança de hardware de HUB para Switch
+
+7 - qual a diferença da tabela CAM e da tabela ARP
+
+8 - Para pegar o ARP, é mandado em brodcast(para todos as maquinas da rede) perguntando qual o MAC do IP (ex:192.168.2.4) e insere a tabela ARP
+
+Quando conecto uma maquina e m switch ele automaticamente ja pega o mac dessa maquina?
+
+9 
+- As maquinas aprendem os MAC dos outros dispositivos daquela rede 
+- O switch aprende a porta e o MAC da máquina.
+
+10 - O switch pode receber em unicast (de uma maquina que ja tem o MAC de outra mas o Switch não tem) daí o switch envia em broadcast quando ele não sabe o MAC de uma maquina pra descobrir e guarda na tabela CAM.
+
+11 - O ethernet é um navio e os protocolos são os containers do navio (o ethernet pode levar IP,ARP...) 
+* Lembrando que Ethernet (CSMA/CD | CSMA/CA: CONTROLA O MEIO)
+* Um protocolo levando outro 
+* A camada de enlace trabalha com dois protocolos (ETHERNET e Logical Link Control(LLC))
+
+12 - O switch ler apenas o CABEÇALHO da PDU (Ler apenas o ETHERNET e não o protocolo que ele ta levando), por isso no cabeçalho do ethernet tem a origem e destino e qual protocolo ta levando, o switch ler APENAS O ETHERNET.
+
+diferença de switch L2,L3:
+L3 é um Switch e roteador junto
+
+13 - Dominio de colisão = Área de colisão
+* Acontece em redes Half-Duplex (uma rede centralizada em um HUB)
+
+14 - Dominío Broadcast != de Domínio de colisão
+Para achar Dominío Broadcast é só encontrar o roteador, que passa nada em broadcast.
+

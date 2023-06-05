@@ -1,0 +1,14 @@
+# Latência: 
+- Tempo entre a transmissão e a recepção
+# Largura da Banda:
+- Divege sobre cada meio de transmissão
+TRANSMISSÃO GUIADA (CABEADO):
+* Discada entorno de 1/2 mbps
+* Ethernet 10 mbps
+... e assim por diante, tendo também:
+Fast ethernet, Gigabit Ethernet e 10 Gigabit ethernet.
+TRANSMISSÃO NÃO GUIADA:
+* Wireless 802.11 b 11 Mbps 
+* ' g 54 Mbps 
+* ' n 300 Mbps
+

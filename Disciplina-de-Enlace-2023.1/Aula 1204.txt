@@ -1,0 +1,6 @@
+PDU -> Unidade de Dados e Protocolo
+- Função do ENLACE é para levar os dados de uma máquina para outra: uma requisição de página web por um cabo óptico...
+- Rede WAN é Ponto-a-Ponto, sendo assim, não tem colisão na rede.
+- CSMA/CD: Acesso Múltiplo com Percepção de Portadora e Detecção de Colisão | Detectar as colisões
+- CSMA/CA: Acesso Múltiplo com Percepção de Portadora e Detecção de Colisão | Prever as colisões
+- O preambulo e o SFD agem na camada FÍSICA com o meio de comunicação da camada (o bit), que é só para 'acordar' o receptor com sequencias de 8 byts ditando a frequência que será usada na transmissão

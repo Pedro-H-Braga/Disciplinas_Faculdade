@@ -1,0 +1,19 @@
+# Anotações 19/04 Aula com GALILEU
+
+Sobre binarios: 
+- wireshark: captura o tráfego binário de um cabo ( de uma conexão ) fazendo um tcpdump -> PCAP (packet capture)
+pegando o pacotes que, por exemplo, vemos em ENLACE, as PDU
+- Quando captura o tráfego de uma rede, existem padrões para pegar algumas coisas no arquivo de captura, ex:
+pacote ip começa com dois bytes de 4 5 e oito bytes depois tem o ip de destino
+
+- Na captura de um pacote, os 4 primeiros bytes são os números HEXA em segundos da data da captura
+- Big endian -> do mais valioso para o menos valioso
+- leatle endian -> do menos valioso para o mais valioso
+ex:
+90 68 40 64 -> está em leatle endia, se for formular ficaria:
+64 40 68 90 -> convertendo de hexa para decimal e colocando em um conversor de tempo em segundos desde 01 de janeiro de 1970
+
+Em python, se começa a ler a partir do cabeçalho, que são os 16 primeiros bytes.
+
+Quando for ler o arquivo de captura, ler em binario (rb)
+* Os primeiros 

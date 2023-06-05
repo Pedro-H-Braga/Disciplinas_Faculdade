@@ -1,0 +1,6 @@
+1° Montar as 'Entidades' a partir de que é pedido ( as grandes classes )
+- Chave primária é um identificador único daquele atributo, 
+ex: 
+* CPF (só pode ter um de cada )
+* NOME ( pode ter mais de um nome iguais, então não pode )
+- Chave Composta ( Várias dependências mútuas ) 

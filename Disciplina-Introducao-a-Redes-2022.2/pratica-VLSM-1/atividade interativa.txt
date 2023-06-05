@@ -1,0 +1,38 @@
+IP: 192.140.16.0 /24
+------------------
+NATAL:55
+MOSSORÓ:30
+CAICÓ:10
+CURRAIS NOVO:10
+PAUS DOS FERROS:3
+-----------------
+Total: 108 IPS
+-----------------
+
+natal		   -> 64 | 11000000  
+mossoró 	   -> 64 | 11000000 
+
+caicó 		   -> 16 | 11110000
+currais novos  -> 16 | 11110000
+
+pau dos ferros -> 8 | 11111000
+
+natal
+REDE			 	             HOST 		 	        BROADCAST
+192.140.16.0    | 192.140.16.1 até 192.140.16.62    | 192.140.16.63
+
+mossoró
+REDE				             HOST 			        BROADCAST
+192.140.16.64   | 192.140.16.65 até 192.140.16.126  | 192.140.16.127
+
+caicó
+REDE				             HOST 			        BROADCAST
+192.140.16.128  | 192.140.16.129 até 192.140.16.142 | 192.140.16.143
+
+currais
+REDE				             HOST 			        BROADCAST
+192.140.16.144  | 192.140.16.145 até 192.140.16.158 | 192.140.16.159
+
+pau dos ferros
+REDE				             HOST 			        BROADCAST
+192.140.16.160  | 192.140.16.161 até 192.140.16.166 | 192.140.16.167
