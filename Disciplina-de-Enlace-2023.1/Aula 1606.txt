@@ -1,0 +1,8 @@
+TELNET -> Para conectar máquinas. No tem criptografia 
+SSH -> Para conectar máquinas. COM criptografia (Mais seguro)
+FTP -> Conexão de rede interna (Servidor de arquivos)
+TFTP -> Igual o FTP, porém para conexões de servidores de longas distância. Para redes diferentes (TCP, file transfer protocol)
+
+- Um Switch NÃO precisa de IP, mas se quiser se comunicar com outra rede você deve colocar um IP nele, mas só servirá para comunicação entre redes. Só serve para switchs GERÊNCIÁVEIS.
+- Só existe uma VLAN por PADRÃO em switch. Lá fica todas as portas conectadas, se quiser tenho que configurar outra VLAN. Que daí, quando for se comunicar com outra rede, tenho que configurar um IP para cada VLAN.
+VER AULA 13
