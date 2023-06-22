@@ -1,0 +1,1 @@
+QUANDO FOR MUDAR OS TIPOS DE DADOS DE UMA TABELA, FAÇA UM BACKUP, pois pode perder dados.
