@@ -23,28 +23,38 @@ try:
     while True:
         # Aceita a conexão com o cliente
         conexao, ip_cliente = tcp_socket.accept()       
-        
-        mensagem = conexao.recv(BUFFER_SIZE)
-        mensagem = mensagem.decode(CODE_PAGE)
-        if mensagem.upper() == 'EXIT':
-            print(f'\nO {ip_cliente} SE DESCONECTOU DO SERVIDOR...\n')
-        else:
-            # Nome do arquivo a ser enviado
-            nome_arquivo = ATUAL_DIR + '\\img_server\\' + mensagem
-            print(f'Enviando arquivo {mensagem.upper()} ...')
+        print(f'\nO cliente: <{ip_cliente}> se conectou ao servidor!')
 
-            tamanho_arquivo = os.path.getsize(nome_arquivo)
-            msg = f'Size:{tamanho_arquivo}'.encode(CODE_PAGE)
-            conexao.send(msg, ip_cliente)
+        while True:
+            mensagem_cod = conexao.recv(BUFFER_SIZE)
+            mensagem = mensagem_cod.decode(CODE_PAGE)
+            if mensagem.upper() == 'EXIT':
+                print(f'\nO {ip_cliente} SE DESCONECTOU DO SERVIDOR...\n')
+            else:
+                # Nome do arquivo a ser enviado
+                nome_arquivo = ATUAL_DIR + '\\img_server\\' + mensagem
+                print(f'Enviando arquivo {mensagem.lower()} ...')
+                try:
+                    tamanho_arquivo = os.path.getsize(nome_arquivo)
+                    msg = f'Size:{tamanho_arquivo}'.encode(CODE_PAGE)
+                    conexao.send(msg.encode(CODE_PAGE))
+                # tratando os possíveis erros
+                except FileNotFoundError:
+                    print('Nâo foi possível encontrar o arquivo!')
+                except: 
+                    print(f'\nERRO: {sys.exc_info()[0]}')
+                finally:    
+                    # Fechando o socket
+                    tcp_socket.close()
 
-            arquivo = open(nome_arquivo, 'rb')
-            while True:
-                data_retorno = arquivo.read(BUFFER_SIZE)
-                if not data_retorno: break                                
-                conexao.send(data_retorno, ip_cliente)
-                time.sleep(0.02)
-            print(f'Arquivo {mensagem.upper()} Enviado...')
-            arquivo.close()
+                arquivo = open(nome_arquivo, 'rb')
+                while True:
+                    data_retorno = arquivo.read(BUFFER_SIZE)
+                    if not data_retorno: break                                
+                    conexao.send(data_retorno)
+                    time.sleep(0.02)
+                print(f'Arquivo {mensagem.upper()} Enviado...')
+                arquivo.close()
 except KeyboardInterrupt:
     print('Foi pressionado CTRL+C')
     # Fechando o socket

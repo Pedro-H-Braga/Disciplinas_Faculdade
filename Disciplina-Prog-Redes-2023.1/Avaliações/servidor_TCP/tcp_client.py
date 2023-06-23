@@ -29,7 +29,9 @@ while True:
 
     if 'Size:' in dado_retorno:
         tamanho_total = int(dado_retorno.split(':')[1])
-    else: tamanho_total = None
+    else: 
+        print('Nâo foi possível pegar o arquivo!')
+        sys.exit()
 
     # Gravar o dado recebido em arquivo
     print(f'Gravando o arquivo {nome_arquivo} ({tamanho_total} bytes)')
