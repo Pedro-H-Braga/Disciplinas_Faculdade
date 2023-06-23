@@ -1,1 +1,18 @@
-QUANDO FOR MUDAR OS TIPOS DE DADOS DE UMA TABELA, FAÇA UM BACKUP, pois pode perder dados.
+- QUANDO FOR MUDAR OS TIPOS DE DADOS DE UMA TABELA, FAÇA UM BACKUP, pois pode perder dados.
+- Alterar o tamanho do campo escola publica de 50 para 200 (alter table alunos.cotas_mec atler colunm cota_mec varchar(200)) -> muda o tipo de dado da coluna para varchar(200)
+'add constraint unique' -> não tem duplicação
+- Ver a foto que tirei do quadro
+- Atualizar os campos com update - select
+- Ir testando campo por campo, para ir inserindo os dados
+- Envés de dar print, salvar em arquivo (um log)
+ - Tarefa:
+* Montar o banco normalizado
+* Usar o codigo python de inserção de dados no banco
+CRIAR UMA PASTA PARA ESTA ATIVIDADE E IR ALIMENTANDO COM OS CÓDIGOS (projeto_banco_de_dados)
+Dentro da pasta é pra ter uma pasta para cada atividade, ex:
+atvdd1
+atvdd2
+atvdd3
+...
+
+ESTUDAR O CÓDIGO E TIRAR DÚVIDA COM O PROFESSOR
