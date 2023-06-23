@@ -25,10 +25,9 @@ while True:
     if nome_arquivo.upper() == 'EXIT': break
 
     dado_recebido = tcp_socket.recv(BUFFER_SIZE)
-    dado_retorno = dado_recebido.decode(CODE_PAGE)
 
-    if 'Size:' in dado_retorno:
-        tamanho_total = int(dado_retorno.split(':')[1])
+    if 'Size:' in dado_recebido.decode():
+        tamanho_total = int(dado_recebido.split(':')[1])
     else: 
         print('Nâo foi possível pegar o arquivo!')
         sys.exit()
@@ -42,6 +41,7 @@ while True:
     while True:
         # Recebendo o conteúdo do servidor
         dado_retorno = tcp_socket.recv(BUFFER_SIZE)
+        
         if not dado_retorno: break
         print(f'Pacote ({pct}) - Dados Recebidos: {len(dado_retorno)} bytes')
         arquivo.write(dado_retorno)

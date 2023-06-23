@@ -33,16 +33,16 @@ try:
             else:
                 # Nome do arquivo a ser enviado
                 nome_arquivo = ATUAL_DIR + '\\img_server\\' + mensagem
-                print(f'Enviando arquivo {mensagem.lower()} ...')
+                print(f'Enviando arquivo {mensagem} ...')
                 try:
                     tamanho_arquivo = os.path.getsize(nome_arquivo)
-                    msg = f'Size:{tamanho_arquivo}'.encode(CODE_PAGE)
+                    msg = f'O tamanho do arquivo é:{tamanho_arquivo}\nSerão enviados {tamanho_arquivo/BUFFER_SIZE} pacotes!'.encode(CODE_PAGE)
                     conexao.send(msg.encode(CODE_PAGE))
                 # tratando os possíveis erros
                 except FileNotFoundError:
-                    print('Nâo foi possível encontrar o arquivo!')
+                    print('O arquivo não existe!')
                 except: 
-                    print(f'\nERRO: {sys.exc_info()[0]}')
+                    print(f'\nProblemas com o arquivo!\nERRO: {sys.exc_info()[0]}')
                 finally:    
                     # Fechando o socket
                     tcp_socket.close()
@@ -59,12 +59,14 @@ except KeyboardInterrupt:
     print('Foi pressionado CTRL+C')
     # Fechando o socket
     tcp_socket.close()    
+'''
 except:
     print(f'\nERRO: {sys.exc_info()[0]}')
 finally:    
     # Fechando o socket
     tcp_socket.close()
-
+'''
+    
 '''
 - Quando o cliente solicitar um arquivo, o servidor deverá verificar a existência do arquivo para pode enviá-lo, caso não exista, o servidor deverá informar ao cliente que o arquivo não existe; 
 - O arquivo existindo, o servidor deverá informar ao cliente quantos pacotes serão enviados antes de começar a enviá-los;
