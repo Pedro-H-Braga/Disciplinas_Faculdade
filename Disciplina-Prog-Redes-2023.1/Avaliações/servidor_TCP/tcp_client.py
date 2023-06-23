@@ -19,14 +19,17 @@ while True:
     
     # Enviando o nome do arquivo para o servidor
     print(f'\nSolicitando o arquivo {nome_arquivo}')
+    nome_arquivo = nome_arquivo.lower() # tratando possivel erro de nome maiusculo
     tcp_socket.send(nome_arquivo.encode(CODE_PAGE))
     
     if nome_arquivo.upper() == 'EXIT': break
 
-    dado_retorno = tcp_socket.recv(BUFFER_SIZE)
-    dado_retorno = dado_retorno.decode(CODE_PAGE)
+    dado_recebido = tcp_socket.recv(BUFFER_SIZE)
+    dado_retorno = dado_recebido.decode(CODE_PAGE)
+
     if 'Size:' in dado_retorno:
         tamanho_total = int(dado_retorno.split(':')[1])
+    else: tamanho_total = None
 
     # Gravar o dado recebido em arquivo
     print(f'Gravando o arquivo {nome_arquivo} ({tamanho_total} bytes)')
@@ -43,8 +46,8 @@ while True:
         bytes_recebidos += len(dado_retorno)
         if bytes_recebidos >= tamanho_total: break
         pct += 1
-
-    arquivo.close()
+    # fechando arquivo
+    arquivo.close() 
 
 # Fechando o socket
 tcp_socket.close()
