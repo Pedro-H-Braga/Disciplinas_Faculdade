@@ -1,0 +1,9 @@
+- Porta Trunking > Onde passa o tráfego de várias VLAN's
+- Porta de acesso > Só tem o tráfego de uma VLAN
+- A VLAN 1 não pode ser removida, é para gerenciamento
+- AS VLAN's ficam na memoria FLASH
+- O protocolo que passa na porta Trunking é o 802.1Q (multiplexa o sinal de 3 portas para 1 porta por exemplo), que diferente do ETHERNET, ele entiqueta cada protocolo dizendo de qual VLAN é
+
+Como funciona o protocolo e funcionamento para a VLAN:
+Ele pega a TAG que mostra de qual VLAN é, vai no switch, na VLAN indicada na TAG, pega o endereço de destino do pacote, checa naquela VLAN o endereço (MAC) fornecido
+
