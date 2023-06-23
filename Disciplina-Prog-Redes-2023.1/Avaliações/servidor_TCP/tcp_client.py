@@ -26,7 +26,8 @@ while True:
 
     dado_recebido = tcp_socket.recv(BUFFER_SIZE)
 
-    if 'Size:' in dado_recebido.decode():
+    print(dado_recebido.decode(CODE_PAGE))
+    if 'Size:' in dado_recebido.decode(CODE_PAGE):
         tamanho_total = int(dado_recebido.split(':')[1])
     else: 
         print('Nâo foi possível pegar o arquivo!')
