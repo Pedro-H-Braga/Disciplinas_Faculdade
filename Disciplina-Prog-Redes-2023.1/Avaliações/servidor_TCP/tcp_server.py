@@ -27,7 +27,7 @@ try:
 
         while True:
             mensagem_cod = conexao.recv(BUFFER_SIZE)
-            mensagem = mensagem_cod.decode(CODE_PAGE)
+            mensagem = mensagem_cod.decode()
             if mensagem.upper() == 'EXIT':
                 print(f'\nO {ip_cliente} SE DESCONECTOU DO SERVIDOR...\n')
             else:
@@ -37,7 +37,7 @@ try:
                 try:
                     tamanho_arquivo = os.path.getsize(nome_arquivo)
                     msg = f'O tamanho do arquivo é:{tamanho_arquivo}\nSerão enviados {tamanho_arquivo/BUFFER_SIZE} pacotes!'.encode(CODE_PAGE)
-                    conexao.send(msg.encode(CODE_PAGE))
+                    conexao.send(msg.encode())
                 # tratando os possíveis erros
                 except FileNotFoundError:
                     print('O arquivo não existe!')

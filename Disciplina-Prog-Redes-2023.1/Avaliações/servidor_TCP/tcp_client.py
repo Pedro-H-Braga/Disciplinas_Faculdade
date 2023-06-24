@@ -20,14 +20,13 @@ while True:
     # Enviando o nome do arquivo para o servidor
     print(f'\nSolicitando o arquivo {nome_arquivo}')
     nome_arquivo = nome_arquivo.lower() # tratando possivel erro de nome maiusculo
-    tcp_socket.send(nome_arquivo.encode(CODE_PAGE))
+    tcp_socket.send(nome_arquivo.encode())
     
     if nome_arquivo.upper() == 'EXIT': break
 
     dado_recebido = tcp_socket.recv(BUFFER_SIZE)
 
-    print(dado_recebido.decode(CODE_PAGE))
-    if 'Size:' in dado_recebido.decode(CODE_PAGE):
+    if 'Size:' in dado_recebido.decode():
         tamanho_total = int(dado_recebido.split(':')[1])
     else: 
         print('Nâo foi possível pegar o arquivo!')
