@@ -10,13 +10,27 @@ from socket_constants import *
 # Criando o socket UDP
 tcp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-# Ligando o socket a porta
-tcp_socket.connect((HOST_SERVER, SOCKET_PORT))
+try:
+    # Ligando o socket a porta
+    tcp_socket.connect((HOST_SERVER, SOCKET_PORT))
+except ConnectionRefusedError:
+    print('ERROR ao tentar se conectar com o servidor! Verifique se o Servido está ligado!')
+    sys.exit()
+except:
+    print(f'\nERRO: {sys.exc_info()[0]}')
+    sys.exit()
 
 while True:
-    # Solicitar o arquivo
-    nome_arquivo = input('Digite o nome do arquivo (EXIT p/ sair): ')
-    
+    try:
+        # Solicitar o arquivo
+        nome_arquivo = input('Digite o nome do arquivo (EXIT p/ sair): ')
+    except KeyboardInterrupt:
+        print('\nFoi pressionado CTRL+C')
+        # Fechando o socket
+        tcp_socket.close()        
+    except:
+        print(f'\nERRO: {sys.exc_info()[0]}')
+
     # Enviando o nome do arquivo para o servidor
     print(f'\nSolicitando o arquivo {nome_arquivo}')
     nome_arquivo = nome_arquivo.lower() # tratando possivel erro de nome maiusculo
@@ -29,6 +43,7 @@ while True:
     
     if dado_recebido.decode(CODE_PAGE) == '\nO arquivo não existe!':
         print(dado_recebido.decode(CODE_PAGE))
+        tcp_socket.close()
         sys.exit()
     else:
 

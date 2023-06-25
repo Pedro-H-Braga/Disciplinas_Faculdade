@@ -71,13 +71,13 @@ except KeyboardInterrupt:
     print('Foi pressionado CTRL+C')
     # Fechando o socket
     tcp_socket.close()    
-'''
+
 except:
     print(f'\nERRO: {sys.exc_info()[0]}')
 finally:    
     # Fechando o socket
     tcp_socket.close()
-'''
+
     
 '''
 - Quando o cliente solicitar um arquivo, o servidor deverá verificar a existência do arquivo para pode enviá-lo, caso não exista, o servidor deverá informar ao cliente que o arquivo não existe; 
