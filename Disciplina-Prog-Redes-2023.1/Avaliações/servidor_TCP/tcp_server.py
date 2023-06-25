@@ -20,41 +20,48 @@ print('\nRecebendo Mensagens...\n\n')
 tcp_socket.listen(MAX_LISTEN)
 
 try:
+    # Aceita a conexão com o cliente
+    conexao, ip_cliente = tcp_socket.accept()       
+    print(f'\nO cliente: <{ip_cliente}> se conectou ao servidor!')
+except: print(f'\nERROR ao tentar conecta o servidor!\nERRO: {sys.exc_info()[0]}')
+
+try:
     while True:
-        # Aceita a conexão com o cliente
-        conexao, ip_cliente = tcp_socket.accept()       
-        print(f'\nO cliente: <{ip_cliente}> se conectou ao servidor!')
+        # Recebendo mensagem do cliente
+        mensagem = conexao.recv(BUFFER_SIZE).decode()
 
-        while True:
-            mensagem_cod = conexao.recv(BUFFER_SIZE)
-            mensagem = mensagem_cod.decode()
-            if mensagem.upper() == 'EXIT':
-                print(f'\nO {ip_cliente} SE DESCONECTOU DO SERVIDOR...\n')
-            else:
-                # Nome do arquivo a ser enviado
-                nome_arquivo = ATUAL_DIR + '\\img_server\\' + mensagem
+        if mensagem.upper() == 'EXIT':
+            print(f'\nO CIENTE {ip_cliente} SE DESCONECTOU DO SERVIDOR...\n')
+            # Fechando conexoes
+            conexao.close()
+            tcp_socket.close()   
+
+        else:
+            # Nome do arquivo a ser enviado
+            nome_arquivo = ATUAL_DIR + '\\img_server\\' + mensagem
+            try:
+                tamanho_arquivo = os.path.getsize(nome_arquivo)
+                pacotes = tamanho_arquivo/BUFFER_SIZE
+                msg = f'O tamanho do arquivo é:{tamanho_arquivo}\nSerão enviados {pacotes} pacotes!'
+                conexao.send(msg.encode(CODE_PAGE))
                 print(f'Enviando arquivo {mensagem} ...')
-                try:
-                    tamanho_arquivo = os.path.getsize(nome_arquivo)
-                    msg = f'O tamanho do arquivo é:{tamanho_arquivo}\nSerão enviados {tamanho_arquivo/BUFFER_SIZE} pacotes!'.encode(CODE_PAGE)
-                    conexao.send(msg.encode())
-                # tratando os possíveis erros
-                except FileNotFoundError:
-                    print('O arquivo não existe!')
-                except: 
-                    print(f'\nProblemas com o arquivo!\nERRO: {sys.exc_info()[0]}')
-                finally:    
-                    # Fechando o socket
-                    tcp_socket.close()
+            # tratando os possíveis erros
+            except FileNotFoundError:
+                print('O arquivo não existe!')
+            except: 
+                print(f'\nProblemas com o arquivo!\nERRO: {sys.exc_info()[0]}')
+            finally:    
+                # Fechando o socket
+                tcp_socket.close()
 
-                arquivo = open(nome_arquivo, 'rb')
+            with open(nome_arquivo, 'rb') as arquivo:
                 while True:
                     data_retorno = arquivo.read(BUFFER_SIZE)
-                    if not data_retorno: break                                
                     conexao.send(data_retorno)
-                    time.sleep(0.02)
-                print(f'Arquivo {mensagem.upper()} Enviado...')
-                arquivo.close()
+                    if not data_retorno: break                                
+            
+            print(f'Arquivo {mensagem.lower()} Enviado...')
+            arquivo.close()
 except KeyboardInterrupt:
     print('Foi pressionado CTRL+C')
     # Fechando o socket

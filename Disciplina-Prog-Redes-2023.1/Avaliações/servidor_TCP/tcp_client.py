@@ -13,6 +13,7 @@ tcp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # Ligando o socket a porta
 tcp_socket.connect((HOST_SERVER, SOCKET_PORT))
 
+
 while True:
     # Solicitar o arquivo
     nome_arquivo = input('Digite o nome do arquivo (EXIT p/ sair): ')
@@ -25,8 +26,8 @@ while True:
     if nome_arquivo.upper() == 'EXIT': break
 
     dado_recebido = tcp_socket.recv(BUFFER_SIZE)
-
-    if 'Size:' in dado_recebido.decode():
+    
+    if 'é:' in dado_recebido.decode(CODE_PAGE):
         tamanho_total = int(dado_recebido.split(':')[1])
     else: 
         print('Nâo foi possível pegar o arquivo!')
