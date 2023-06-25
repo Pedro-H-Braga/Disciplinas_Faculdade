@@ -27,9 +27,10 @@ while True:
     dado_recebido = tcp_socket.recv(BUFFER_SIZE)
 
     
-    if dado_recebido.decode(CODE_PAGE) != 'O arquivo não existe!':
-        
+    if dado_recebido.decode(CODE_PAGE) == '\nO arquivo não existe!':
         print(dado_recebido.decode(CODE_PAGE))
+        sys.exit()
+    else:
 
         # Gravar o dado recebido em arquivo
         print(f'Gravando o arquivo {nome_arquivo}\n')
@@ -44,8 +45,6 @@ while True:
                 arquivo.write(dado_retorno)
                 pct += 1
                 if len(dado_retorno) < BUFFER_SIZE: break
-    else: 
-        print(dado_recebido.decode(CODE_PAGE))
-        sys.exit()
+
 # Fechando o socket
 tcp_socket.close()

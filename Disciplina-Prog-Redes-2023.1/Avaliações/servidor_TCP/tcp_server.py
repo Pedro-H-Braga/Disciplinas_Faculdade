@@ -63,7 +63,9 @@ try:
                 print(f'Arquivo {mensagem.lower()} Enviado...')
             else:
                 conexao.send('\nO arquivo não existe!'.encode(CODE_PAGE))
-                sys.exit()
+                tcp_socket.close()    
+                conexao.close()
+                break
 
 except KeyboardInterrupt:
     print('Foi pressionado CTRL+C')
