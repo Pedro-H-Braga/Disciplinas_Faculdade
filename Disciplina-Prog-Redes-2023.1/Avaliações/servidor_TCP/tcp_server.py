@@ -40,17 +40,16 @@ try:
             # Nome do arquivo a ser enviado
             nome_arquivo = ATUAL_DIR + '\\img_server\\' + mensagem
             ver_arquivo = os.path.isfile(nome_arquivo)
-            print(ver_arquivo)
             if ver_arquivo == True:
                 try:
                     tamanho_arquivo = os.path.getsize(nome_arquivo)
-                    pacotes = tamanho_arquivo/BUFFER_SIZE
-                    msg = f'O tamanho do arquivo é:{tamanho_arquivo}\nSerão enviados {pacotes} pacotes!'
+                    pacotes = int(tamanho_arquivo/BUFFER_SIZE)
+                    msg = f'\nO arquivo tem: {tamanho_arquivo} Bytes\n\nSerão enviados {pacotes+1} pacotes!\n'
                     conexao.send(msg.encode(CODE_PAGE))
                     print(f'Enviando arquivo {mensagem} ...')
                 # tratando os possíveis erros
                 except: 
-                    conexao.send('\nProblemas com o arquivo!'.encode(CODE_PAGE))
+                    print('\nProblemas com o arquivo!')
                 finally:    
                     # Fechando o socket
                     tcp_socket.close()
@@ -63,8 +62,8 @@ try:
 
                 print(f'Arquivo {mensagem.lower()} Enviado...')
             else:
-                conexao.send('O arquivo não existe!'.encode(CODE_PAGE))
-                conexao.close()
+                conexao.send('\nO arquivo não existe!'.encode(CODE_PAGE))
+                sys.exit()
 
 except KeyboardInterrupt:
     print('Foi pressionado CTRL+C')

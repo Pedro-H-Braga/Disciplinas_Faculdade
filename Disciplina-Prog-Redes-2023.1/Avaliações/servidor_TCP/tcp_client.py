@@ -26,10 +26,13 @@ while True:
 
     dado_recebido = tcp_socket.recv(BUFFER_SIZE)
 
+    
     if dado_recebido.decode(CODE_PAGE) != 'O arquivo não existe!':
+        
+        print(dado_recebido.decode(CODE_PAGE))
 
         # Gravar o dado recebido em arquivo
-        print(f'Gravando o arquivo {nome_arquivo}')
+        print(f'Gravando o arquivo {nome_arquivo}\n')
         nome_arquivo_ = ATUAL_DIR + '\\img_client\\' + nome_arquivo
         
         pct = 1
