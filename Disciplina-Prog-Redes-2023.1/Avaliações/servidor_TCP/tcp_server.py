@@ -39,29 +39,33 @@ try:
         else:
             # Nome do arquivo a ser enviado
             nome_arquivo = ATUAL_DIR + '\\img_server\\' + mensagem
-            try:
-                tamanho_arquivo = os.path.getsize(nome_arquivo)
-                pacotes = tamanho_arquivo/BUFFER_SIZE
-                msg = f'O tamanho do arquivo é:{tamanho_arquivo}\nSerão enviados {pacotes} pacotes!'
-                conexao.send(msg.encode(CODE_PAGE))
-                print(f'Enviando arquivo {mensagem} ...')
-            # tratando os possíveis erros
-            except FileNotFoundError:
-                print('O arquivo não existe!')
-            except: 
-                print(f'\nProblemas com o arquivo!\nERRO: {sys.exc_info()[0]}')
-            finally:    
-                # Fechando o socket
-                tcp_socket.close()
+            ver_arquivo = os.path.isfile(nome_arquivo)
+            print(ver_arquivo)
+            if ver_arquivo == True:
+                try:
+                    tamanho_arquivo = os.path.getsize(nome_arquivo)
+                    pacotes = tamanho_arquivo/BUFFER_SIZE
+                    msg = f'O tamanho do arquivo é:{tamanho_arquivo}\nSerão enviados {pacotes} pacotes!'
+                    conexao.send(msg.encode(CODE_PAGE))
+                    print(f'Enviando arquivo {mensagem} ...')
+                # tratando os possíveis erros
+                except: 
+                    conexao.send('\nProblemas com o arquivo!'.encode(CODE_PAGE))
+                finally:    
+                    # Fechando o socket
+                    tcp_socket.close()
 
-            with open(nome_arquivo, 'rb') as arquivo:
-                while True:
-                    data_retorno = arquivo.read(BUFFER_SIZE)
-                    conexao.send(data_retorno)
-                    if not data_retorno: break                                
-            
-            print(f'Arquivo {mensagem.lower()} Enviado...')
-            arquivo.close()
+                with open(nome_arquivo, 'rb') as arquivo:
+                    while True:
+                        data_retorno = arquivo.read(BUFFER_SIZE)
+                        conexao.send(data_retorno)
+                        if not data_retorno: break                                
+
+                print(f'Arquivo {mensagem.lower()} Enviado...')
+            else:
+                conexao.send('O arquivo não existe!'.encode(CODE_PAGE))
+                conexao.close()
+
 except KeyboardInterrupt:
     print('Foi pressionado CTRL+C')
     # Fechando o socket
