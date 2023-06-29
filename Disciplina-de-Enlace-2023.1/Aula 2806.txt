@@ -1,0 +1,9 @@
+# REDUNDANCIA
+- Saídas de 'escape' se tiver congestionamentos em redes
+- Loops de rede 
+- problemas em múltiplas transmissões e recebimentos de quadros
+- Instabilidade do BroadCast de MAC'S, ex:
+tenho um MAC que está em 2 duas portas, qual mandar?
+- Protocolo STP
+- Switch raiz será o que tem menor ID em uma rede 
+
