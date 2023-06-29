@@ -1,0 +1,25 @@
+CONSULTANDO AS TABELAS DO BANCO PARA PEGAR OS NOMES
+
+SELECT * FROM information_schema.tables  
+- Pegando todos os esquemas das tabelas do sistema do postgres que estam naquele servidor
+
+SELECT table_name, table_schema, table_catalog, table_type FROM information_schema.tables WHERE table_type = 'BASE TABLE'
+- Pegando os esquemas das tabelas do sistema do postgres informados que tiverem onde na coluna table_type é igual a BASE TABLE
+
+- O outro codigo ta na foto
+
+CONSULTANDO OS DADOS DAS TABELAS
+
+SELECT * FROM information_schema.columns 
+- Pega as informações das tabelas, trazendo dados como: colunm_name, data_type, table_name
+
+SELECT table_name, table_schema, table_catalog, table_type FROM information_schema.tables WHERE table_schema  IN NOT ('Pg_catalog','information_schema') AND table_name = 'Alunos' ORDER BY table_name, Ordinal_Position
+-  pega dos schemas das colunas os valores que não tenham 'Pg_catalog,information_schema' e da tabela alunos ordenar pelo nome e 
+
+DOCUMENTAÇÃO das informações das tabelas do postgres
+
+https://www.postgresql.org/docs/9.1/information-schema.html # geral
+https://www.postgresql.org/docs/current/information-schema.html # especializado
+
+# DICA QUANDO FOR RODAR O BANCO
+- Substituir os nomes como, D'AVILA por DAVILA no CSV para não dá problema
