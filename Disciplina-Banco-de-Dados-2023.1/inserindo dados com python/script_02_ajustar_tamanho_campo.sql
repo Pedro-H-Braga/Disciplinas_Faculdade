@@ -1,0 +1,3 @@
+ALTER TABLE alunos.cotas_mec ALTER COLUMN cota_mec TYPE VARCHAR(200);
+
+ALTER TABLE alunos.alunos ALTER COLUMN matricula TYPE VARCHAR(30);
