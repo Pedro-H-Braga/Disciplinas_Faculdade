@@ -1,0 +1,49 @@
+- Criar um repositório para a avaliação 
+exemplo de arvore de repositorios:
+\projeto
+  \modelo_normalizado
+  \scripts_sql
+  \scripts_python
+
+* LEMBRAR DE SUBSTITUIR OS " ' " DO CSV
+
+Observações:
+- Para cada consulta, usar o SELECT (já tem exemplos)
+- Views != Select -> Porque a view pega só a estrura
+ EX: SELECT * FROM VIEW_ESTRUTURA
+------------------------------------------------------------------------------------------------
+CONSULTA DE DADOS
+* SELECT *
+- Exemplo de estrutura:                       CONDICIONAL
+
+SELECT lista_campus 
+FROM lista_tabelas 
+* WHERE lista_condições * 
+ORDER BY lista_campos_ordenação
+
+- quando for dar um select no código que tem schema, faz-se assim:
+EXEMPLO de consulta dos dados da coluna alunos da tabela alunos do schema alunos:
+SELECT alunos(tabela) 
+FROM alunos(schema).alunos(campo) 
+ORDER BY alunos.matricula(ordenando a exibição pela matricula)
+
+SUB CONSULTA:
+- A partir de um dado ir em uma tabela buscar o dado requerido
+EX -> quero o nome do curso de cada aluno ( só posso trazer o curso quando o id do curso for igual ao id do aluno )
+
+SELECT alunos.matricula, alunos.nome, alunos.id_curso, 
+(SELECT cursos.curso 
+  FROM alunos.cursos 
+  WHERE alunos.id_curso = cursos.id_curso)
+FROM alunos.alunos;
+
+EX 2 -> quero o id de cada situação de cada aluno 
+
+SELECT alunos.matricula, alunos.nome, alunos.id_curso, alunos.id_situacao, 
+(SELECT cursos.curso 
+  FROM alunos.cursos 
+  WHERE alunos.id_curso = cursos.id_curso)
+(SELECT situacoes.situacao
+  FROM alunos.situacoes
+  WHERE alunos.id_sutacao = sitaucoes.id_situacao)
+FROM alunos.alunos;
