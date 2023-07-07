@@ -47,3 +47,9 @@ SELECT alunos.matricula, alunos.nome, alunos.id_curso, alunos.id_situacao,
   FROM alunos.situacoes
   WHERE alunos.id_sutacao = sitaucoes.id_situacao)
 FROM alunos.alunos;
+
+- View é uma função que faz o dump de uma consulta 
+- E não é necessário refazer a consulta toda vez
+- Menos tempo de processamento
+- Cartesiano: juntando subconsultas (unificando uma subconsulta)
+
