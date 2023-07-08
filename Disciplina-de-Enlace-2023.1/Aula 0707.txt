@@ -1,0 +1,4 @@
+- Se usar a VLAN em um roteador, ele vira um nível 2/3 e é possível ter tabela ARP, mas normalmente o SWITCH é nível 2.
+- Prioridades:
+* 15a,b,c
+* 16a,b
