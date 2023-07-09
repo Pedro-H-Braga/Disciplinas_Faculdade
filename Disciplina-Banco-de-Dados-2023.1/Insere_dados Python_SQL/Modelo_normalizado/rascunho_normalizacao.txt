@@ -21,21 +21,37 @@ SERVIDOR:
 - nome 		  - (Não nulo - texto - unique)
 - curriculoLattes - (nulo - varchar(100) - unique)
 - urlFoto75x100   - (Não nulo - varchar(100) - unique)
+- id_setor 	(FK)
+- id_disciplina (FK)
+- id_funcao 	(FK)
+- id_jornada 	(FK)
+- id_telefones 	(FK)
+- id_campus 	(FK)
 
 SETOR:
 - nome_setor (Não nulo - FK campus - varchar(10))
-- id (serial - PK)
+- id_setor (serial - PK)
 
 DISCIPLINA_INGRESSO: 
 - disciplina (nulo - varchar(100))
-- id (serial - PK)
+- id_disciplina (serial - PK)
 
 FUNCAO:
-funcao_servidor - (nulo - varchar(100))
-jornadaTrabalho - (Não nulo - varchar(30))
-telefone - (nulo - char(14))
-ramal - (Não nulo - number(4))
-campus - 
+- funcao_servidor (nulo - varchar(100))
+- id_funcao (serial - PK)
+
+JORNADA_TRABALHO:
+- jornadaTrabalho - (Não nulo - varchar(30))
+- id_jornada (serial - PK)
+
+TELEFONES_INSTITUCIONAIS:
+- telefone (nulo - char(14))
+- ramal (Não nulo - number(4))
+- id_telefones (serial - PK)
+
+CAMPUS:
+- campus (Não nulo - varchar(10))
+- id_campus (serial - PK)
 
 ------------------------------------------------------
 servidor - (FK categoria - FK cargo - FK setor - FK 
