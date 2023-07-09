@@ -50,11 +50,5 @@ TELEFONES_INSTITUCIONAIS:
 - id_telefones (serial - PK)
 
 CAMPUS:
-- campus (Não nulo - varchar(10))
+- campi (Não nulo - varchar(10))
 - id_campus (serial - PK)
-
-------------------------------------------------------
-servidor - (FK categoria - FK cargo - FK setor - FK 
-disciplinaIngresso - FK nome - FK funcao - FK 
-jornadaTrabalho - FK telefone - FK ramal - FK matricula - FK curriculoLattes - FK campus - FK urlFoto75x100 - PK servidor)
-------------------------------------------------------
