@@ -57,10 +57,10 @@ try:
     # colocando as threads para rodar (inciando as threads) 
     tServer.start()
     tUser.start()
-    # Fazendo com que uma thread acabe para que a outra possa rodar (não rodar em simultaneo (poderia causar erros de comunicação))
+    # Fazendo com que uma thread acabe para que a outra possa rodar (para garantir que todas as threads tenha executado para prosseguir)
     tServer.join()
     tUser.join()
-    
+
 except Exception as e:
     print ("Falha ", e)
 
