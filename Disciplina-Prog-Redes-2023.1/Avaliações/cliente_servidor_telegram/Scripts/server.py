@@ -1,4 +1,5 @@
 import socket, threading
+from const import *
 
 def cliInteraction(sockConn, addr):
     # recebe os bytes do cliente enquanto tiver quadro

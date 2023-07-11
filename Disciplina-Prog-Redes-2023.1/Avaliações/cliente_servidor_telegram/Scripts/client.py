@@ -1,4 +1,5 @@
 import socket, threading
+from const import *
 
 # funcao que pega os dados enviados pelo servidor e decodifica
 def servInteraction():
