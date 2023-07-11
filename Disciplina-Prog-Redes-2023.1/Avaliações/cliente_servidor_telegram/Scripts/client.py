@@ -7,7 +7,7 @@ def servInteraction():
     # enquanto tiver mensagem
     while msg != b'':
         try:
-            # receba a mensagem com o BUFFER de 512
+            # receba a mensagem e guarda na variavel msg
             msg = sock.recv(BUFFER_MSG)
             # exiba a mensagem que chegou do servidor
             print ("\n"+msg.decode(CODE_PAGE)+"\n"+PROMPT)
