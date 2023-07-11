@@ -39,7 +39,7 @@ try:
     while True:
         # sock e addr recebem os dados da coneão aceita
         sockConn, addr = sock.accept()
-        print ("Connection from: ", addr)
+        print (f"Connection from: {addr} | {sock.getsockopt(level, optname)}")
         # adicionando a conexão na lista de todas conexões
         allSocks.append((sockConn, addr))
         # criando uma thread para cada conexão
