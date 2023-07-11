@@ -1,6 +1,7 @@
 # ---------CONSTANTES-----------------
-SERVER      = 'localhost'
+
 PORT        = 5678
 BUFFER_MSG  = 1024
-# mensagem padrão do prompt para inputs
-PROMPT = 'Digite sua msg (!q para terminar) > '
+SERVER      = 'localhost'
+CODE_PAGE   = 'utf-8'
+PROMPT      = 'Digite sua msg (!q para terminar) > '

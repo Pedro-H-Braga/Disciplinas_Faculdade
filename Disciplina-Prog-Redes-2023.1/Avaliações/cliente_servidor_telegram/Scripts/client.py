@@ -1,11 +1,5 @@
 import socket, threading
 
-# ---------CONSTANTES-----------------
-SERVER = 'localhost'
-PORT = 5678
-# mensagem padrão do prompt para inputs
-PROMPT = 'Digite sua msg (!q para terminar) > '
-
 # funcao que pega os dados enviados pelo servidor e decodifica
 def servInteraction():
     msg = b' '
@@ -13,9 +7,9 @@ def servInteraction():
     while msg != b'':
         try:
             # receba a mensagem com o BUFFER de 512
-            msg = sock.recv(512)
+            msg = sock.recv(BUFFER_MSG)
             # exiba a mensagem que chegou do servidor
-            print ("\n"+msg.decode('utf-8')+"\n"+PROMPT)
+            print ("\n"+msg.decode(CODE_PAGE)+"\n"+PROMPT)
         except:
             # não deixe a mensagem vazia
             msg = b''
@@ -31,7 +25,7 @@ def userInteraction():
             # pegando input com mensagem padrão 
             msg = input(PROMPT)
             # se a mensagem nao for vazia, envie para o servidor
-            if msg != '': sock.send(msg.encode('utf-8'))
+            if msg != '': sock.send(msg.encode(CODE_PAGE))
         except:
             msg = '!q'
     closeSocket()

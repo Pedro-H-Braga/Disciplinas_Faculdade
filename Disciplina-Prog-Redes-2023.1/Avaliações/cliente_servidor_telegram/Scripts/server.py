@@ -1,15 +1,11 @@
 import socket, threading
 
-SERVER = '0.0.0.0'
-PORT = 5678
-
-
 def cliInteraction(sockConn, addr):
     # recebe os bytes do cliente enquanto tiver quadro
     msg = b''
     while msg != b'!q':
         try:            
-            msg = sockConn.recv(512)
+            msg = sockConn.recv(BUFFER_MSG)
             # função que faz o decode da mensagem e exibe o cliente e a mensagem
             broadCast (msg, addr)
         except:
@@ -22,11 +18,11 @@ def cliInteraction(sockConn, addr):
 
 def broadCast(msg, addrSource): # addrSource = ip cliente
     # msg recebe os dados do cliente e a mensagem
-    msg = f"{addrSource} -> {msg.decode('utf-8')}"
+    msg = f"{addrSource} -> {msg.decode(CODE_PAGE)}"
     print (msg)
     for sockConn, addr in allSocks:
         if addr != addrSource:
-            sockConn.send(msg.encode('utf-8'))
+            sockConn.send(msg.encode(CODE_PAGE))
 
 try:
     # lista que guardará todas as conexoes (ip-porta)
