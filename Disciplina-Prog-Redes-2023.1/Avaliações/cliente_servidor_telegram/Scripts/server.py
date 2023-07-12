@@ -30,7 +30,13 @@ try:
     allSocks = []
     # criando socket e ouvindo nas portas indicadas
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    print(f'SOCK >>: {sock}')
+    
+    # sock_family recebe se é UDP ou TCP  
+    if sock.type == 1: print('\nProtocolo utilizado na conexão: TCP\n')
+    else: print('\nProtocolo utilizado na conexão: UDP\n')
+    # Se 
+    
+
     sock.bind((SERVER, PORT))
 
     print ("Listening in: ", (SERVER, PORT))
@@ -56,3 +62,4 @@ try:
                
 except Exception as e:
     print ("Fail: ", e)
+    sys.exit()

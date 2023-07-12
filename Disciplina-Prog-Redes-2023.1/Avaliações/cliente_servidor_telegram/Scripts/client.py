@@ -58,4 +58,4 @@ try:
 
 except Exception as e:
     print ("Falha ", e)
-
+    sys.exit()
