@@ -3,7 +3,7 @@ from const import *
 
 # funcao que pega os dados enviados pelo servidor e decodifica
 def servInteraction():
-    msg = b' '
+    msg = b''
     # enquanto tiver mensagem
     while msg != b'':
         try:

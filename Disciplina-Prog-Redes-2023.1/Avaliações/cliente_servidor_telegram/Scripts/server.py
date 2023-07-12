@@ -1,4 +1,4 @@
-import socket, threading
+import socket, threading, sys
 from const import *
 
 def cliInteraction(sockConn, addr):
@@ -30,16 +30,23 @@ try:
     allSocks = []
     # criando socket e ouvindo nas portas indicadas
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    print(f'SOCK >>: {sock}')
     sock.bind((SERVER, PORT))
 
     print ("Listening in: ", (SERVER, PORT))
     # Aguenta até 5 clientes
     sock.listen(5)
-
+    
+    sys.exit()            
+    
     while True:
         # sock e addr recebem os dados da coneão aceita
         sockConn, addr = sock.accept()
-        print (f"Connection from: {addr} | {sock.getsockopt(level, optname)}")
+        if MSG_EXIBIDA == False:
+            print (f"Connection from: {addr}")
+            MSG_EXIBIDA = True
+
+        #print (f"Connection from: {addr} | {teste}")
         # adicionando a conexão na lista de todas conexões
         allSocks.append((sockConn, addr))
         # criando uma thread para cada conexão
