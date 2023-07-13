@@ -1,0 +1,5 @@
+ * Redudancia Em uma rede: *
+- Consiste em ter 'rotas de fugas' caso um dos caminhos da rede caia.
+
+* Protocolo STP -> comunicação entre SWITCH's para aprender como as 'redes lateriais' 
+* O STP é usado para prevenir enchurradas de broadcast, para quando o SWITCH for mandar um broadcast para aprender as máquinas ao seu redor, o STP já tenta pegar dos outros SWITCHS o que ele já tem na tabela CAM
