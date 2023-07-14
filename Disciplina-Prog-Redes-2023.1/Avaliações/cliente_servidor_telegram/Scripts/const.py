@@ -1,10 +1,12 @@
-# ---------CONSTANTES-----------------
+# --------- CONSTANTES -----------------
+import socket
 
 PORT        = 5678
-BUFFER_MSG  = 512
-SERVER_SERV = '0.0.0.0'
-SERVER_CLT  = 'localhost'
-CODE_PAGE   = 'utf-8'
+SERVER      = 'localhost'
 PROMPT      = 'Digite sua msg (!q para terminar) > '
+CODE_PAGE   = 'utf-8'
+BUFFER_MSG  = 512
 
-
+# --------- VARIAVEIS SOCKET -----------------
+allSocks = []
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
