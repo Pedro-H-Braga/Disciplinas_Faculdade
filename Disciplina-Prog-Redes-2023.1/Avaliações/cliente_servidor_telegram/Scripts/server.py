@@ -2,7 +2,6 @@ import threading
 from const import *
 from funcoes import *
 
-
 try:
     sock.bind((SERVER, PORT))
 
