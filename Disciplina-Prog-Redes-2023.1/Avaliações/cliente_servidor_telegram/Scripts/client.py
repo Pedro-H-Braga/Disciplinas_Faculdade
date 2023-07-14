@@ -1,4 +1,4 @@
-import socket, threading
+import socket, threading, sys
 from const import *
 
 # funcao que pega os dados enviados pelo servidor e decodifica
@@ -8,7 +8,7 @@ def servInteraction():
     while msg != b'':
         try:
             # receba a mensagem e guarda na variavel msg
-            msg = sock.recv(BUFFER_MSG)
+            msg = sock.recv(BUFFER_MSG) # provavel erro no tamanho do buffer
             # exiba a mensagem que chegou do servidor
             print ("\n"+msg.decode(CODE_PAGE)+"\n"+PROMPT)
         except:
@@ -48,7 +48,6 @@ try:
     tServer = threading.Thread(target=servInteraction)
     # isolando em uma thread a funcao que envia dados para o servidor 
     tUser = threading.Thread(target=userInteraction)
-
     # colocando as threads para rodar (inciando as threads) 
     tServer.start()
     tUser.start()
