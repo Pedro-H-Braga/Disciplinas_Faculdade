@@ -14,7 +14,8 @@ try:
 
     while True:
         sockConn, addr = sock.accept()
-        print ("Connection from: ", addr)
+        # addr = (ip,porta) -> tupla
+        print ("Connection from: ", addr) 
         allSocks.append((sockConn, addr))
         tClient = threading.Thread(target=cliInteraction, args=(sockConn, addr))
         tClient.start()

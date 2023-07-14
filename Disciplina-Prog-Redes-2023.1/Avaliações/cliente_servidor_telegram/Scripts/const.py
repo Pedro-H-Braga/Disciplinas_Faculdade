@@ -3,7 +3,7 @@ import socket
 
 PORT        = 5678
 SERVER      = 'localhost'
-PROMPT      = 'Digite sua msg (!q para terminar) > '
+PROMPT      = 'Digite sua msg (/q para terminar) > '
 CODE_PAGE   = 'utf-8'
 BUFFER_MSG  = 512
 

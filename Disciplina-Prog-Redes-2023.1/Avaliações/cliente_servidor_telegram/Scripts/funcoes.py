@@ -1,20 +1,34 @@
+from ast import match_case
 from const import *
 
 # ----------------- FUNÇÕES SERVIDOR -----------------
 # analisa mensagem do cliente, se diferente de !q, continua recebendo, senão remove o socket da lista 
 def cliInteraction(sockConn, addr):
     msg = b''
-    while msg != b'!q':
+    while msg != b'/q':
         try:
             msg = sockConn.recv(BUFFER_MSG)
+            
+            # decodificando para entrar no match case
+            msg_str = msg.decode(CODE_PAGE)
+            
+            # fazer match case para msg, se encaixar em alguma alternativa, execute uma função
+            match msg_str:
+                case '/l':
+                    l(msg, addr)
+                case '/m':
+                    m(msg, addr)                    
+            # criar funções para cada funcionalidade
+            
             broadCast (msg, addr)
         except:
-            msg = b'!q'
+            msg = b'/q'
     allSocks.remove ((sockConn, addr))
     sockConn.close()
 
-# modelo de mensagem para exibir a mensagem do cliente 
+# função que exibe: ipa mensagem que o cliente enviou  
 def broadCast(msg, addrSource):
+    # addrSource = ip do cliente que mandou
     msg = f"{addrSource} -> {msg.decode('utf-8')}"
     print (msg)
     for sockConn, addr in allSocks:
@@ -50,3 +64,21 @@ def closeSocket():
         sock.close()
     except:
         None
+
+# ----------------- FUNÇÕES FUNCIONALIDADES -----------------
+
+# listar o IP:porta dos clientes conectados no servidor;
+def l(msg, addrSource):
+    msg = f"IP | PORTA: -> {addrSource}"
+    print (msg)
+    # laço que percorre IP | PORTA  de todos os clientes e envia para todos
+    for sockConn, addr in allSocks:
+        if addr != addrSource:
+            sockConn.send(msg.encode('utf-8'))
+
+# Enviar uma mensagem a um determinado cliente conectado no servidor
+def m(msg, addrSource):
+    msg = f"IP | PORTA: -> {addrSource}"
+    print (msg)
+    if addr in allSocks:
+        sockConn.send(msg.encode('utf-8'))
