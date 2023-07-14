@@ -32,12 +32,12 @@ try:
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
     # sock_type recebe se é UDP ou TCP e exibe uma mensagem de acordo com o protocolo
-    if sock.type == 1: print('\nProtocolo utilizado na conexão: TCP\n')
-    else: print('\nProtocolo utilizado na conexão: UDP\n')
+    #if sock.type == 1: print('\nProtocolo utilizado na conexão: TCP\n')
+    #else: print('\nProtocolo utilizado na conexão: UDP\n')
 
     # escutando em localhost e na porta 5000
-    sock.bind((SERVER, PORT))
-    print ("Escutando em: ", (SERVER, PORT))
+    sock.bind((SERVER_SERV, PORT))
+    print ("Escutando em: ", (SERVER_SERV, PORT))
 
     # Aguenta até 5 clientes
     sock.listen(5)      
@@ -45,7 +45,7 @@ try:
     while True:
         # sock e addr recebem os dados da coneão aceita
         sockConn, addr = sock.accept()
-        print (f"Connection from: {addr}")
+        print (f"Connection from: ", addr)
         # adicionando a conexão na lista de todas conexões
         allSocks.append((sockConn, addr))
         # criando uma thread para cada conexão

@@ -8,9 +8,9 @@ def servInteraction():
     while msg != b'':
         try:
             # receba a mensagem e guarda na variavel msg
-            msg = sock.recv(BUFFER_MSG) # provavel erro no tamanho do buffer
+            msg = sock.recv(BUFFER_MSG) 
             # exiba a mensagem que chegou do servidor
-            print ("\n"+msg.decode(CODE_PAGE)+"\n"+PROMPT)
+            print("\n"+msg.decode(CODE_PAGE)+"\n"+PROMPT)
         except:
             # não deixe a mensagem vazia
             msg = b''
@@ -41,9 +41,9 @@ def closeSocket():
 try:
     # criando o socket TCP
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect((SERVER, PORT))
+    sock.connect((SERVER_CLT, PORT))
     # exibindo as portas em que foram conectadas
-    print ("Conectado a: ", (SERVER, PORT))
+    print ("Conectado a: ", (SERVER_CLT, PORT))
     # isolando em uma thread a funcao que recebe dados do servidor 
     tServer = threading.Thread(target=servInteraction)
     # isolando em uma thread a funcao que envia dados para o servidor 
