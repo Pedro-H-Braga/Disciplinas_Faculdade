@@ -3,6 +3,7 @@ from const import *
 from funcoes import *
 
 try:
+    
     sock.bind((SERVER, PORT))
 
     # sock_type recebe se é UDP ou TCP e exibe uma mensagem de acordo com o protocolo

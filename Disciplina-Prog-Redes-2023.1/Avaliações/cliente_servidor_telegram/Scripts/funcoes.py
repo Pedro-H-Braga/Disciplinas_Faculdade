@@ -16,7 +16,7 @@ def cliInteraction(sockConn, addr):
                 case '/l':
                     l(msg, addr)
                 case '/m':
-                    m(msg, addr)                    
+                    m(msg, sock)                    
                 
             # criar funções para cada funcionalidade
             
@@ -29,11 +29,11 @@ def cliInteraction(sockConn, addr):
 # função que exibe: ipa mensagem que o cliente enviou  
 def broadCast(msg, addrSource):
     # addrSource = ip do cliente que mandou
-    msg = f"{addrSource} -> {msg.decode('utf-8')}"
+    msg = f"{addrSource} -> {msg.decode(CODE_PAGE)}"
     print (msg)
     for sockConn, addr in allSocks:
         if addr != addrSource:
-            sockConn.send(msg.encode('utf-8'))
+            sockConn.send(msg.encode(CODE_PAGE))
 
 # ----------------- FUNÇÕES CLIENTE  -----------------
 # função que recebe os dados do servidor
@@ -42,7 +42,7 @@ def servInteraction():
     while msg != b'':
         try:
             msg = sock.recv(BUFFER_MSG)
-            print ("\n"+msg.decode('utf-8')+"\n"+PROMPT)
+            print ("\n"+msg.decode(CODE_PAGE)+"\n"+PROMPT)
         except:
             msg = b''
     closeSocket()
@@ -53,7 +53,7 @@ def userInteraction():
     while msg != '!q':
         try:
             msg = input(PROMPT)
-            if msg != '': sock.send(msg.encode('utf-8'))
+            if msg != '': sock.send(msg.encode(CODE_PAGE))
         except:
             msg = '!q'
     closeSocket()
@@ -74,12 +74,13 @@ def l(msg, addrSource):
     # laço que percorre IP | PORTA  de todos os clientes e envia para todos
     for sockConn, addr in allSocks:
         if addr != addrSource:
-            sockConn.send(msg.encode('utf-8'))
+            sockConn.send(msg.encode(CODE_PAGE))
 
 # Enviar uma mensagem a um determinado cliente conectado no servidor
-def m(msg, addrSource):
+def m(msg, sock):
     # /m:ip_destino:porta:mensagem
-    msg_str    = msg.decode(CODE_PAGE)
+    msg_str = msg.decode(CODE_PAGE)
+
     try:
         # pegando os dados do /m
         split_list = msg_str.split(':')
@@ -87,9 +88,21 @@ def m(msg, addrSource):
         port = split_list[2]
         msg_dest = split_list[3]
     except Exception as e:
+        msg = 'O comando deve estar no seguinte formato: /m:ip_destino:porta:mensagem'
+        sockConn.send(msg.encode(CODE_PAGE))
         print(f'ERROR: {e}')
+    
     # enviar msg_dest para o ip/port informado
     # verificar se existe em allSocks
-
+    sock.bind((ip_dest, port))
+    print (f"Enviando -> {msg_dest}\npara: {ip_dest} | {port}")
+    sock.listen(1)
+    sockConn, addres = sock.accept()
+    addrSource = ((sockConn, addres))
+    print('Connect a: ', addrSource)
     if addrSource in allSocks:
-        sockConn.send(msg.encode('utf-8'))
+        # envia a mensagem
+        sockConn.send(msg_dest.encode(CODE_PAGE))
+    else: 
+        msg_error = 'Cliente não está conectado a rede! Tente outro ip | porta'
+        sockConn.send(msg_error.encode(CODE_PAGE))
