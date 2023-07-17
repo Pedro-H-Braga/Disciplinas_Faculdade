@@ -17,23 +17,12 @@ def cliInteraction(sockConn, addr):
                     l(msg, addr)
                 case '/m':
                     m(msg, sock)                    
-                
-            # criar funções para cada funcionalidade
-            
-            broadCast (msg, addr)
+                case '/b':
+                    b(msg, addr)                
         except:
             msg = b'/q'
     allSocks.remove ((sockConn, addr))
     sockConn.close()
-
-# função que exibe: ipa mensagem que o cliente enviou  
-def broadCast(msg, addrSource):
-    # addrSource = ip do cliente que mandou
-    msg = f"{addrSource} -> {msg.decode(CODE_PAGE)}"
-    print (msg)
-    for sockConn, addr in allSocks:
-        if addr != addrSource:
-            sockConn.send(msg.encode(CODE_PAGE))
 
 # ----------------- FUNÇÕES CLIENTE  -----------------
 # função que recebe os dados do servidor
@@ -93,16 +82,26 @@ def m(msg, sock):
         print(f'ERROR: {e}')
     
     # enviar msg_dest para o ip/port informado
-    # verificar se existe em allSocks
-    sock.bind((ip_dest, port))
     print (f"Enviando -> {msg_dest}\npara: {ip_dest} | {port}")
+    sock.bind((ip_dest, port))
     sock.listen(1)
     sockConn, addres = sock.accept()
     addrSource = ((sockConn, addres))
     print('Connect a: ', addrSource)
+
+    # verificar se existe em allSocks
     if addrSource in allSocks:
         # envia a mensagem
         sockConn.send(msg_dest.encode(CODE_PAGE))
     else: 
-        msg_error = 'Cliente não está conectado a rede! Tente outro ip | porta'
+        msg_error = 'Cliente NÃO está conectado ao servidor! Tente outro ip | porta'
         sockConn.send(msg_error.encode(CODE_PAGE))
+
+# /b:mensagem → Enviar uma mensagem para todos os clientes conectados no servidor
+def b(msg, addrSource):
+    # addrSource = ip do cliente que mandou
+    msg = f"{addrSource} -> {msg.decode(CODE_PAGE)}"
+    print (msg)
+    for sockConn, addr in allSocks:
+        if addr != addrSource:
+            sockConn.send(msg.encode(CODE_PAGE))
