@@ -1,4 +1,3 @@
-from ast import match_case
 from const import *
 
 # ----------------- FUNÇÕES SERVIDOR -----------------
@@ -18,6 +17,7 @@ def cliInteraction(sockConn, addr):
                     l(msg, addr)
                 case '/m':
                     m(msg, addr)                    
+                
             # criar funções para cada funcionalidade
             
             broadCast (msg, addr)
@@ -78,7 +78,18 @@ def l(msg, addrSource):
 
 # Enviar uma mensagem a um determinado cliente conectado no servidor
 def m(msg, addrSource):
-    msg = f"IP | PORTA: -> {addrSource}"
-    print (msg)
-    if addr in allSocks:
+    # /m:ip_destino:porta:mensagem
+    msg_str    = msg.decode(CODE_PAGE)
+    try:
+        # pegando os dados do /m
+        split_list = msg_str.split(':')
+        ip_dest = split_list[1]
+        port = split_list[2]
+        msg_dest = split_list[3]
+    except Exception as e:
+        print(f'ERROR: {e}')
+    # enviar msg_dest para o ip/port informado
+    # verificar se existe em allSocks
+
+    if addrSource in allSocks:
         sockConn.send(msg.encode('utf-8'))
