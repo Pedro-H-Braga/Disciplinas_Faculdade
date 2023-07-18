@@ -1,5 +1,5 @@
 from const import *
-from funcs_clientInteraction import *
+from funcs_comands import *
 
 # ----------------- FUNÇÕES SERVIDOR -----------------
 # analisa mensagem do cliente, se diferente de !q, continua recebendo, senão remove o socket da lista
