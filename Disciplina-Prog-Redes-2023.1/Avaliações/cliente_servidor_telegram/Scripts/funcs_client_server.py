@@ -20,6 +20,9 @@ def cliInteraction(sockConn, addr):
                     m(msg, sock)
                 case '/b':
                     b(msg, addr)
+                case other:
+                    print('No match found')
+        
         except:
             msg = b'/q'
     allSocks.remove ((sockConn, addr))
