@@ -41,10 +41,10 @@ CREATE TABLE telefones_institucionais(
 
 -- ------------------------------
 -- Criando a tabela CAMPI
-create table campi(
-	campus			varchar(10),
+create table campus(
+	campi			varchar(10),
 	nome_completo	varchar(50),
-	constraint pk_campi primary key (campus)
+	constraint pk_campi primary key (campi)
 );
 
 -- ------------------------------
@@ -61,7 +61,7 @@ CREATE TABLE servidor(
     id_funcao SERIAL,
     id_jornada SERIAL,
     id_telefones SERIAL,
-    id_campus SERIAL,
+    campi varchar(10),
 	
 	CONSTRAINT pk_servidor ADD PRIMARY KEY(matricula),
 	------------------------------------------------------------------
@@ -75,8 +75,8 @@ CREATE TABLE servidor(
 	CONSTRAINT servidor_id_disciplina_foreign FOREIGN KEY(id_disciplina) 
 				REFERENCES disciplina_ingresso(id_disciplina),
 	
-	CONSTRAINT servidor_id_campus_foreign FOREIGN KEY(id_campus) 
-				REFERENCES campus(id_campus),
+	CONSTRAINT servidor_id_campus_foreign FOREIGN KEY(campi) 
+				REFERENCES campus(campi),
 	
 	CONSTRAINT servidor_id_jornada_foreign FOREIGN KEY(id_jornada) 
 				REFERENCES jornada_trabalho(id_jornada),
