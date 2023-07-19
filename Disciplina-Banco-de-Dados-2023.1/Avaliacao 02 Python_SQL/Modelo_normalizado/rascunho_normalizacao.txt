@@ -1,0 +1,54 @@
+TABELAS:
+categoria - cargo - setor_siape - disciplina_ingresso - setor_suap - nome - funcao - jornada_trabalho - telefones_institucionais - matricula - curriculo_lattes - campus - url_foto_75x100
+
+---------------- Forma Normal ----------------
+
+* SETOR_SIAPE - SETOR_SUAP: 
+criar uma tabela que terá os setores dos servidores e integrar a tabela campus na tabela setor
+
+* TELEFONES_INSTITUCIONAIS:
+- dividir em duas tabelas, ramal(unique) & telefone(unique)
+- As duas serão unique pois não é possível ter dois ramais com o mesmo numero, sendo assim, uma unique
+- OBS: Pode ser um campo vazio (null) | Se tiver algo, obrigatóriamente terá um ramal, mas pode não ter um telefone
+
+---------------- ---------------- ---------------- 
+TABELAS E SUAS COLUNAS:
+---------------- ---------------- ---------------- 
+SERVIDOR:
+- matricula(PK)   - (Não nulo - int)
+- categoria 	  - (Não nulo - varchar(100)) 
+- cargo 	  - (nulo - texto)
+- nome 		  - (Não nulo - texto - unique)
+- curriculoLattes - (nulo - varchar(100) - unique)
+- urlFoto75x100   - (Não nulo - varchar(100) - unique)
+- id_setor 	(FK)
+- id_disciplina (FK)
+- id_funcao 	(FK)
+- id_jornada 	(FK)
+- id_telefones 	(FK)
+- id_campus 	(FK)
+
+SETOR:
+- nome_setor (Não nulo - FK campus - varchar(10))
+- id_setor (serial - PK)
+
+DISCIPLINA_INGRESSO: 
+- disciplina (nulo - varchar(100))
+- id_disciplina (serial - PK)
+
+FUNCAO:
+- funcao_servidor (nulo - varchar(100))
+- id_funcao (serial - PK)
+
+JORNADA_TRABALHO:
+- jornadaTrabalho - (Não nulo - varchar(30))
+- id_jornada (serial - PK)
+
+TELEFONES_INSTITUCIONAIS:
+- telefone (nulo - char(14))
+- ramal (Não nulo - number(4))
+- id_telefones (serial - PK)
+
+CAMPUS:
+- campi (Não nulo - varchar(10))
+- id_campus (serial - PK)
