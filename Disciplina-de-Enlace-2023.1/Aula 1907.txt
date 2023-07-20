@@ -2,5 +2,8 @@ Conteúdo da prova:
 - Spring tree
 - Quais comando roda em cada equipamento?...
 
-VLAN DINÂMICA:
+SLIDE 17 (VLAN TRUNKING)
+- VLAN DINÂMICA:
 Não tem como se comunicar entre vlan's diferente, porém a vlan 1 do switch 1 pode se comunicar com a vlan 1 do switch 2 a partir de um trunking(tronco) 
+
+* Fazer as práticas a partir do slide 15
