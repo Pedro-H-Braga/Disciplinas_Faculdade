@@ -1,1 +1,11 @@
+CONSULTAS NA TABELA DO BANCO
+
+o SELECT * FROM trará os dados de modo geral, ou seja, como no exemplo:
+SELECT alunos.matricula,
+      alunos.nome
+      alunos.id_curso,
+      cursos.curso
+FROM alunos, cursos
+WHERE alunos.id_curso = cursos.id_curso  -- server para trazer os dados mediante esta condição
+ORDER BY alunos.matricula;               -- ordenando os dados 
 
