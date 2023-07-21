@@ -1,0 +1,19 @@
+ESTUDOS PARA P2 DE ENALCE | 21/07/2023
+
+Vídeo que mostra configurações de segurança de um switch:
+- https://youtu.be/Ldzrj5fsDMw
+* Configurando vlans
+* Configurando senha para vlans 
+
+ANOTAÇÕES: 
+- No switch o número é obrigatorio, o nome é opcional
+- CON é a porta console de configuração do switch
+- VTY são linhas de terminais virtuais para conexões ssh ou telnet
+
+
+CONFIGURANDO HOST NO SWITCH
+- conf t: entra no modo de configuração
+- hostname name: muda o nome do switch para name
+- line con 0: configurando a porta de configuração console 0 do switch
+- password x: define senha para entrar na porta console
+
