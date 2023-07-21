@@ -9,7 +9,7 @@ ANOTAÇÕES:
 - No switch o número é obrigatorio, o nome é opcional
 - CON é a porta console de configuração do switch
 - VTY são linhas de terminais virtuais para conexões ssh ou telnet
-
+- Senha para secreta é a senha para o modo privilegiado
 
 CONFIGURANDO HOST NO SWITCH
 - conf t: entra no modo de configuração
