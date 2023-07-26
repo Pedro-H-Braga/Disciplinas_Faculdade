@@ -6,34 +6,39 @@ def lerArquivo(nomeArquivo: str):
     lido = False
     dados_retorno = dict()
     try:
-        arq_ = open(nomeArquivo, 'r', encoding=CODE_PAGE)
-    except FileNotFoundError:
-        dados_retorno = f'\nERRO: Arquivo Inexistente...'
-    except:
-        dados_retorno = f'\nERRO: {sys.exc_info()[0]}'
-    else:
-        while True:
-            linha = arq_.readline()[:-1]
-            if not linha: break
-            cabecalho = linha.split(SEPARATOR)
+        with open(nomeArquivo, 'r', encoding=CODE_PAGE) as arq_:
+            print('abrindo o arquivo!')
             while True:
                 linha = arq_.readline()[:-1]
+                print(f'arq_.readline: {linha}')
                 if not linha: break
-                linha = linha.split(SEPARATOR)
-                dados_retorno[linha[7]] = dict(zip(cabecalho, linha))
-            lido = True
-        arq_.close()
+                cabecalho = linha.split(SEPARATOR)
+                while True:
+                    linha = arq_.readline()[:-1]
+                    if not linha: break
+                    linha = linha.split(SEPARATOR)
+                    dados_retorno[linha[7]] = dict(zip(cabecalho, linha))
+                lido = True
+
+    except FileNotFoundError:
+        dados_retorno = f'\nERRO: Arquivo Inexistente...'
+        print(dados_retorno)
+    except:
+        dados_retorno = f'\nERRO: {sys.exc_info()[0]}'
+        print(dados_retorno)
     finally:
         return lido, dados_retorno
     
+'''
+                                        TESTANDO LEITURA
 # ------------------------------------------------------------
 # Lendo arquivo de input
-retLeitura = lerArquivo(APP_DIR + '\\alunos_ifrn.csv')
+retLeitura = lerArquivo(APP_DIR + '\\dados_extraidos_recursos_servidores_2.csv')
 
 # ------------------------------------------------------------
 # Caso dê algum erro na leitura sai do programa
 if not retLeitura[0]:
-    print(retLeitura[1])
+    print(f'Deu error: {retLeitura[1]}')
     sys.exit()
 
 # ------------------------------------------------------------
@@ -47,3 +52,4 @@ for chave, valor in dados_lidos.items():
     cont += 1
     if cont > 30:
         break
+'''
