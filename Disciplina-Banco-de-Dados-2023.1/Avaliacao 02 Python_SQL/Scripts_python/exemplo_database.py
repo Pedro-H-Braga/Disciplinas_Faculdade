@@ -1,7 +1,7 @@
 import sys
 
 from lib_lerCSV import *
-from lib_database import *
+#from lib_database import *
 
 from constantes import *
 from conexao_db import *
@@ -38,18 +38,18 @@ setUrlFoto              = set(map(lambda c: c['url_foto_75x100'], dados_lidos.va
 
 # exibindo o tamanho de cada variavel
 
-print(f'TAMANHO de cada variavel: setCategoria: {len(setCategoria)}\
-setCargo: {len(setCargo)}\
-setSetorSiape: {len(setSetorSiape)}\
-setDisciplinaIngresso: {len(setDisciplinaIngresso)}\
-setSetorSuap: {len(setSetorSuap)}\
-setNome: {len(setNome)}\
-setFuncao: {len(setFuncao)}\
-setJornadaTrabalho: {len(setJornadaTrabalho)}\
-setTelefones: {len(setTelefones)}\
-setMatricula: {len(setMatricula)}\
-setCurriculo: {len(setCurriculo)}\
-setCampi: {len(setCampi)}\
+print(f'TAMANHO de cada variavel: \nsetCategoria: {len(setCategoria)}\n\
+setCargo: {len(setCargo)}\n\
+setSetorSiape: {len(setSetorSiape)}\n\
+setDisciplinaIngresso: {len(setDisciplinaIngresso)}\n\
+setSetorSuap: {len(setSetorSuap)}\n\
+setNome: {len(setNome)}\n\
+setFuncao: {len(setFuncao)}\n\
+setJornadaTrabalho: {len(setJornadaTrabalho)}\n\
+setTelefones: {len(setTelefones)}\n\
+setMatricula: {len(setMatricula)}\n\
+setCurriculo: {len(setCurriculo)}\n\
+setCampi: {len(setCampi)}\n\
 setUrlFoto: {len(setUrlFoto)}')
 #                                             TESTAGENS
 sys.exit()
