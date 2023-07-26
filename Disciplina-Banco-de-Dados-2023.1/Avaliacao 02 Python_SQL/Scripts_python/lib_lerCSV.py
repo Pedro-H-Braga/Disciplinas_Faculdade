@@ -14,6 +14,7 @@ def lerArquivo(nomeArquivo: str):
                 if not linha: break
                 cabecalho = linha.split(SEPARATOR)
                 while True:
+                    # linha pegando o cabeçalho do csv
                     linha = arq_.readline()[:-1]
                     if not linha: break
                     linha = linha.split(SEPARATOR)
@@ -34,7 +35,7 @@ def lerArquivo(nomeArquivo: str):
 #                                        TESTANDO LEITURA
 # ------------------------------------------------------------
 # Lendo arquivo de input
-retLeitura = lerArquivo(APP_DIR + '\\dados_extraidos_recursos_servidores_2.csv')
+retLeitura = lerArquivo(APP_DIR + '\\dados_servidores.csv')
 
 # ------------------------------------------------------------
 # Caso dê algum erro na leitura sai do programa

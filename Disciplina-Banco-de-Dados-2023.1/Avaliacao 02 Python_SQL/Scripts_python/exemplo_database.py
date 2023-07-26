@@ -8,7 +8,7 @@ from conexao_db import *
 
 # ------------------------------------------------------------
 # Lendo arquivo de input
-retLeitura = lerArquivo(APP_DIR + '\\alunos_ifrn.csv')
+retLeitura = lerArquivo(APP_DIR + '\\dados_servidores.csv')
 
 # ------------------------------------------------------------
 # Caso dê algum erro na leitura sai do programa
@@ -22,13 +22,22 @@ dados_lidos = retLeitura[1]
 
 # Gerando SETS com os dados a serem inseridos nas tabelas 
 # exceto na tabela ALUNOS
-setCampi               = set(map(lambda c: c['campus'], dados_lidos.values()))
-setCotasMEC            = set(map(lambda c: c['cota_mec'], dados_lidos.values()))
-setCotasSISTEC         = set(map(lambda c: c['cota_sistec'], dados_lidos.values()))
-setCursos              = set(map(lambda c: c['curso'], dados_lidos.values()))
-setLinhasPesquisa      = set(map(lambda c: c['linha_pesquisa'], dados_lidos.values()))
-setSituacoes           = set(map(lambda c: c['situacao'], dados_lidos.values()))
-setSituacoesSistemicas = set(map(lambda c: c['situacao_sistemica'], dados_lidos.values()))
+setCategoria            = set(map(lambda c: c['categoria'], dados_lidos.values()))
+setCargo                = set(map(lambda c: c['cargo'], dados_lidos.values()))
+setSetorSiape           = set(map(lambda c: c['setor_siape'], dados_lidos.values()))
+setDisciplinaIngresso   = set(map(lambda c: c['disciplina_ingresso'], dados_lidos.values()))
+setSetorSuap            = set(map(lambda c: c['setor_suap'], dados_lidos.values()))
+setNome                 = set(map(lambda c: c['nome'], dados_lidos.values()))
+setFuncao               = set(map(lambda c: c['funcao'], dados_lidos.values()))
+setJornadaTrabalho      = set(map(lambda c: c['jornada_trabalho'], dados_lidos.values()))
+setTelefones            = set(map(lambda c: c['telefones_institucionais'], dados_lidos.values()))
+setMatricula            = set(map(lambda c: c['matricula'], dados_lidos.values()))
+setCurriculo            = set(map(lambda c: c['curriculo_lattes'], dados_lidos.values()))
+setCampi                = set(map(lambda c: c['campus'], dados_lidos.values()))
+setUrlFoto              = set(map(lambda c: c['url_foto_75x100'], dados_lidos.values()))
+
+#                                             TESTAGENS
+sys.exit()
 
 # ------------------------------------------------------------
 # Estabelecendo conexão com Database Server
