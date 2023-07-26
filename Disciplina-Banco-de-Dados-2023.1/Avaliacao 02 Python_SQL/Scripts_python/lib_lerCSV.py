@@ -17,7 +17,8 @@ def lerArquivo(nomeArquivo: str):
                     linha = arq_.readline()[:-1]
                     if not linha: break
                     linha = linha.split(SEPARATOR)
-                    dados_retorno[linha[7]] = dict(zip(cabecalho, linha))
+                    # dados_retorno[linha[]] -> é para pegar a chave de cada cabeçalho (indicar a posição de onde o campo matrícula (9))
+                    dados_retorno[linha[9]] = dict(zip(cabecalho, linha)) 
                 lido = True
 
     except FileNotFoundError:
@@ -30,7 +31,7 @@ def lerArquivo(nomeArquivo: str):
         return lido, dados_retorno
     
 '''
-                                        TESTANDO LEITURA
+#                                        TESTANDO LEITURA
 # ------------------------------------------------------------
 # Lendo arquivo de input
 retLeitura = lerArquivo(APP_DIR + '\\dados_extraidos_recursos_servidores_2.csv')
