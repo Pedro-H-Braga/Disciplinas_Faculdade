@@ -1,6 +1,6 @@
 import sys
 
-from lib_exemplo import *
+from lib_lerCSV import *
 from lib_database import *
 
 from constantes import *

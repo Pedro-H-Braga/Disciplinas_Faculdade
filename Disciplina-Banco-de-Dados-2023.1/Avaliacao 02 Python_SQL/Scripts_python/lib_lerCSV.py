@@ -1,7 +1,5 @@
 import sys
 from constantes import *
-from lib_exemplo import *
-
 
 # ------------------------------------------------------------
 def lerArquivo(nomeArquivo: str):
@@ -27,3 +25,25 @@ def lerArquivo(nomeArquivo: str):
         arq_.close()
     finally:
         return lido, dados_retorno
+    
+# ------------------------------------------------------------
+# Lendo arquivo de input
+retLeitura = lerArquivo(APP_DIR + '\\alunos_ifrn.csv')
+
+# ------------------------------------------------------------
+# Caso dê algum erro na leitura sai do programa
+if not retLeitura[0]:
+    print(retLeitura[1])
+    sys.exit()
+
+# ------------------------------------------------------------
+# Tratando os dados lidos 
+dados_lidos = retLeitura[1]
+
+# para exibir 30 primeiros dados de dados_lidos
+cont = 0
+for chave, valor in dados_lidos.items():
+    print(f'{chave}: {valor}')
+    cont += 1
+    if cont > 30:
+        break
