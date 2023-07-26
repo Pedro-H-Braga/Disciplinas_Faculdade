@@ -36,6 +36,21 @@ setCurriculo            = set(map(lambda c: c['curriculo_lattes'], dados_lidos.v
 setCampi                = set(map(lambda c: c['campus'], dados_lidos.values()))
 setUrlFoto              = set(map(lambda c: c['url_foto_75x100'], dados_lidos.values()))
 
+# exibindo o tamanho de cada variavel
+
+print(f'TAMANHO de cada variavel: setCategoria: {len(setCategoria)}\
+setCargo: {len(setCargo)}\
+setSetorSiape: {len(setSetorSiape)}\
+setDisciplinaIngresso: {len(setDisciplinaIngresso)}\
+setSetorSuap: {len(setSetorSuap)}\
+setNome: {len(setNome)}\
+setFuncao: {len(setFuncao)}\
+setJornadaTrabalho: {len(setJornadaTrabalho)}\
+setTelefones: {len(setTelefones)}\
+setMatricula: {len(setMatricula)}\
+setCurriculo: {len(setCurriculo)}\
+setCampi: {len(setCampi)}\
+setUrlFoto: {len(setUrlFoto)}')
 #                                             TESTAGENS
 sys.exit()
 
