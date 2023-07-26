@@ -10,7 +10,6 @@ def lerArquivo(nomeArquivo: str):
             print('abrindo o arquivo!')
             while True:
                 linha = arq_.readline()[:-1]
-                print(f'arq_.readline: {linha}')
                 if not linha: break
                 cabecalho = linha.split(SEPARATOR)
                 while True:
