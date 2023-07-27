@@ -18,7 +18,7 @@ def conectaDB(server: str, database: str, dbuser: str, userpwd: str):
 def insereCampus(descricao: str, conexao):
     inserido   = False
     idRetorno  = None
-    strSQL     = f'INSERT INTO alunos.campi (campus) VALUES (\'{descricao}\') '
+    strSQL     = f'INSERT INTO campi (campus) VALUES (\'{descricao}\') '
     strSQL    += 'RETURNING campus;'
     try:
         cursorTable = conexao.cursor()
@@ -37,7 +37,7 @@ def insereCampus(descricao: str, conexao):
 def insereCotasMEC(descricao: str, conexao):
     inserido   = False
     idRetorno  = None
-    strSQL     = f'INSERT INTO alunos.cotas_mec (cota_mec) VALUES (\'{descricao}\') '
+    strSQL     = f'INSERT INTO cotas_mec (cota_mec) VALUES (\'{descricao}\') '
     strSQL    += 'RETURNING id_cota_mec;'
     try:
         cursorTable = conexao.cursor()
@@ -56,7 +56,7 @@ def insereCotasMEC(descricao: str, conexao):
 def insereCotasSISTEC(descricao: str, conexao):
     inserido   = False
     idRetorno  = None
-    strSQL     = f'INSERT INTO alunos.cotas_sistec (cota_sistec) VALUES '
+    strSQL     = f'INSERT INTO cotas_sistec (cota_sistec) VALUES '
     strSQL    += f'(\'{descricao}\') RETURNING id_cota_sistec;'
     try:
         cursorTable = conexao.cursor()
@@ -75,7 +75,7 @@ def insereCotasSISTEC(descricao: str, conexao):
 def insereCursos(descricao: str, conexao):
     inserido    = False
     idRetorno   = None
-    strSQL      = f'INSERT INTO alunos.cursos (curso) VALUES (\'{descricao}\') '
+    strSQL      = f'INSERT INTO cursos (curso) VALUES (\'{descricao}\') '
     strSQL     += 'RETURNING id_curso;'
     try:
         cursorTable = conexao.cursor()
@@ -94,7 +94,7 @@ def insereCursos(descricao: str, conexao):
 def insereLinhasPesquisa(descricao: str, conexao):
     inserido  = False
     idRetorno = None
-    strSQL    = f'INSERT INTO alunos.linhas_pesquisa (linha_pesquisa) VALUES '
+    strSQL    = f'INSERT INTO linhas_pesquisa (linha_pesquisa) VALUES '
     strSQL   += f'(\'{descricao}\') RETURNING id_linha_pesquisa;'
     try:
         cursorTable = conexao.cursor()
@@ -113,7 +113,7 @@ def insereLinhasPesquisa(descricao: str, conexao):
 def insereSituacoes(descricao: str, conexao):
     inserido   = False
     idRetorno  = None
-    strSQL     = f'INSERT INTO alunos.situacoes (situacao) VALUES '
+    strSQL     = f'INSERT INTO situacoes (situacao) VALUES '
     strSQL    += f'(\'{descricao}\') RETURNING id_situacao;'
     try:
         cursorTable = conexao.cursor()
@@ -132,7 +132,7 @@ def insereSituacoes(descricao: str, conexao):
 def insereSituacoesSistemicas(descricao: str, conexao):
     inserido   = False
     idRetorno  = None
-    strSQL     = f'INSERT INTO alunos.situacoes_sistemicas (situacao_sistemica) '
+    strSQL     = f'INSERT INTO situacoes_sistemicas (situacao_sistemica) '
     strSQL    += f'VALUES (\'{descricao}\') RETURNING id_situacao_sistemica;'
     try:
         cursorTable = conexao.cursor()

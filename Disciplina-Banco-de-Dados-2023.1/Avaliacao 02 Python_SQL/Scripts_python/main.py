@@ -21,7 +21,7 @@ if not retLeitura[0]:
 dados_lidos = retLeitura[1]
 
 # Gerando SETS com os dados a serem inseridos nas tabelas 
-# exceto na tabela ALUNOS
+# exceto na tabela servidores
 setCategoria            = set(map(lambda c: c['categoria'], dados_lidos.values()))
 setCargo                = set(map(lambda c: c['cargo'], dados_lidos.values()))
 setSetorSiape           = set(map(lambda c: c['setor_siape'], dados_lidos.values()))
@@ -69,8 +69,6 @@ if not retConexao[0]:
 # Guarda o objeto da conexão 
 connDB = retConexao[1]
 
-#                                             TESTAGENS
-sys.exit()
 
 # ------------------------------------------------------------
 # Inserindo os CAMPI
@@ -84,6 +82,13 @@ for campus in setCampi:
         continue
     dictCampus[campus] = retorno[1]
 print(dictCampus) # TODO: PODE APAGAR DEPOIS
+
+# ------------------------------------------------------------
+# Fechando a conexão com o Database Server
+connDB.close()
+
+#                                             TESTAGENS
+sys.exit()
 
 # ------------------------------------------------------------
 # Inserindo os COTAS_MEC
