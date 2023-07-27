@@ -13,7 +13,7 @@ alter table disciplina_ingresso
 alter table jornada_trabalho 
 	add constraint un_jornada_trabalho unique (jornadatrabalho);
 
-alter table telefones_institucionais 
-	drop constraint un_telefones_institucionais;
+-- alter table telefones_institucionais 
+-- 	drop constraint un_telefones_institucionais;
 	
 -- Nâo precisa colocar a unique de servidores, pois é uma primary key, sendo assim, já é 'unique'

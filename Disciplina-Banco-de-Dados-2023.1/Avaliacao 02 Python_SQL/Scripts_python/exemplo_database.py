@@ -1,7 +1,7 @@
 import sys
 
 from lib_lerCSV import *
-#from lib_database import *
+from lib_database import *
 
 from constantes import *
 from conexao_db import *
@@ -51,8 +51,6 @@ setMatricula: {len(setMatricula)}\n\
 setCurriculo: {len(setCurriculo)}\n\
 setCampi: {len(setCampi)}\n\
 setUrlFoto: {len(setUrlFoto)}')
-#                                             TESTAGENS
-sys.exit()
 
 # ------------------------------------------------------------
 # Estabelecendo conexão com Database Server
@@ -66,6 +64,9 @@ if not retConexao[0]:
 
 # Guarda o objeto da conexão 
 connDB = retConexao[1]
+
+#                                             TESTAGENS
+sys.exit()
 
 # ------------------------------------------------------------
 # Inserindo os CAMPI
