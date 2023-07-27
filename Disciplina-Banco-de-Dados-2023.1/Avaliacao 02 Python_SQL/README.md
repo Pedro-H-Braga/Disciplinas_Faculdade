@@ -1,10 +1,12 @@
-# Projeto avaliativo para inserção e consulta de dados dos servidores do IF
-
-# Ferramentas utilizadas
+# Projeto avaliativo servidores do IF
+2° Atividade avaliativa. <br>
+Inserção de dados dos servidores do IF para o banco de dados postgres com python, utilizando a biblioteca psycopg2.
+## Ferramentas utilizadas
 - Python 3.10.10
+-- psycopg2
 - Postgres 15
 
-# Sumário de diretórios
+## Sumário de diretórios
 - MODELO_NORMALIZADO <br> 
 Contém o esquema normalizado do banco de dados em formato de imagem.
 - SCRIPTS_PYTHON <br>
