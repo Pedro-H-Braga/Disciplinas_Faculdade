@@ -35,11 +35,11 @@ def insereCampus(descricao: str, conexao):
 
         
 # ------------------------------------------------------------
-def insereCotasMEC(descricao: str, conexao):
+def insereCategoria(descricao: str, conexao):
     inserido   = False
     idRetorno  = None
-    strSQL     = f'INSERT INTO cotas_mec (cota_mec) VALUES (\'{descricao}\') '
-    strSQL    += 'RETURNING id_cota_mec;'
+    strSQL     = f'INSERT INTO servidor (categoria) VALUES (\'{descricao}\') '
+    #strSQL    += 'RETURNING id_cota_mec;'
     try:
         cursorTable = conexao.cursor()
         cursorTable.execute(strSQL)

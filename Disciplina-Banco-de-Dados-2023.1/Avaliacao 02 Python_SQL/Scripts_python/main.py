@@ -69,7 +69,7 @@ if not retConexao[0]:
 # Guarda o objeto da conexão 
 connDB = retConexao[1]
 
-
+'''
 # ------------------------------------------------------------
 # Inserindo os CAMPI
 print('\nInserindo os dados na tabela CAMPI...')
@@ -82,6 +82,20 @@ for campus in setCampi:
         continue
     dictCampus[campus] = retorno[1]
 print(dictCampus) # TODO: PODE APAGAR DEPOIS
+ '''
+
+# ------------------------------------------------------------
+# Inserindo os COTAS_MEC
+print('\nInserindo os dados no campo Categoria...')
+dictCategoria = dict()
+for categoria in setCategoria:
+    if not categoria: continue
+    retorno = insereCategoria(categoria, connDB)
+    if not retorno[0]:
+        print(retorno[1])
+        continue
+    dictCategoria[categoria] = retorno[1]
+print(dictCategoria) # TODO: PODE APAGAR DEPOIS
 
 # ------------------------------------------------------------
 # Fechando a conexão com o Database Server
@@ -89,19 +103,6 @@ connDB.close()
 
 #                                             TESTAGENS
 sys.exit()
-
-# ------------------------------------------------------------
-# Inserindo os COTAS_MEC
-print('\nInserindo os dados na tabela COTAS_MEC...')
-dictCotasMEC = dict()
-for cotaMEC in setCotasMEC:
-    if not cotaMEC: continue
-    retorno = insereCotasMEC(cotaMEC, connDB)
-    if not retorno[0]:
-        print(retorno[1])
-        continue
-    dictCotasMEC[cotaMEC] = retorno[1]
-print(dictCotasMEC) # TODO: PODE APAGAR DEPOIS
 
 # ------------------------------------------------------------
 # Inserindo os COTAS_SISTEC
