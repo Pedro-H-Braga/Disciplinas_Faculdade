@@ -5,10 +5,10 @@
 - Postgres 15
 
 # Sumário de diretórios
-- Modelo_normalizado <br> 
+- MODELO_NORMALIZADO <br> 
 Contém o esquema normalizado do banco de dados em formato de imagem.
-- Scripts_python <br>
+- SCRIPTS_PYTHON <br>
 Como o próprio nome já diz, contém os scripts python, utilizados para inserir os dados e fazer consultar ao banco. Também contém o arquivo CSV dos servidores do IF que queremos inserir no banco! 
-- Scripts_sql <br>
+- SCRIPTS_SQL <br>
 Contém os scripts em SQL de criação de tabelas, atualização de campos e consultas simples.
 
