@@ -2,7 +2,7 @@
 2° Atividade avaliativa. <br>
 Inserção de dados dos servidores do IF para o banco de dados postgres com python, utilizando a biblioteca psycopg2.
 ## Ferramentas utilizadas
-- Python 3.10.10
+- Python 3.10.10 <br>
 -- psycopg2
 - Postgres 15
 
