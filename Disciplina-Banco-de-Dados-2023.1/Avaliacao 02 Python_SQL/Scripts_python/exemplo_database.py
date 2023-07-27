@@ -54,8 +54,12 @@ setUrlFoto: {len(setUrlFoto)}')
 
 # ------------------------------------------------------------
 # Estabelecendo conexão com Database Server
-retConexao = conectaDB(DB_HOST, DB_NAME, DB_USER, DB_PASS)
-
+try:
+    retConexao = conectaDB(DB_HOST, DB_NAME, DB_USER, DB_PASS)
+except Exception as error:
+    print('Conexão com o banco falhou!')
+else:
+    print('Conexão com o banco bem sucessida!')
 # ------------------------------------------------------------
 # Caso dê algum erro na conexão sai do programa
 if not retConexao[0]:
