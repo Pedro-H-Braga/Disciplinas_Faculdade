@@ -1,7 +1,7 @@
 import sys
 
 from lib_lerCSV import *
-from lib_database import *
+from lib_ConnBD import *
 
 from constantes import *
 from conexao_db import *
