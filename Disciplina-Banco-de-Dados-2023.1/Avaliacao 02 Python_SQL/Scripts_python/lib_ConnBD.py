@@ -18,7 +18,7 @@ def conectaDB(server: str, database: str, dbuser: str, userpwd: str):
 def insereCampus(descricao: str, conexao):
     inserido   = False
     idRetorno  = None
-    strSQL     = f'INSERT INTO campi (campus) VALUES (\'{descricao}\') '
+    strSQL     = f'INSERT INTO campus (campi) VALUES (\'{descricao}\') '
     strSQL    += 'RETURNING campus;'
     try:
         cursorTable = conexao.cursor()
@@ -32,6 +32,7 @@ def insereCampus(descricao: str, conexao):
         conexao.commit()
     finally:
         return inserido, idRetorno
+
         
 # ------------------------------------------------------------
 def insereCotasMEC(descricao: str, conexao):
