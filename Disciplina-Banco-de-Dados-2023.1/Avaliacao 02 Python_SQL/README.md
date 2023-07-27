@@ -7,10 +7,11 @@ Inserção de dados dos servidores do IF para o banco de dados postgres com pyth
 - Postgres 15
 
 ## Sumário de diretórios
-- MODELO_NORMALIZADO <br> 
-Contém o esquema normalizado do banco de dados em formato de imagem.
-- SCRIPTS_PYTHON <br>
-Como o próprio nome já diz, contém os scripts python, utilizados para inserir os dados e fazer consultar ao banco. Também contém o arquivo CSV dos servidores do IF que queremos inserir no banco! 
-- SCRIPTS_SQL <br>
-Contém os scripts em SQL de criação de tabelas, atualização de campos e consultas simples.
+MODELO_NORMALIZADO -> Contém o esquema normalizado do banco de dados em formato de imagem.
+<br>
+<br>
+SCRIPTS_PYTHON -> Como o próprio nome já diz, contém os scripts python, utilizados para inserir os dados e fazer consultar ao banco. Também contém o arquivo CSV dos servidores do IF que queremos inserir no banco! 
+<br>
+<br>
+SCRIPTS_SQL -> Contém os scripts em SQL de criação de tabelas, atualização de campos e consultas simples.
 
