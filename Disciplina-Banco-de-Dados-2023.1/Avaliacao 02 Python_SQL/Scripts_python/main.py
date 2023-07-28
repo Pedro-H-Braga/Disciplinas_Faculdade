@@ -38,7 +38,7 @@ setUrlFoto              = set(map(lambda c: c['url_foto_75x100'], dados_lidos.va
 
 # exibindo o tamanho de cada variavel
 
-print(f'TAMANHO de cada SET: \nsetCategoria: {len(setCategoria)}\n\
+print(f'TAMANHO de cada SET: \nsetCategoria: {(setCategoria)}\n\
 setCargo: {len(setCargo)}\n\
 setSetorSiape: {len(setSetorSiape)}\n\
 setDisciplinaIngresso: {len(setDisciplinaIngresso)}\n\
