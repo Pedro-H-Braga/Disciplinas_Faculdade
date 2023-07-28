@@ -112,17 +112,17 @@ for func in setFuncao:
 print(dictFuncao) # TODO: PODE APAGAR DEPOIS
 
 # ------------------------------------------------------------
-# Inserindo os SITUACOES
-print('\nInserindo os dados na tabela SITUACOES...')
-dictSituacoes = dict()
-for situacao in setSituacoes:
-    if not situacao: continue
-    retorno = insereSituacoes(situacao, connDB)
+# Inserindo os JORNADA TRABALHO
+print('\nInserindo os dados na tabela JORNADA_TRABALHO...')
+dictJornada = dict()
+for jornada in setJornadaTrabalho:
+    if not jornada: continue
+    retorno = insereJornada(jornada, connDB)
     if not retorno[0]:
         print(retorno[1])
         continue
-    dictSituacoes[situacao] = retorno[1]
-print(dictSituacoes) # TODO: PODE APAGAR DEPOIS
+    dictJornada[jornada] = retorno[1]
+print(dictJornada) # TODO: PODE APAGAR DEPOIS
 
 # ------------------------------------------------------------
 # Inserindo os SITUACOES_SISTEMICAS

@@ -72,11 +72,11 @@ def insereFuncao(descricao: str, conexao):
         return inserido, idRetorno
 
 # ------------------------------------------------------------
-def insereSituacoes(descricao: str, conexao):
+def insereJornada(descricao: str, conexao):
     inserido   = False
     idRetorno  = None
-    strSQL     = f'INSERT INTO situacoes (situacao) VALUES '
-    strSQL    += f'(\'{descricao}\') RETURNING id_situacao;'
+    strSQL     = f'INSERT INTO jornada_trabalho (jornadatrabalho) VALUES '
+    strSQL    += f'(\'{descricao}\') RETURNING id_jornada;'
     try:
         cursorTable = conexao.cursor()
         cursorTable.execute(strSQL)
