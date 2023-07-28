@@ -56,8 +56,8 @@ def insereDisciplina(descricao: str, conexao):
 def insereFuncao(descricao: str, conexao):
     inserido  = False
     idRetorno = None
-    strSQL    = f'INSERT INTO linhas_pesquisa (linha_pesquisa) VALUES '
-    strSQL   += f'(\'{descricao}\') RETURNING id_linha_pesquisa;'
+    strSQL    = f'INSERT INTO funcao (funcao_servidor) VALUES '
+    strSQL   += f'(\'{descricao}\') RETURNING id_funcao;'
     try:
         cursorTable = conexao.cursor()
         cursorTable.execute(strSQL)

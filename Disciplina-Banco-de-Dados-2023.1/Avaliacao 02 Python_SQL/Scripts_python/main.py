@@ -100,7 +100,7 @@ print(dictDisciplinaIngresso) # TODO: PODE APAGAR DEPOIS
 
 # ------------------------------------------------------------
 # Inserindo os FUNCAO 
-print('\nInserindo os dados na tabela LINHAS_PESQUISA...')
+print('\nInserindo os dados na tabela FUNCOES...')
 dictFuncao = dict()
 for func in setFuncao:
     if not func: continue
