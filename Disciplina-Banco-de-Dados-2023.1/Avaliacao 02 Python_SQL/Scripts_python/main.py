@@ -1,7 +1,7 @@
 import sys
 
 from lib_lerCSV import *
-#from lib_database import *
+from lib_ConnBD import *
 
 from constantes import *
 from conexao_db import *
@@ -21,12 +21,11 @@ if not retLeitura[0]:
 dados_lidos = retLeitura[1]
 
 # Gerando SETS com os dados a serem inseridos nas tabelas 
-# exceto na tabela ALUNOS
+# exceto na tabela servidores
 setCategoria            = set(map(lambda c: c['categoria'], dados_lidos.values()))
 setCargo                = set(map(lambda c: c['cargo'], dados_lidos.values()))
-setSetorSiape           = set(map(lambda c: c['setor_siape'], dados_lidos.values()))
 setDisciplinaIngresso   = set(map(lambda c: c['disciplina_ingresso'], dados_lidos.values()))
-setSetorSuap            = set(map(lambda c: c['setor_suap'], dados_lidos.values()))
+setSetor                = set(map(lambda c: c['setor_suap'], dados_lidos.values()))
 setNome                 = set(map(lambda c: c['nome'], dados_lidos.values()))
 setFuncao               = set(map(lambda c: c['funcao'], dados_lidos.values()))
 setJornadaTrabalho      = set(map(lambda c: c['jornada_trabalho'], dados_lidos.values()))
@@ -40,9 +39,8 @@ setUrlFoto              = set(map(lambda c: c['url_foto_75x100'], dados_lidos.va
 
 print(f'TAMANHO de cada SET: \nsetCategoria: {len(setCategoria)}\n\
 setCargo: {len(setCargo)}\n\
-setSetorSiape: {len(setSetorSiape)}\n\
 setDisciplinaIngresso: {len(setDisciplinaIngresso)}\n\
-setSetorSuap: {len(setSetorSuap)}\n\
+setSetorSuap: {len(setSetor)}\n\
 setNome: {len(setNome)}\n\
 setFuncao: {len(setFuncao)}\n\
 setJornadaTrabalho: {len(setJornadaTrabalho)}\n\
@@ -51,13 +49,16 @@ setMatricula: {len(setMatricula)}\n\
 setCurriculo: {len(setCurriculo)}\n\
 setCampi: {len(setCampi)}\n\
 setUrlFoto: {len(setUrlFoto)}')
-#                                             TESTAGENS
-sys.exit()
+# BUG quando tenta preencher uma tabela com dados
 
 # ------------------------------------------------------------
 # Estabelecendo conexão com Database Server
-retConexao = conectaDB(DB_HOST, DB_NAME, DB_USER, DB_PASS)
-
+try:
+    retConexao = conectaDB(DB_HOST, DB_NAME, DB_USER, DB_PASS)
+except Exception as error:
+    print('Conexão com o banco falhou!')
+else:
+    print('Conexão com o banco bem sucessida!')
 # ------------------------------------------------------------
 # Caso dê algum erro na conexão sai do programa
 if not retConexao[0]:
@@ -67,6 +68,7 @@ if not retConexao[0]:
 # Guarda o objeto da conexão 
 connDB = retConexao[1]
 
+'''
 # ------------------------------------------------------------
 # Inserindo os CAMPI
 print('\nInserindo os dados na tabela CAMPI...')
@@ -79,84 +81,94 @@ for campus in setCampi:
         continue
     dictCampus[campus] = retorno[1]
 print(dictCampus) # TODO: PODE APAGAR DEPOIS
+ '''
 
 # ------------------------------------------------------------
-# Inserindo os COTAS_MEC
-print('\nInserindo os dados na tabela COTAS_MEC...')
-dictCotasMEC = dict()
-for cotaMEC in setCotasMEC:
-    if not cotaMEC: continue
-    retorno = insereCotasMEC(cotaMEC, connDB)
+# Inserindo os DisciplinaIngresso
+print('\nInserindo os dados na tabela Disciplina Ingresso...')
+dictDisciplinaIngresso = dict()
+for discIng in setDisciplinaIngresso:
+    if not discIng: continue
+    retorno = insereDisciplina(discIng, connDB)
     if not retorno[0]:
         print(retorno[1])
         continue
-    dictCotasMEC[cotaMEC] = retorno[1]
-print(dictCotasMEC) # TODO: PODE APAGAR DEPOIS
+    dictDisciplinaIngresso[discIng] = retorno[1]
+print(dictDisciplinaIngresso) # TODO: PODE APAGAR DEPOIS
 
 # ------------------------------------------------------------
-# Inserindo os COTAS_SISTEC
-print('\nInserindo os dados na tabela COTAS_SISTEC...')
-dictCotasSISTEC = dict()
-for cotaSISTEC in setCotasSISTEC:
-    if not cotaSISTEC: continue
-    retorno = insereCotasSISTEC(cotaSISTEC, connDB)
+# Inserindo os FUNCAO 
+print('\nInserindo os dados na tabela FUNCOES...')
+dictFuncao = dict()
+for func in setFuncao:
+    if not func: continue
+    retorno = insereFuncao(func, connDB)
     if not retorno[0]:
         print(retorno[1])
         continue
-    dictCotasSISTEC[cotaSISTEC] = retorno[1]
-print(dictCotasSISTEC) # TODO: PODE APAGAR DEPOIS
+    dictFuncao[func] = retorno[1]
+print(dictFuncao) # TODO: PODE APAGAR DEPOIS
 
 # ------------------------------------------------------------
-# Inserindo os CURSOS
-print('\nInserindo os dados na tabela CURSOS...')
-dictCursos = dict()
-for curso in setCursos:
-    if not curso: continue
-    retorno = insereCursos(curso, connDB)
+# Inserindo os JORNADA TRABALHO
+print('\nInserindo os dados na tabela JORNADA_TRABALHO...')
+dictJornada = dict()
+for jornada in setJornadaTrabalho:
+    if not jornada: continue
+    retorno = insereJornada(jornada, connDB)
     if not retorno[0]:
         print(retorno[1])
         continue
-    dictCursos[curso] = retorno[1]
-print(dictCursos) # TODO: PODE APAGAR DEPOIS
+    dictJornada[jornada] = retorno[1]
+print(dictJornada) # TODO: PODE APAGAR DEPOIS
 
 # ------------------------------------------------------------
-# Inserindo os LINHAS_PESQUISA
-print('\nInserindo os dados na tabela LINHAS_PESQUISA...')
-dictLinhasPesquisa = dict()
-for linhaPesquisa in setLinhasPesquisa:
-    if not linhaPesquisa: continue
-    retorno = insereLinhasPesquisa(linhaPesquisa, connDB)
+# Inserindo os SETOR
+print('\nInserindo os dados na tabela SETOR...')
+dictSetor = dict()
+for setor in setSetor:
+    if not setor: continue
+    retorno = insereSetor(setor, connDB)
     if not retorno[0]:
         print(retorno[1])
         continue
-    dictLinhasPesquisa[linhaPesquisa] = retorno[1]
-print(dictLinhasPesquisa) # TODO: PODE APAGAR DEPOIS
+    dictSetor[setor] = retorno[1]
+print(dictSetor) # TODO: PODE APAGAR DEPOIS
 
 # ------------------------------------------------------------
-# Inserindo os SITUACOES
-print('\nInserindo os dados na tabela SITUACOES...')
-dictSituacoes = dict()
-for situacao in setSituacoes:
-    if not situacao: continue
-    retorno = insereSituacoes(situacao, connDB)
+# Inserindo os TELEFONES_INSTITUCIONAIS
+print('\nInserindo os dados na tabela TELEFONES_INSTITUCIONAIS...')
+dictSetor = dict()
+for setor in setSetor:
+    if not setor: continue
+    retorno = insereTelefones(setor, connDB)
     if not retorno[0]:
         print(retorno[1])
         continue
-    dictSituacoes[situacao] = retorno[1]
-print(dictSituacoes) # TODO: PODE APAGAR DEPOIS
+    dictSetor[setor] = retorno[1]
+print(dictSetor) # TODO: PODE APAGAR DEPOIS
 
 # ------------------------------------------------------------
-# Inserindo os SITUACOES_SISTEMICAS
-print('\nInserindo os dados na tabela SITUACOES_SISTEMICAS...')
-dictSituacoesSistemicas = dict()
-for situacaoSistemica in setSituacoesSistemicas:
-    if not situacaoSistemica: continue
-    retorno = insereSituacoesSistemicas(situacaoSistemica, connDB)
+# Inserindo os Servidor
+print('\nInserindo os dados na tabela Servidor...')
+# Juntando os dados para desempacotar no for
+zipServidor = zip(setMatricula, setCategoria, setCargo, setNome, setCurriculo, setUrlFoto) # Combine os conjuntos usando zip()
+    
+dictServidor = dict()
+# desempacotando zipServidor para as variaveis
+for matricula, categoria, cargo, nome, curriculoLattes, urlFoto75x100 in zipServidor:
+    if not matricula: continue
+    retorno = insereServidor(matricula, categoria, cargo, nome, curriculoLattes, urlFoto75x100, connDB)
     if not retorno[0]:
         print(retorno[1])
         continue
-    dictSituacoesSistemicas[situacaoSistemica] = retorno[1]
-print(dictSituacoesSistemicas) # TODO: PODE APAGAR DEPOIS
+    dictServidor[matricula] = retorno[1]
+
+cont = 0
+for chave, valor in dictServidor.items():    
+    print(f'{chave}: {valor}') # TODO: PODE APAGAR DEPOIS
+    cont += 1
+    if cont > 30: break
 
 # ------------------------------------------------------------
 # Fechando a conexão com o Database Server

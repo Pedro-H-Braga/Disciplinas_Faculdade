@@ -1,19 +1,15 @@
 -- ---------------------------------------------------------------
--- Deixando as colunas das tabelas sem adições acidentais com o unique
+-- Transformando tabelas que foram inseridos os dados como unique para a não repetição dos dados
 
-alter table setor 
-	add constraint un_setor unique (nome_setor);
+-- TABELA CAMPUS, campo campi
+alter table  campus 
+	add constraint un_campi unique (campi);
 
-alter table funcao 
-	add constraint un_funcao unique (funcao_servidor);
+-- 					NÃO CONSEGUI INSERIR OS DADOS
+-- TABELA SERVIDOR, campo categoria
+-- alter table  campus 
+--	add constraint un_campi unique (campi);
+-- Tirando o NOT NULL do campo categoria da tabela campos
+ALTER TABLE servidor ALTER COLUMN categoria DROP NOT NULL;
 
-alter table disciplina_ingresso 
-	add constraint un_disciplina_ingresso unique (disciplina);
-
-alter table jornada_trabalho 
-	add constraint un_jornada_trabalho unique (jornadatrabalho);
-
-alter table telefones_institucionais 
-	drop constraint un_telefones_institucionais;
-	
--- Nâo precisa colocar a unique de servidores, pois é uma primary key, sendo assim, já é 'unique'
+-- INSERT INTO servidor (categoria) VALUES ('T E S TANDO');

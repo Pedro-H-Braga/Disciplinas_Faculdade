@@ -1,0 +1,8 @@
+STP - Spanning Tree Protocol (802.1d):
+Protocolo utilizado em redes que tenham Switch's se comunicando, utiliza uma lógica de arvore de espalhamento, designando um switch raiz para a rede, sendo o switch de menor MAC, verificando as melhores rotas e deixando os switchs em 3 modos: 
+- FOWARDING: o tráfego de rede passa normalmente pelo switch
+- DESIGNED : é o switch designado de melhor rota para se o switch mais valioso de acordo com a arvore, cair. Fica em modo bloqueado. 
+- BLOCKING : é o switch que fica bloqueado na rede aguardando para que o tráfego não entre em loop.
+
+RSTP - Evolução do STP:
+Quando vai fazer a varredura da rede para se criar a árvore de espalhamento do protocolo para verificação de quais rotas são as melhores, demorava-se alguns minutos com o STP. Com o RSTP essa varredura demora poucos segundos para concluir.
