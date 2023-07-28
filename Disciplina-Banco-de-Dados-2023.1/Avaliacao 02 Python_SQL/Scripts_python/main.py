@@ -148,13 +148,6 @@ for setor in setSetor:
     dictSetor[setor] = retorno[1]
 print(dictSetor) # TODO: PODE APAGAR DEPOIS
 
-
-# ------------------------------------------------------------
-# Fechando a conexão com o Database Server
-connDB.close()
-#                                             TESTAGENS
-sys.exit()
-
 # ------------------------------------------------------------
 # Inserindo os Servidor
 print('\nInserindo os dados na tabela Servidor...')
