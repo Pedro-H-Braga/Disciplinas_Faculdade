@@ -3,3 +3,6 @@ Protocolo utilizado em redes que tenham Switch's se comunicando, utiliza uma ló
 - FOWARDING: o tráfego de rede passa normalmente pelo switch
 - DESIGNED : é o switch designado de melhor rota para se o switch mais valioso de acordo com a arvore, cair. Fica em modo bloqueado. 
 - BLOCKING : é o switch que fica bloqueado na rede aguardando para que o tráfego não entre em loop.
+
+RSTP - Evolução do STP:
+Quando vai fazer a varredura da rede para se criar a árvore de espalhamento do protocolo para verificação de quais rotas são as melhores, demorava-se alguns minutos com o STP. Com o RSTP essa varredura demora poucos segundos para concluir.
