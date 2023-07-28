@@ -34,29 +34,11 @@ def insereCampus(descricao: str, conexao):
         return inserido, idRetorno  
         
 # ------------------------------------------------------------
-def insereCargo(descricao: str, conexao):
-    inserido   = False
-    idRetorno  = None
-    strSQL     = f'INSERT INTO servidor (cargo) VALUES (\'{descricao}\');'
-    try:
-        cursorTable = conexao.cursor()
-        cursorTable.execute(strSQL)
-    except:
-        conexao.rollback()
-        idRetorno = f'ERRO: {sys.exc_info()[0]} \n{descricao} \n\n'
-    else:
-        inserido  = True
-        idRetorno = cursorTable.fetchone()[0]
-        conexao.commit()
-    finally:
-        return inserido, idRetorno
-
-# ------------------------------------------------------------
-def insereCursos(descricao: str, conexao):
+def insereDisciplina(descricao: str, conexao):
     inserido    = False
     idRetorno   = None
-    strSQL      = f'INSERT INTO cursos (curso) VALUES (\'{descricao}\') '
-    strSQL     += 'RETURNING id_curso;'
+    strSQL      = f'INSERT INTO disciplina_ingresso (disciplina) VALUES (\'{descricao}\') '
+    strSQL     += 'RETURNING id_disciplina;'
     try:
         cursorTable = conexao.cursor()
         cursorTable.execute(strSQL)
@@ -71,7 +53,7 @@ def insereCursos(descricao: str, conexao):
         return inserido, idRetorno
 
 # ------------------------------------------------------------
-def insereLinhasPesquisa(descricao: str, conexao):
+def insereFuncao(descricao: str, conexao):
     inserido  = False
     idRetorno = None
     strSQL    = f'INSERT INTO linhas_pesquisa (linha_pesquisa) VALUES '
@@ -132,7 +114,7 @@ def insereServidor(matricula: int, categoria: str, cargo: str, nome: str, curric
     inserido   = False
     idRetorno  = None
     
-    if matricula is None or matricula == '': matricula = 'Vazio'
+    if matricula is None or matricula == '': matricula = 0
     if categoria is None or categoria == '': categoria = 'Vazio'
     if cargo is None or cargo == '': cargo = 'Vazio'
     if nome is None or cargo == '': nome = 'Vazio'
@@ -141,7 +123,7 @@ def insereServidor(matricula: int, categoria: str, cargo: str, nome: str, curric
 
     # utilizando placeholders da biblioteca psycopg2
     strSQL     = f"INSERT INTO servidor (matricula, categoria, cargo, nome, curriculolattes, urlfoto75x100) " \
-    f"VALUES ('{matricula}', '{categoria}', '{cargo}', '{nome}', '{curriculoLattes}', '{urlFoto75x100}') " \
+    f"VALUES ({matricula}, '{categoria}', '{cargo}', '{nome}', '{curriculoLattes}', '{urlFoto75x100}') " \
     "RETURNING matricula;"
     print(strSQL)
     try:

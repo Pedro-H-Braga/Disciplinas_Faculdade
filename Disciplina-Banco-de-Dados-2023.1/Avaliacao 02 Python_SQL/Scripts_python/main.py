@@ -86,60 +86,30 @@ print(dictCampus) # TODO: PODE APAGAR DEPOIS
  '''
 
 # ------------------------------------------------------------
-# Inserindo os Servidor
-print('\nInserindo os dados na tabela Servidor...')
-# Juntando os dados para desempacotar no for
-zipServidor = zip(setMatricula, setCategoria, setCargo, setNome, setCurriculo, setUrlFoto) # Combine os conjuntos usando zip()
-    
-dictServidor = dict()
-# desempacotando zipServidor para as variaveis
-for matricula, categoria, cargo, nome, curriculoLattes, urlFoto75x100 in zipServidor:
-    if not matricula: continue
-    retorno = insereServidor(matricula, categoria, cargo, nome, curriculoLattes, urlFoto75x100, connDB)
+# Inserindo os DisciplinaIngresso
+print('\nInserindo os dados na tabela Disciplina Ingresso...')
+dictDisciplinaIngresso = dict()
+for discIng in setDisciplinaIngresso:
+    if not discIng: continue
+    retorno = insereDisciplina(discIng, connDB)
     if not retorno[0]:
         print(retorno[1])
         continue
-    dictServidor[matricula] = retorno[1]
-
-cont = 0
-for chave, valor in dictServidor.items():    
-    print(f'{chave}: {valor}') # TODO: PODE APAGAR DEPOIS
-    cont += 1
-    if cont > 30: break
+    dictDisciplinaIngresso[discIng] = retorno[1]
+print(dictDisciplinaIngresso) # TODO: PODE APAGAR DEPOIS
 
 # ------------------------------------------------------------
-# Fechando a conexão com o Database Server
-connDB.close()
-
-#                                             TESTAGENS
-sys.exit()
-
-
-# ------------------------------------------------------------
-# Inserindo os CURSOS
-print('\nInserindo os dados na tabela CURSOS...')
-dictCursos = dict()
-for curso in setCursos:
-    if not curso: continue
-    retorno = insereCursos(curso, connDB)
-    if not retorno[0]:
-        print(retorno[1])
-        continue
-    dictCursos[curso] = retorno[1]
-print(dictCursos) # TODO: PODE APAGAR DEPOIS
-
-# ------------------------------------------------------------
-# Inserindo os LINHAS_PESQUISA
+# Inserindo os FUNCAO 
 print('\nInserindo os dados na tabela LINHAS_PESQUISA...')
-dictLinhasPesquisa = dict()
-for linhaPesquisa in setLinhasPesquisa:
-    if not linhaPesquisa: continue
-    retorno = insereLinhasPesquisa(linhaPesquisa, connDB)
+dictFuncao = dict()
+for func in setFuncao:
+    if not func: continue
+    retorno = insereFuncao(func, connDB)
     if not retorno[0]:
         print(retorno[1])
         continue
-    dictLinhasPesquisa[linhaPesquisa] = retorno[1]
-print(dictLinhasPesquisa) # TODO: PODE APAGAR DEPOIS
+    dictFuncao[func] = retorno[1]
+print(dictFuncao) # TODO: PODE APAGAR DEPOIS
 
 # ------------------------------------------------------------
 # Inserindo os SITUACOES
@@ -167,6 +137,34 @@ for situacaoSistemica in setSituacoesSistemicas:
     dictSituacoesSistemicas[situacaoSistemica] = retorno[1]
 print(dictSituacoesSistemicas) # TODO: PODE APAGAR DEPOIS
 
+# ------------------------------------------------------------
+# Fechando a conexão com o Database Server
+connDB.close()
+
+#                                             TESTAGENS
+sys.exit()
+
+# ------------------------------------------------------------
+# Inserindo os Servidor
+print('\nInserindo os dados na tabela Servidor...')
+# Juntando os dados para desempacotar no for
+zipServidor = zip(setMatricula, setCategoria, setCargo, setNome, setCurriculo, setUrlFoto) # Combine os conjuntos usando zip()
+    
+dictServidor = dict()
+# desempacotando zipServidor para as variaveis
+for matricula, categoria, cargo, nome, curriculoLattes, urlFoto75x100 in zipServidor:
+    if not matricula: continue
+    retorno = insereServidor(matricula, categoria, cargo, nome, curriculoLattes, urlFoto75x100, connDB)
+    if not retorno[0]:
+        print(retorno[1])
+        continue
+    dictServidor[matricula] = retorno[1]
+
+cont = 0
+for chave, valor in dictServidor.items():    
+    print(f'{chave}: {valor}') # TODO: PODE APAGAR DEPOIS
+    cont += 1
+    if cont > 30: break
 
 # ------------------------------------------------------------
 # Fechando a conexão com o Database Server
