@@ -36,20 +36,15 @@ def insereCampus(descricao: str, conexao):
         
 # ------------------------------------------------------------
 def insereCategoria(descricao: str, conexao):
-    # tratando dados, se nulo
-    # tratando dados, se nulo ou string vazia
-    if descricao is None or descricao == '':
-        descricao = 'Vazio'
-    else:
-        descricao = str(descricao)
-
     inserido   = False
     idRetorno  = None
-    strSQL     = f'INSERT INTO servidor (categoria) VALUES (\'{descricao}\');'
-    #strSQL    += 'RETURNING id_cota_mec;'
+    # utilizando placeholders da biblioteca psycopg2
+    strSQL     = f'INSERT INTO servidor (categoria) VALUES (%s);'
+
     try:
         cursorTable = conexao.cursor()
-        cursorTable.execute(strSQL)
+        # descricao dentro da tupla cursorTable.execute, para rodar o placeholder
+        cursorTable.execute(strSQL, (descricao,))
     except:
         conexao.rollback()
         idRetorno = f'ERRO: {sys.exc_info()[0]} \n{descricao} \n\n'
