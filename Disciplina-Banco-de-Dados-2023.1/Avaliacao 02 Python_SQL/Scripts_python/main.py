@@ -24,9 +24,8 @@ dados_lidos = retLeitura[1]
 # exceto na tabela servidores
 setCategoria            = set(map(lambda c: c['categoria'], dados_lidos.values()))
 setCargo                = set(map(lambda c: c['cargo'], dados_lidos.values()))
-setSetorSiape           = set(map(lambda c: c['setor_siape'], dados_lidos.values()))
 setDisciplinaIngresso   = set(map(lambda c: c['disciplina_ingresso'], dados_lidos.values()))
-setSetorSuap            = set(map(lambda c: c['setor_suap'], dados_lidos.values()))
+setSetor                = set(map(lambda c: c['setor_suap'], dados_lidos.values()))
 setNome                 = set(map(lambda c: c['nome'], dados_lidos.values()))
 setFuncao               = set(map(lambda c: c['funcao'], dados_lidos.values()))
 setJornadaTrabalho      = set(map(lambda c: c['jornada_trabalho'], dados_lidos.values()))
@@ -40,9 +39,8 @@ setUrlFoto              = set(map(lambda c: c['url_foto_75x100'], dados_lidos.va
 
 print(f'TAMANHO de cada SET: \nsetCategoria: {len(setCategoria)}\n\
 setCargo: {len(setCargo)}\n\
-setSetorSiape: {len(setSetorSiape)}\n\
 setDisciplinaIngresso: {len(setDisciplinaIngresso)}\n\
-setSetorSuap: {len(setSetorSuap)}\n\
+setSetorSuap: {len(setSetor)}\n\
 setNome: {len(setNome)}\n\
 setFuncao: {len(setFuncao)}\n\
 setJornadaTrabalho: {len(setJornadaTrabalho)}\n\
@@ -125,22 +123,35 @@ for jornada in setJornadaTrabalho:
 print(dictJornada) # TODO: PODE APAGAR DEPOIS
 
 # ------------------------------------------------------------
-# Inserindo os SITUACOES_SISTEMICAS
-print('\nInserindo os dados na tabela SITUACOES_SISTEMICAS...')
-dictSituacoesSistemicas = dict()
-for situacaoSistemica in setSituacoesSistemicas:
-    if not situacaoSistemica: continue
-    retorno = insereSituacoesSistemicas(situacaoSistemica, connDB)
+# Inserindo os SETOR
+print('\nInserindo os dados na tabela SETOR...')
+dictSetor = dict()
+for setor in setSetor:
+    if not setor: continue
+    retorno = insereSetor(setor, connDB)
     if not retorno[0]:
         print(retorno[1])
         continue
-    dictSituacoesSistemicas[situacaoSistemica] = retorno[1]
-print(dictSituacoesSistemicas) # TODO: PODE APAGAR DEPOIS
+    dictSetor[setor] = retorno[1]
+print(dictSetor) # TODO: PODE APAGAR DEPOIS
+
+# ------------------------------------------------------------
+# Inserindo os TELEFONES_INSTITUCIONAIS
+print('\nInserindo os dados na tabela TELEFONES_INSTITUCIONAIS...')
+dictSetor = dict()
+for setor in setSetor:
+    if not setor: continue
+    retorno = insereTelefones(setor, connDB)
+    if not retorno[0]:
+        print(retorno[1])
+        continue
+    dictSetor[setor] = retorno[1]
+print(dictSetor) # TODO: PODE APAGAR DEPOIS
+
 
 # ------------------------------------------------------------
 # Fechando a conexão com o Database Server
 connDB.close()
-
 #                                             TESTAGENS
 sys.exit()
 

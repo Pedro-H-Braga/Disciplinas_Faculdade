@@ -91,11 +91,30 @@ def insereJornada(descricao: str, conexao):
         return inserido, idRetorno
 
 # ------------------------------------------------------------
-def insereSituacoesSistemicas(descricao: str, conexao):
+def insereSetor(descricao: str, conexao):
     inserido   = False
     idRetorno  = None
-    strSQL     = f'INSERT INTO situacoes_sistemicas (situacao_sistemica) '
-    strSQL    += f'VALUES (\'{descricao}\') RETURNING id_situacao_sistemica;'
+    strSQL     = f'INSERT INTO setor (nome_setor) '
+    strSQL    += f'VALUES (\'{descricao}\') RETURNING id_setor;'
+    try:
+        cursorTable = conexao.cursor()
+        cursorTable.execute(strSQL)
+    except:
+        conexao.rollback()
+        idRetorno = f'ERRO: {sys.exc_info()[0]} \n{descricao} \n\n'
+    else:
+        inserido  = True
+        idRetorno = cursorTable.fetchone()[0]
+        conexao.commit()
+    finally:
+        return inserido, idRetorno
+    
+# ------------------------------------------------------------
+def insereTelefones(descricao: str, conexao):
+    inserido   = False
+    idRetorno  = None
+    strSQL     = f'INSERT INTO telefones_institucionais (ramal) '
+    strSQL    += f'VALUES (\'{descricao}\') RETURNING id_telefones;'
     try:
         cursorTable = conexao.cursor()
         cursorTable.execute(strSQL)
