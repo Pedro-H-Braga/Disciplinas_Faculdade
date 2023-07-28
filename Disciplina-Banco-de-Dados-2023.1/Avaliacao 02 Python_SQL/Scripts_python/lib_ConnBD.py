@@ -131,11 +131,19 @@ def insereSituacoesSistemicas(descricao: str, conexao):
 def insereServidor(matricula: int, categoria: str, cargo: str, nome: str, curriculoLattes: str, urlFoto75x100: str, conexao):
     inserido   = False
     idRetorno  = None
+    
+    if matricula is None or matricula == '': matricula = 'Vazio'
+    if categoria is None or categoria == '': categoria = 'Vazio'
+    if cargo is None or cargo == '': cargo = 'Vazio'
+    if nome is None or cargo == '': nome = 'Vazio'
+    if curriculoLattes is None or curriculoLattes == '': curriculoLattes = 'Vazio'
+    if urlFoto75x100 is None or urlFoto75x100 == '': urlFoto75x100 = 'Vazio'
+
     # utilizando placeholders da biblioteca psycopg2
     strSQL     = f"INSERT INTO servidor (matricula, categoria, cargo, nome, curriculolattes, urlfoto75x100) " \
     f"VALUES ('{matricula}', '{categoria}', '{cargo}', '{nome}', '{curriculoLattes}', '{urlFoto75x100}') " \
     "RETURNING matricula;"
-
+    print(strSQL)
     try:
         cursorTable = conexao.cursor()
         # descricao dentro da tupla cursorTable.execute, para rodar o placeholder

@@ -12,4 +12,4 @@ alter table  campus
 -- Tirando o NOT NULL do campo categoria da tabela campos
 ALTER TABLE servidor ALTER COLUMN categoria DROP NOT NULL;
 
-INSERT INTO servidor.categoria (categoria) VALUES ('T E S TANDO');
+-- INSERT INTO servidor (categoria) VALUES ('T E S TANDO');

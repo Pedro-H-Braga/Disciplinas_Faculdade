@@ -90,7 +90,7 @@ print(dictCampus) # TODO: PODE APAGAR DEPOIS
 print('\nInserindo os dados na tabela Servidor...')
 # Juntando os dados para desempacotar no for
 zipServidor = zip(setMatricula, setCategoria, setCargo, setNome, setCurriculo, setUrlFoto) # Combine os conjuntos usando zip()
-
+    
 dictServidor = dict()
 # desempacotando zipServidor para as variaveis
 for matricula, categoria, cargo, nome, curriculoLattes, urlFoto75x100 in zipServidor:
