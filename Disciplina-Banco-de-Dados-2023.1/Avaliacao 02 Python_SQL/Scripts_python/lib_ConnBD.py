@@ -19,7 +19,7 @@ def insereCampus(descricao: str, conexao):
     inserido   = False
     idRetorno  = None
     strSQL     = f'INSERT INTO campus (campi) VALUES (\'{descricao}\') '
-    strSQL    += 'RETURNING campus;'
+    strSQL    += 'RETURNING campi;'
     try:
         cursorTable = conexao.cursor()
         cursorTable.execute(strSQL)
@@ -31,36 +31,13 @@ def insereCampus(descricao: str, conexao):
         idRetorno = cursorTable.fetchone()[0]
         conexao.commit()
     finally:
-        return inserido, idRetorno
-
+        return inserido, idRetorno  
         
 # ------------------------------------------------------------
-def insereCategoria(descricao: str, conexao):
+def insereCargo(descricao: str, conexao):
     inserido   = False
     idRetorno  = None
-    # utilizando placeholders da biblioteca psycopg2
-    strSQL     = f'INSERT INTO servidor (categoria) VALUES (%s);'
-
-    try:
-        cursorTable = conexao.cursor()
-        # descricao dentro da tupla cursorTable.execute, para rodar o placeholder
-        cursorTable.execute(strSQL, (descricao,))
-    except:
-        conexao.rollback()
-        idRetorno = f'ERRO: {sys.exc_info()[0]} \n{descricao} \n\n'
-    else:
-        inserido  = True
-        idRetorno = cursorTable.fetchone()[0]
-        conexao.commit()
-    finally:
-        return inserido, idRetorno
-        
-# ------------------------------------------------------------
-def insereCotasSISTEC(descricao: str, conexao):
-    inserido   = False
-    idRetorno  = None
-    strSQL     = f'INSERT INTO cotas_sistec (cota_sistec) VALUES '
-    strSQL    += f'(\'{descricao}\') RETURNING id_cota_sistec;'
+    strSQL     = f'INSERT INTO servidor (cargo) VALUES (\'{descricao}\');'
     try:
         cursorTable = conexao.cursor()
         cursorTable.execute(strSQL)
@@ -149,3 +126,25 @@ def insereSituacoesSistemicas(descricao: str, conexao):
         conexao.commit()
     finally:
         return inserido, idRetorno
+    
+# ------------------------------------------------------------
+def insereServidor(matricula: int, categoria: str, cargo: str, nome: str, curriculoLattes: str, urlFoto75x100: str, conexao):
+    inserido   = False
+    idRetorno  = None
+    # utilizando placeholders da biblioteca psycopg2
+    strSQL     = f'INSERT INTO servidor (matricula, categoria, cargo, nome, curriculoLattes, urlFoto75x100) VALUES (\'{matricula}, {categoria}, {cargo}, {nome}, {curriculoLattes}, {urlFoto75x100}\');'
+
+    try:
+        cursorTable = conexao.cursor()
+        # descricao dentro da tupla cursorTable.execute, para rodar o placeholder
+        cursorTable.execute(strSQL)
+    except:
+        conexao.rollback()
+        idRetorno = f'ERRO: {sys.exc_info()[0]} \n{matricula} \n\n'
+    else:
+        inserido  = True
+        idRetorno = cursorTable.fetchone()[0]
+        conexao.commit()
+    finally:
+        return inserido, idRetorno
+        

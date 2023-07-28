@@ -51,6 +51,7 @@ setMatricula: {len(setMatricula)}\n\
 setCurriculo: {len(setCurriculo)}\n\
 setCampi: {len(setCampi)}\n\
 setUrlFoto: {len(setUrlFoto)}')
+# BUG quando tenta preencher uma tabela com dados
 
 # ------------------------------------------------------------
 # Estabelecendo conexão com Database Server
@@ -85,17 +86,26 @@ print(dictCampus) # TODO: PODE APAGAR DEPOIS
  '''
 
 # ------------------------------------------------------------
-# Inserindo os COTAS_MEC
-print('\nInserindo os dados no campo Categoria...')
-dictCategoria = dict()
-for categoria in setCategoria:
-    if not categoria: continue
-    retorno = insereCategoria(categoria, connDB)
+# Inserindo os Servidor
+print('\nInserindo os dados na tabela Servidor...')
+# Juntando os dados para desempacotar no for
+zipServidor = zip(setMatricula, setCategoria, setCargo, setNome, setCurriculo, setUrlFoto) # Combine os conjuntos usando zip()
+
+dictServidor = dict()
+# desempacotando zipServidor para as variaveis
+for matricula, categoria, cargo, nome, curriculoLattes, urlFoto75x100 in zipServidor:
+    if not matricula: continue
+    retorno = insereServidor(matricula, categoria, cargo, nome, curriculoLattes, urlFoto75x100, connDB)
     if not retorno[0]:
         print(retorno[1])
         continue
-    dictCategoria[categoria] = retorno[1]
-print(dictCategoria) # TODO: PODE APAGAR DEPOIS
+    dictServidor[matricula] = retorno[1]
+
+cont = 0
+for chave, valor in dictServidor.items():    
+    print(f'{chave}: {valor}') # TODO: PODE APAGAR DEPOIS
+    cont += 1
+    if cont > 30: break
 
 # ------------------------------------------------------------
 # Fechando a conexão com o Database Server
@@ -104,18 +114,6 @@ connDB.close()
 #                                             TESTAGENS
 sys.exit()
 
-# ------------------------------------------------------------
-# Inserindo os COTAS_SISTEC
-print('\nInserindo os dados na tabela COTAS_SISTEC...')
-dictCotasSISTEC = dict()
-for cotaSISTEC in setCotasSISTEC:
-    if not cotaSISTEC: continue
-    retorno = insereCotasSISTEC(cotaSISTEC, connDB)
-    if not retorno[0]:
-        print(retorno[1])
-        continue
-    dictCotasSISTEC[cotaSISTEC] = retorno[1]
-print(dictCotasSISTEC) # TODO: PODE APAGAR DEPOIS
 
 # ------------------------------------------------------------
 # Inserindo os CURSOS
@@ -168,6 +166,7 @@ for situacaoSistemica in setSituacoesSistemicas:
         continue
     dictSituacoesSistemicas[situacaoSistemica] = retorno[1]
 print(dictSituacoesSistemicas) # TODO: PODE APAGAR DEPOIS
+
 
 # ------------------------------------------------------------
 # Fechando a conexão com o Database Server
