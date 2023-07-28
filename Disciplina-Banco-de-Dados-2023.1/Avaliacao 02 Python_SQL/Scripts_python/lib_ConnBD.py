@@ -132,7 +132,7 @@ def insereServidor(matricula: int, categoria: str, cargo: str, nome: str, curric
     inserido   = False
     idRetorno  = None
     # utilizando placeholders da biblioteca psycopg2
-    strSQL     = f"INSERT INTO servidor (matricula, categoria, cargo, nome, curriculoLattes, urlFoto75x100) " \
+    strSQL     = f"INSERT INTO servidor (matricula, categoria, cargo, nome, curriculolattes, urlfoto75x100) " \
     f"VALUES ('{matricula}', '{categoria}', '{cargo}', '{nome}', '{curriculoLattes}', '{urlFoto75x100}') " \
     "RETURNING matricula;"
 
