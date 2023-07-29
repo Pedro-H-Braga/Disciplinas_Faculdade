@@ -6,10 +6,23 @@ SERVER       = 'localhost'
 PROMPT       = 'Digite sua msg (/q para terminar) > '
 CODE_PAGE    = 'utf-8'
 BUFFER_MSG   = 512
-COMAND_ERROR = '\
-----------------------------------------------------------------------------------------------------------\
-\tCOMANDOS DISPONÍVEIS:\
-----------------------------------------------------------------------------------------------------------\
+COMAND_LIST  = [
+'/q',
+'/l',
+'/m',
+'/b',
+'/h',
+'/f',
+'/d',
+'/u',
+'/w',
+'/rss',
+'/?'
+]
+COMAND_ERROR = '\n\
+---------------------------------------------------------------------------------------------------------- \n\
+\tCOMANDOS DISPONÍVEIS:\t\
+\n---------------------------------------------------------------------------------------------------------- \n\
 /q → sair do cliente;\n \
 /l → listar o IP:porta dos clientes conectados no servidor;\n \
 /m:ip_destino:porta:mensagem → Enviar uma mensagem a um determinado cliente conectado no servidor\n \
