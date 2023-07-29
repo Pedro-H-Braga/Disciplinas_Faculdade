@@ -36,4 +36,4 @@ COMAND_ERROR = '\n\
 /? → exibir uma ajuda (listar as opções contidas nesse roteiro).'
 # --------- VARIAVEIS SOCKET -----------------
 allSocks = []
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+SOCK = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
