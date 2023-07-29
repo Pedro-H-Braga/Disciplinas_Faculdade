@@ -27,15 +27,15 @@ def cliInteraction(sockConn, addr):
                     l(msg, addr)
                 case '/b':
                     b(msg, addr)
-                case other:
+                case _:
                     # envia mensagem de opções de comandos
                     sock.send(COMAND_ERROR.encode(CODE_PAGE))
         
-        except:
-            msg = b'/q'
-            sock.send(msg)
+        except Exception as e:
+            msg = '/q'
+            sock.send(msg.encode(CODE_PAGE))
             allSocks.remove ((sockConn, addr))
-            sockConn.close()
+            closeSocket()
         exit()
 
 # ----------------- FUNÇÕES CLIENTE  -----------------
@@ -48,7 +48,7 @@ def servInteraction():
         except Exception as e:
             # exiba o error e saia do loop
             print('ERROR: ', e)
-        exit()
+            exit()
 
 # função que pega input do cliente e manda pro servidor
 def userInteraction():

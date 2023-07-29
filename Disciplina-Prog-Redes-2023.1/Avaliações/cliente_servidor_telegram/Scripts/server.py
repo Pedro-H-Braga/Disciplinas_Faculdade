@@ -21,4 +21,4 @@ try:
         tClient = threading.Thread(target=cliInteraction, args=(sockConn, addr))
         tClient.start()
 except Exception as e:
-    print ("Fail: ", e)
+    print ("ERROR: ", e)
