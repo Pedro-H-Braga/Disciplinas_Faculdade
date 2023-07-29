@@ -21,7 +21,7 @@ def cliInteraction(sockConn, addr):
                 case '/b':
                     b(msg, addr)
                 case other:
-                    print('No match found')
+                    print('Este comando não existe!')
         
         except:
             msg = b'/q'

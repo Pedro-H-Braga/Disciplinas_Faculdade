@@ -1,6 +1,6 @@
 import threading
 from const import *
-from funcoes import *
+from funcs_client_server import *
 
 try:
     sock.connect((SERVER, PORT))
