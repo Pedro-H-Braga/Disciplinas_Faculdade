@@ -1,5 +1,5 @@
 from constantes import *
-from lib_comandos import *
+
 # ----------------- FUNÇÕES SERVIDOR -----------------
 
 def cliInteraction(sockConn, addr):
@@ -13,4 +13,11 @@ def cliInteraction(sockConn, addr):
     allSocks.remove ((sockConn, addr))
     sockConn.close()
 
+# ----------------- COMANDOS DO SERVIDOR -----------------
 
+def broadCast(msg, addrSource):
+    msg = f"{addrSource} -> {msg.decode('utf-8')}"
+    print (msg)
+    for sockConn, addr in allSocks:
+        if addr != addrSource:
+            sockConn.send(msg.encode('utf-8'))
