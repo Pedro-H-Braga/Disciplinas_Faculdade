@@ -32,12 +32,10 @@ def cliInteraction(sockConn, addr):
                     sock.send(COMAND_ERROR.encode(CODE_PAGE))
         
         except Exception as e:
-            msg = '/q'
-            sock.send(msg.encode(CODE_PAGE))
-            allSocks.remove ((sockConn, addr))
-            closeSocket()
-        exit()
-
+            print('ERROR: ', e)
+            break
+    closeSocket()
+    
 # ----------------- FUNÇÕES CLIENTE  -----------------
 # função que recebe os dados do servidor
 def servInteraction():
