@@ -3,8 +3,9 @@ from const import *
 from funcs_client_server import *
 
 try:
+    # Conectando o cliente pelo IP/PORTA ao servidor
     sock.connect((SERVER, PORT))
-
+    
     print ("Conectado a: ", (SERVER, PORT))
     tServer = threading.Thread(target=servInteraction)
     tUser = threading.Thread(target=userInteraction)
