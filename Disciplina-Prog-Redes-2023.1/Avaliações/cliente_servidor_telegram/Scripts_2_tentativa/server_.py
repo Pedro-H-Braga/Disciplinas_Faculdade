@@ -39,7 +39,10 @@ try:
     print ("Listening in: ", (SERVER, PORT))
     sock.listen(5)
 
+    # Loop para aguardar conexões com clientes
     while True:
+        # quando o cliente se conecta, é guardado na lista de allSock e é criado uma thread >>
+        # >> para ele que executa a função de interação com o cliente 
         sockConn, addr = sock.accept()
         print ("Connection from: ", addr)
         allSocks.append((sockConn, addr))

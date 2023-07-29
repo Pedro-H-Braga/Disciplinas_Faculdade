@@ -1,15 +1,19 @@
 import socket, threading
 
+# Definindo o ip local e a mesma porta do servidor para se conectar
 SERVER = 'localhost'
 PORT = 5678
 PROMPT = 'Digite sua msg (!q para terminar) > '
 
 
 def servInteraction():
+    # mensagem com espaço para entrar no loop enquanto a mensagem não for vazia
     msg = b' '
     while msg != b'':
         try:
+            # recebendo dados do servidor
             msg = sock.recv(512)
+            # exibindo a mensagem
             print ("\n"+msg.decode('utf-8')+"\n"+PROMPT)
         except:
             msg = b''
