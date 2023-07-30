@@ -13,8 +13,8 @@ def cliInteraction(sockConn, addr):
             msg = sockConn.recv(BUFFER_MSG)
             # transformando mensagem em string para entrar no match case
             strMsg = msg.decode(CODE_PAGE)
-            # adicionando mensagem ao historico de mensagens
-            historico = []
+            # toda mensagem é adicionada na chave dict do client, na lista de mensagem
+            message_history[addr].append(strMsg)
             # pegando da lista do split, o comando e colocando no match case 
             list_msg = split_(strMsg)
             # pegando da lista splitada da mensagem, apenas o comando dado
@@ -32,6 +32,9 @@ def cliInteraction(sockConn, addr):
                 # mostra comandos
                 case '/?':
                     print(COMAND_ERROR)
+                # exibe historico de mensagens do client
+                case '/h':
+                    h(addr)
                 # caso default do match case (se não for nenhuma das opções, cairá aqui)
                 case _:
                     print('Comando não existe! Informe /? para ver as opções de comando...')
@@ -65,7 +68,8 @@ def cliInteraction(sockConn, addr):
 
 # ----------------------- COMANDOS ---------------------- 
 
-# pega a mensagem e o IP/PORTA do cliente que enviou        
+# pega a mensagem e o IP/PORTA do cliente que enviou   
+#                        BROADCAST     
 def b(msg, addrSource): # ENVIA MENSAGEM PARA TODOS CONECTADOS MENOS PRA QUEM ENVIOU
     # adicionando na mensagem o IP PORTA do cliente que enviou
     msg = f"From: {addrSource} -> {msg}"
@@ -74,6 +78,14 @@ def b(msg, addrSource): # ENVIA MENSAGEM PARA TODOS CONECTADOS MENOS PRA QUEM EN
     for sockConn, addr in allSocks:
         if addr != addrSource:
             sockConn.send(msg.encode(CODE_PAGE))
+
+#                        HISTORICO
+# exibe historico de comandos do client
+def h(addrSource):
+    # history recebe do dict com seu addrSource, a lista com suas mensagens, ex: {localhost[]}
+    historico = "\n".join(message_history.get(addrSource, []))
+    # Enviando o histórico de mensagens do cliente.
+    sockConn.send(historico.encode('utf-8'))    
 
 
 # ----------------------- FUNÇÕES ---------------------- 
