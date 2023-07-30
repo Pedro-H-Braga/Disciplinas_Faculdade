@@ -11,11 +11,11 @@ def cliInteraction(sockConn, addr):
         try:
             # >> Receba a mensagem do CLIENTE
             msg = sockConn.recv(BUFFER_MSG)
-            print('msg: ', msg)
+            print('msg: ', msg.decode(CODE_PAGE))
             # transformando mensagem em string para entrar no match case
             #strMsg = msg.decode(CODE_PAGE) #BUG 
             # toda mensagem é adicionada na chave dict do client, na lista de mensagem
-            message_history[addr].append(msg.decode(CODE_PAGE))
+            #message_history[addr].append(msg.decode(CODE_PAGE))
             # pegando da lista do split, o comando e colocando no match case 
             list_msg = split_(msg.decode(CODE_PAGE))
             # pegando da lista splitada da mensagem, apenas o comando dado
@@ -44,11 +44,12 @@ def cliInteraction(sockConn, addr):
             print(e)
             msg = b'/q'
             # retirando host da lista de clientes conectados
-        finally:
-            allSocks.remove ((sockConn, addr))
-            # # para sair do loop
-            # encerrando o socket (encerrando conexão com o cliente)
-            sockConn.close()
+        
+        allSocks.remove ((sockConn, addr))
+        # # para sair do loop
+        # encerrando o socket (encerrando conexão com o cliente)
+        sockConn.close()
+
 
 # ----------------------- COMANDOS ---------------------- 
 
@@ -82,7 +83,8 @@ def split_(msg):
         print(f'Erro no split da mensagem...', e)
         return msg
 
-#                           SERVIDOR: 
+# ----------------------- SERVIDOR ---------------------- 
+
 try:
     allSocks = []
     sockServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -98,16 +100,13 @@ try:
         
         # addr é usado como variavel global, sendo usado em client para pegar quem se conectou ao server
         sockConn, addr = sockServer.accept()
-        print ("Connection from: ", addr)
+        print("Connection from: ", addr)
 
         allSocks.append((sockConn, addr))
         print('allSock: \n',allSocks, end='\n')
-        try:
-            tClient = threading.Thread(target=cliInteraction, args=(sockConn, addr))
-            tClient.start()
-        # tratando possivel erro na thread e finalizando o socket
-        except Exception as e:            
-            print ("Fail: ", e)
-            exit()
+        
+        tClient = threading.Thread(target=cliInteraction, args=(sockConn, addr))
+        tClient.start()
+
 except Exception as e:
     print ("Fail: ", e)

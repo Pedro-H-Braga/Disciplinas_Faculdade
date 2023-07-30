@@ -3,13 +3,13 @@ from constantes import *
 
 def servInteraction():
     # Obtém o endereço do cliente que se conectou no servidor
-    addr_host = sockClient.getpeername()
+    #addr_host = sockClient.getpeername()
     #print(addr_host)
     
     # se o cliente não estiver na lista de addr_host do dict, ele será incializado com um historico vazio
-    if addr_host not in message_history:
+    #if addr_host not in message_history:
         # Cria uma lista vazia com a chave do dict sendo o addr do client.   
-        message_history[addr_host] = []  
+    #    message_history[addr_host] = []  
 
     # mensagem com espaço para entrar no loop enquanto a mensagem não for vazia
     msg = b' '
@@ -22,12 +22,11 @@ def servInteraction():
             # exibindo a mensagem
             print ("\n"+strMsg+"\n"+PROMPT)
             # Adiciona a mensagem ao histórico do client
-            message_history[addr_host].append(strMsg)  
+            #message_history[addr_host].append(strMsg)  
         except Exception as e:
             print(e)
             msg = b''
-        finally:
-            closeSocket()
+        closeSocket()
 
 def userInteraction():
     msg = ''
@@ -40,8 +39,7 @@ def userInteraction():
         except Exception as e:
             print(e)
             msg = '/q'
-        finally:
-            closeSocket()
+        closeSocket()
 
 def closeSocket():
     try:
