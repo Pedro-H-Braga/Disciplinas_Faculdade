@@ -1,6 +1,7 @@
 # --------- CONSTANTES -----------------
 import socket
 
+message_history = {}
 PORT  = 5678
 IP_CLIENTE   = 'localhost'
 IP_SERVER    = '0.0.0.0'

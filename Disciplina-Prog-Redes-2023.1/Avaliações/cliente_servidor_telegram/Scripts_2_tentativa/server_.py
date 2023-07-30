@@ -13,6 +13,8 @@ def cliInteraction(sockConn, addr):
             msg = sockConn.recv(BUFFER_MSG)
             # transformando mensagem em string para entrar no match case
             strMsg = msg.decode(CODE_PAGE)
+            # adicionando mensagem ao historico de mensagens
+            historico = []
             # pegando da lista do split, o comando e colocando no match case 
             list_msg = split_(strMsg)
             # pegando da lista splitada da mensagem, apenas o comando dado
@@ -64,7 +66,7 @@ def cliInteraction(sockConn, addr):
 # ----------------------- COMANDOS ---------------------- 
 
 # pega a mensagem e o IP/PORTA do cliente que enviou        
-def b(msg, addrSource):
+def b(msg, addrSource): # ENVIA MENSAGEM PARA TODOS CONECTADOS MENOS PRA QUEM ENVIOU
     # adicionando na mensagem o IP PORTA do cliente que enviou
     msg = f"From: {addrSource} -> {msg}"
     print(msg)
