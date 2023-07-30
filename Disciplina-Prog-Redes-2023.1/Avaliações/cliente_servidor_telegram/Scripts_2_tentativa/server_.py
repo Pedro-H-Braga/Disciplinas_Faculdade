@@ -19,16 +19,17 @@ def cliInteraction(sockConn, addr):
             try:
                 comando  = list_msg[0]
                 msgDest  = list_msg[1]
-            except: 
-                # se error, comando recebe a mensagem que não é lista já que entrou no bloco e sim apenas um comando como um /q
-                comando = list_msg
-
+            except Exception as e: 
+                print(f'ERROR em {addr}: {e}')
+                msg = b'/q'
             match comando:
                 # broadCast
                 case '/b':            
                     b(msgDest, addr)
-                case _:
+                case '/?':
                     print(COMAND_ERROR)
+                case _:
+                    print('Comando não existe! Informe /? para ver as opções de comando...')
 
             '''
             # fazer match case para msg, se encaixar em alguma alternativa, execute uma função
@@ -57,7 +58,7 @@ def cliInteraction(sockConn, addr):
     # encerrando o socket (encerrando conexão com o cliente)
     sockConn.close()
 
-# ----------------------------- FUNÇÕES COMANDOS
+# ----------------------- COMANDOS ---------------------- 
 
 # pega a mensagem e o IP/PORTA do cliente que enviou        
 def b(msg, addrSource):
@@ -69,6 +70,8 @@ def b(msg, addrSource):
         if addr != addrSource:
             sockConn.send(msg.encode(CODE_PAGE))
 
+
+# ----------------------- FUNÇÕES ---------------------- 
 
 # função para os comandos com argumentos, pegar os dados 
 def split_(msg):
