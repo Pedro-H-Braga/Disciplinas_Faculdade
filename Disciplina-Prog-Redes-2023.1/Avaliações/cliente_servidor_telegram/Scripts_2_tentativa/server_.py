@@ -112,11 +112,14 @@ try:
     while True:
         # quando o cliente se conecta, é guardado na lista de allSock e é criado uma thread >>
         # >> para ele que executa a função de interação com o cliente 
+        
         # addr é usado como variavel global, sendo usado em client para pegar quem se conectou ao server
-        sockConn, addr = sock.accept()
-        print ("Connection from: ", addr)
-        allSocks.append((sockConn, addr))
-        tClient = threading.Thread(target=cliInteraction, args=(sockConn, addr))
+        sockConn, ADDR_CLIENT = sock.accept()
+        print ("Connection from: ", ADDR_CLIENT)
+
+        allSocks.append((sockConn, ADDR_CLIENT))
+
+        tClient = threading.Thread(target=cliInteraction, args=(sockConn, ADDR_CLIENT))
         tClient.start()
 except Exception as e:
     print ("Fail: ", e)

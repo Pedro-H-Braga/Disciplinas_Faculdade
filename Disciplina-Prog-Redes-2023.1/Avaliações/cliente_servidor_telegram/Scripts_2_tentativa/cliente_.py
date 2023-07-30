@@ -2,12 +2,12 @@ import socket, threading
 from constantes import *
 
 def servInteraction():
-    # Obtém o endereço do cliente que se conectou
-    from server_ import addr   
-    # se o cliente não estiver na lista de addrClient do dict, ele será incializado com um historico vazio
-    if addr not in message_history:
+    # Obtém o endereço do cliente que se conectou no servidor
+    addr_host = sock.getpeername()
+    # se o cliente não estiver na lista de addr_host do dict, ele será incializado com um historico vazio
+    if addr_host not in message_history:
         # Cria uma lista vazia com a chave do dict sendo o addr do client.   
-        message_history[addr] = []  
+        message_history[addr_host] = []  
 
     # mensagem com espaço para entrar no loop enquanto a mensagem não for vazia
     msg = b' '
@@ -20,7 +20,7 @@ def servInteraction():
             # exibindo a mensagem
             print ("\n"+strMsg+"\n"+PROMPT)
             # Adiciona a mensagem ao histórico do client
-            message_history[addr].append(strMsg)  
+            message_history[addr_host].append(strMsg)  
         except:
             msg = b''
     closeSocket()
