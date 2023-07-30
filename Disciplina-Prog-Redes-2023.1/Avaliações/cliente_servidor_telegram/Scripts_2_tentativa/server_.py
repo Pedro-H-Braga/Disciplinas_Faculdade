@@ -9,14 +9,14 @@ def cliInteraction(sockConn, addr):
     # se a mensagem for igual do comando de encerramento, feche a conexão >>
     while msg != b'/q':
         try:
-            # >> Receba a mensagem do CLIENTE e envie para todos hosts conectados
+            # >> Receba a mensagem do CLIENTE
             msg = sockConn.recv(BUFFER_MSG)
             # transformando mensagem em string para entrar no match case
-            strMsg = msg.decode(CODE_PAGE)
+            #strMsg = msg.decode(CODE_PAGE) #BUG 
             # toda mensagem é adicionada na chave dict do client, na lista de mensagem
-            message_history[addr].append(strMsg)
+            message_history[addr].append(msg.decode(CODE_PAGE))
             # pegando da lista do split, o comando e colocando no match case 
-            list_msg = split_(strMsg)
+            list_msg = split_(msg.decode(CODE_PAGE))
             # pegando da lista splitada da mensagem, apenas o comando dado
             try:
                 comando  = list_msg[0]
@@ -34,7 +34,7 @@ def cliInteraction(sockConn, addr):
                     print(COMAND_ERROR)
                 # exibe historico de mensagens do client
                 case '/h':
-                    h(addr)
+                    h(sockConn, addr)
                 # caso default do match case (se não for nenhuma das opções, cairá aqui)
                 case _:
                     print('Comando não existe! Informe /? para ver as opções de comando...')
@@ -42,10 +42,12 @@ def cliInteraction(sockConn, addr):
         except Exception as e:
             print(e)
             msg = b'/q'
-    # retirando host da lista de clientes conectados
-    allSocks.remove ((sockConn, addr))
-    # encerrando o socket (encerrando conexão com o cliente)
-    sockConn.close()
+            # retirando host da lista de clientes conectados
+            #allSocks.remove ((sockConn, addr))
+        finally:
+            # # para sair do loop
+            # encerrando o socket (encerrando conexão com o cliente)
+            sockConn.close()
 
 # ----------------------- COMANDOS ---------------------- 
 
@@ -62,12 +64,11 @@ def b(msg, addrSource): # ENVIA MENSAGEM PARA TODOS CONECTADOS MENOS PRA QUEM EN
 
 #                        HISTORICO
 # exibe historico de comandos do client
-def h(addrSource):
+def h(sockConn, addrSource):
     # history recebe do dict com seu addrSource, a lista com suas mensagens, ex: {localhost[]}
     historico = "\n".join(message_history.get(addrSource, []))
     # Enviando o histórico de mensagens do cliente.
     sockConn.send(historico.encode(CODE_PAGE))    
-
 
 # ----------------------- FUNÇÕES ---------------------- 
 
@@ -84,9 +85,9 @@ def split_(msg):
 try:
     allSocks = []
     sockServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sockServer.bind((IP_SERVER, PORT))
+    sockServer.bind((IP_SERVER, PORT_SERVER))
 
-    print ("Listening in: ", (IP_SERVER, PORT))
+    print ("Listening in: ", (IP_SERVER, PORT_SERVER))
     sockServer.listen(5)
 
     # Loop para aguardar conexões com clientes
@@ -99,8 +100,14 @@ try:
         print ("Connection from: ", addr)
 
         allSocks.append((sockConn, addr))
-
-        tClient = threading.Thread(target=cliInteraction, args=(sockConn, addr))
-        tClient.start()
+        print('allSock: \n',allSocks, end='\n')
+        try:
+            tClient = threading.Thread(target=cliInteraction, args=(sockConn, addr))
+            tClient.start()
+        # tratando possivel erro na thread e finalizando o socket
+        except Exception as e:
+            print ("Fail: ", e)
+        finally:
+            sockServer.close()
 except Exception as e:
     print ("Fail: ", e)

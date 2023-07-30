@@ -2,17 +2,15 @@ import socket, threading
 from constantes import *
 
 def servInteraction():
-    try:
-        # Obtém o endereço do cliente que se conectou no servidor
-        addr_host = sockClient.getpeername()
-        print(addr_host)
-        # se o cliente não estiver na lista de addr_host do dict, ele será incializado com um historico vazio
-        if addr_host not in message_history:
-            # Cria uma lista vazia com a chave do dict sendo o addr do client.   
-            message_history[addr_host] = []  
-    except Exception as e:
-        print(e)
-        closeSocket()
+    # Obtém o endereço do cliente que se conectou no servidor
+    addr_host = sockClient.getpeername()
+    #print(addr_host)
+    
+    # se o cliente não estiver na lista de addr_host do dict, ele será incializado com um historico vazio
+    if addr_host not in message_history:
+        # Cria uma lista vazia com a chave do dict sendo o addr do client.   
+        message_history[addr_host] = []  
+
     # mensagem com espaço para entrar no loop enquanto a mensagem não for vazia
     msg = b' '
     while msg != b'':
@@ -28,7 +26,8 @@ def servInteraction():
         except Exception as e:
             print(e)
             msg = b''
-    closeSocket()
+        finally:
+            closeSocket()
 
 def userInteraction():
     msg = ''
@@ -41,18 +40,20 @@ def userInteraction():
         except Exception as e:
             print(e)
             msg = '/q'
-    closeSocket()
+        finally:
+            closeSocket()
 
 def closeSocket():
     try:
         sockClient.close()
+        print('fechando conexão...')
     except: None
 
 try:
     sockClient = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sockClient.connect((IP_CLIENTE, PORT))
+    sockClient.connect((IP_CLIENTE, PORT_CLIENT))
 
-    print ("Conectado a: ", (IP_CLIENTE, PORT))
+    print ("Conectado a: ", (IP_CLIENTE, PORT_CLIENT))
     tServer = threading.Thread(target=servInteraction)
     tUser = threading.Thread(target=userInteraction)
 
@@ -61,5 +62,8 @@ try:
 
     tServer.join()
     tUser.join()
+# Se error no client, finalize o socket e exiba o error
 except Exception as e:
     print ("Falha ", e)
+finally:
+    closeSocket()    
