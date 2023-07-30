@@ -1,0 +1,17 @@
+# Problemas encontrado projeto
+
+- substituindo as variaveis socket 
+Error está no sock, quando tento dar sock.getpeername
+
+PROCURAR AS OPERAÇÕES QUE ENVOLVEM SOCKET, POSSO TA DANDO
+-socket.close em algo que não é socket
+
+# ERROR ESTÁ EM servInteraction()
+- fechou o server e o cliente 
+- error em tentar operação de socket com algo que nao é socket
+
+#####
+O  ERROR TA na utilização incorreta do socket
+
+ERROR sendo causado pelo fechamento do socket e a tentativa de tirar ele da lista, sendo que ele já foi tirado ou ainda está em execução, fazendo um loop de tentativas e erros
+- tirar o msg = b'/q'

@@ -11,6 +11,7 @@ def cliInteraction(sockConn, addr):
         try:
             # >> Receba a mensagem do CLIENTE
             msg = sockConn.recv(BUFFER_MSG)
+            print('msg: ', msg)
             # transformando mensagem em string para entrar no match case
             #strMsg = msg.decode(CODE_PAGE) #BUG 
             # toda mensagem é adicionada na chave dict do client, na lista de mensagem
@@ -43,8 +44,8 @@ def cliInteraction(sockConn, addr):
             print(e)
             msg = b'/q'
             # retirando host da lista de clientes conectados
-            #allSocks.remove ((sockConn, addr))
         finally:
+            allSocks.remove ((sockConn, addr))
             # # para sair do loop
             # encerrando o socket (encerrando conexão com o cliente)
             sockConn.close()
@@ -105,9 +106,8 @@ try:
             tClient = threading.Thread(target=cliInteraction, args=(sockConn, addr))
             tClient.start()
         # tratando possivel erro na thread e finalizando o socket
-        except Exception as e:
+        except Exception as e:            
             print ("Fail: ", e)
-        finally:
-            sockServer.close()
+            exit()
 except Exception as e:
     print ("Fail: ", e)

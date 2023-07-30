@@ -65,5 +65,4 @@ try:
 # Se error no client, finalize o socket e exiba o error
 except Exception as e:
     print ("Falha ", e)
-finally:
-    closeSocket()    
+
