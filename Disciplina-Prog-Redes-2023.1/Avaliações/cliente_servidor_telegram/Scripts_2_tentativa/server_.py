@@ -13,10 +13,20 @@ def cliInteraction(sockConn, addr):
             msg = sockConn.recv(BUFFER_MSG)
             # transformando mensagem em string para entrar no match case
             strMsg = msg.decode(CODE_PAGE)
-            match strMsg:
+            # pegando da lista do split, o comando e colocando no match case 
+            list_msg = split_(strMsg)
+            # pegando da lista splitada da mensagem, apenas o comando dado
+            try:
+                comando  = list_msg[0]
+                msgDest  = list_msg[1]
+            except: 
+                # se error, comando recebe a mensagem que não é lista já que entrou no bloco e sim apenas um comando como um /q
+                comando = list_msg
+
+            match comando:
                 # broadCast
                 case '/b':            
-                    b(msg, addr)
+                    b(msgDest, addr)
                 case _:
                     print(COMAND_ERROR)
 
@@ -52,8 +62,8 @@ def cliInteraction(sockConn, addr):
 # pega a mensagem e o IP/PORTA do cliente que enviou        
 def b(msg, addrSource):
     # adicionando na mensagem o IP PORTA do cliente que enviou
-    msg = f"{addrSource} -> {msg.decode(CODE_PAGE)}"
-    print (msg)
+    msg = f"From: {addrSource} -> {msg}"
+    print(msg)
     # percorrendo todos os clientes da lista e enviando mensagem a todos hosts conectados menos a quem enviou 
     for sockConn, addr in allSocks:
         if addr != addrSource:
@@ -61,14 +71,15 @@ def b(msg, addrSource):
 
 
 # função para os comandos com argumentos, pegar os dados 
-'''
 def split_(msg):
     try:
-        comunicacao = msg.split(':')
-        return comunicacao
-    except:
-        print(f'Erro ao desmembrar a mensagem... {sys.exc_info()[0]}')
-'''
+        list_msg = msg.split(':')
+        return list_msg
+    except Exception as e:
+        print(f'Erro no split da mensagem...', e)
+        return msg
+
+#                           SERVIDOR: 
 try:
     allSocks = []
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
