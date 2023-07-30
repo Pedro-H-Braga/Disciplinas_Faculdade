@@ -19,15 +19,18 @@ def cliInteraction(sockConn, addr):
             try:
                 comando  = list_msg[0]
                 msgDest  = list_msg[1]
-            except Exception as e: 
-                print(f'ERROR em {addr}: {e}')
-                msg = b'/q'
+            except: 
+                # comando recebendo o comando da mensagem, após dar out_of_index na lista
+                comando = list_msg[0]
+
             match comando:
                 # broadCast
                 case '/b':            
                     b(msgDest, addr)
+                # mostra comandos
                 case '/?':
                     print(COMAND_ERROR)
+                # caso default do match case (se não for nenhuma das opções, cairá aqui)
                 case _:
                     print('Comando não existe! Informe /? para ver as opções de comando...')
 
