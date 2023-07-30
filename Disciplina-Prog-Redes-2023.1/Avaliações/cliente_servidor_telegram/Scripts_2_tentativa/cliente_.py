@@ -16,13 +16,13 @@ def servInteraction():
 
 def userInteraction():
     msg = ''
-    while msg != '!q':
+    while msg != '/q':
         try:
             # se msg diferente que comando de saída, envie a mensagem para o servidor
             msg = input(PROMPT)
             if msg != '': sock.send(msg.encode(CODE_PAGE))
         except:
-            msg = '!q'
+            msg = '/q'
     closeSocket()
 
 def closeSocket():

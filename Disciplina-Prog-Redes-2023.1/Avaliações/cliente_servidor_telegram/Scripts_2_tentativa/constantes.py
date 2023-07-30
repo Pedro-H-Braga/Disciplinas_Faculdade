@@ -22,8 +22,8 @@ COMAND_LIST  = [
 ]
 COMAND_ERROR = '\n\
 ---------------------------------------------------------------------------------------------------------- \n\
-\tCOMANDOS DISPONÍVEIS:\t\
-\n---------------------------------------------------------------------------------------------------------- \n\
+\t\tCOMANDOS DISPONÍVEIS:\t\
+\n---------------------------------------------------------------------------------------------------------- \n \
 /q → sair do cliente;\n \
 /l → listar o IP:porta dos clientes conectados no servidor;\n \
 /m:ip_destino:porta:mensagem → Enviar uma mensagem a um determinado cliente conectado no servidor\n \

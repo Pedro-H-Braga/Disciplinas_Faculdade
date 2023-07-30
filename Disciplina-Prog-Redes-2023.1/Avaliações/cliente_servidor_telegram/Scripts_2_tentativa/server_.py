@@ -1,18 +1,47 @@
 import socket, threading
 from constantes import *
 
-
+# sockConn = objeto de conexão socket do cliente
+# addr = address (IP/PORTA) do cliente
 def cliInteraction(sockConn, addr):
     # inciando msg binario como vazia
     msg = b''
     # se a mensagem for igual do comando de encerramento, feche a conexão >>
-    while msg != b'!q':
+    while msg != b'/q':
         try:
             # >> Receba a mensagem do CLIENTE e envie para todos hosts conectados
             msg = sockConn.recv(BUFFER_MSG)
-            b(msg, addr)
+            # transformando mensagem em string para entrar no match case
+            strMsg = msg.decode(CODE_PAGE)
+            match strMsg:
+                # broadCast
+                case '/b':            
+                    b(msg, addr)
+                case _:
+                    print(COMAND_ERROR)
+
+            '''
+            # fazer match case para msg, se encaixar em alguma alternativa, execute uma função
+            match msg_str:
+                case '/q':
+                    # envie mensagem de encerramento
+                    msg = 'Encerrando conexão...'
+                    sockConn.send(msg.encode(CODE_PAGE))
+                    # remova o usuario da lista e feche a conexao
+                    allSocks.remove ((sockConn, addr))
+                    sockConn.close()    
+                    # saia do loop                
+                    exit()
+                case '/l':
+                    l(msg, addr)
+                case '/b':
+                    b(msg, addr)
+                case _:
+                    # envia mensagem de opções de comandos
+                    sock.send(COMAND_ERROR.encode(CODE_PAGE))
+            '''                                
         except:
-            msg = b'!q'
+            msg = b'/q'
     # retirando host da lista de clientes conectados
     allSocks.remove ((sockConn, addr))
     # encerrando o socket (encerrando conexão com o cliente)
