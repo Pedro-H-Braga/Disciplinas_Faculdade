@@ -1,13 +1,13 @@
 import socket, threading
 from constantes import *
 
-def servInteraction(sockConn):
+def servInteraction():
     # Obtém o endereço do cliente que se conectou
-    addrClient = sockConn.getpeername()
+    from server_ import addr   
     # se o cliente não estiver na lista de addrClient do dict, ele será incializado com um historico vazio
-    if addrClient not in message_history:
+    if addr not in message_history:
         # Cria uma lista vazia para o histórico do cliente.    
-        message_history[addrClient] = []  
+        message_history[addr] = []  
 
     # mensagem com espaço para entrar no loop enquanto a mensagem não for vazia
     msg = b' '
@@ -20,7 +20,7 @@ def servInteraction(sockConn):
             # exibindo a mensagem
             print ("\n"+strMsg+"\n"+PROMPT)
             # Adiciona a mensagem ao histórico do client
-            message_history[addrClient].append(strMsg)  
+            message_history[addr].append(strMsg)  
         except:
             msg = b''
     closeSocket()
@@ -48,7 +48,7 @@ try:
     sock.connect((IP_CLIENTE, PORT))
 
     print ("Conectado a: ", (IP_CLIENTE, PORT))
-    tServer = threading.Thread(target=servInteraction, args=(sock))
+    tServer = threading.Thread(target=servInteraction)
     tUser = threading.Thread(target=userInteraction)
 
     tServer.start()
