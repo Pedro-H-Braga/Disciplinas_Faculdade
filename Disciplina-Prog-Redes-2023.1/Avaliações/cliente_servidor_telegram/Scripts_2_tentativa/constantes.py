@@ -1,8 +1,9 @@
 # --------- CONSTANTES -----------------
 import socket
 
-PORT         = 5678
-SERVER       = 'localhost'
+PORT  = 5678
+IP_CLIENTE   = 'localhost'
+IP_SERVER    = '0.0.0.0'
 PROMPT       = 'Digite sua msg (/q para terminar) > '
 CODE_PAGE    = 'utf-8'
 BUFFER_MSG   = 512
@@ -34,6 +35,7 @@ COMAND_ERROR = '\n\
 /w:url →efetuar o download do arquivo fornecido na url para a pasta /server_files (do servidor);\n \
 /rss:palavra_chave →listar as 10 notícias mais recentes que contenham a palavra_chave. Deverá ser habilitado pelo menos 10 URLs que forneçam conteúdo em formato RSS;\n \
 /? → exibir uma ajuda (listar as opções contidas nesse roteiro).'
+
 # --------- VARIAVEIS SOCKET -----------------
 allSocks = []
 SOCK = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
