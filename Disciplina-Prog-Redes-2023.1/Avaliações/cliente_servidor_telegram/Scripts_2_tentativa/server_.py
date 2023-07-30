@@ -11,7 +11,6 @@ def cliInteraction(sockConn, addr):
         try:
             # >> Receba a mensagem do CLIENTE
             msg = sockConn.recv(BUFFER_MSG)
-            print('msg: ', msg.decode(CODE_PAGE))
             # transformando mensagem em string para entrar no match case
             #strMsg = msg.decode(CODE_PAGE) #BUG 
             # toda mensagem é adicionada na chave dict do client, na lista de mensagem
@@ -41,15 +40,14 @@ def cliInteraction(sockConn, addr):
                     print('Comando não existe! Informe /? para ver as opções de comando...')
                                
         except Exception as e:
-            print(e)
+            print(f'ERROR em cliInteraction: {e}')
+            # para sair do loop
             msg = b'/q'
-            # retirando host da lista de clientes conectados
-        
-        allSocks.remove ((sockConn, addr))
-        # # para sair do loop
-        # encerrando o socket (encerrando conexão com o cliente)
+            
+    # retirando host da lista de clientes conectados    
+    if (sockConn, addr) in allSocks:
+        allSocks.remove((sockConn, addr))
         sockConn.close()
-
 
 # ----------------------- COMANDOS ---------------------- 
 
@@ -103,8 +101,8 @@ try:
         print("Connection from: ", addr)
 
         allSocks.append((sockConn, addr))
-        print('allSock: \n',allSocks, end='\n')
-        
+        #print('allSock: \n',allSocks, end='\n')
+
         tClient = threading.Thread(target=cliInteraction, args=(sockConn, addr))
         tClient.start()
 

@@ -18,15 +18,15 @@ def servInteraction():
             # recebendo dados do servidor
             msg = sockClient.recv(BUFFER_MSG)
             # decodificando a mensagem
-            strMsg = msg.decode(CODE_PAGE)
+            #strMsg = msg.decode(CODE_PAGE)
             # exibindo a mensagem
-            print ("\n"+strMsg+"\n"+PROMPT)
+            print ("\n"+msg.decode(CODE_PAGE)+"\n"+PROMPT)
             # Adiciona a mensagem ao histórico do client
             #message_history[addr_host].append(strMsg)  
         except Exception as e:
             print(e)
             msg = b''
-        closeSocket()
+    closeSocket()
 
 def userInteraction():
     msg = ''
@@ -39,13 +39,13 @@ def userInteraction():
         except Exception as e:
             print(e)
             msg = '/q'
-        closeSocket()
+    closeSocket()
 
 def closeSocket():
     try:
         sockClient.close()
         print('fechando conexão...')
-    except: None
+    except Exception as e: print('ERROR:', e)
 
 try:
     sockClient = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

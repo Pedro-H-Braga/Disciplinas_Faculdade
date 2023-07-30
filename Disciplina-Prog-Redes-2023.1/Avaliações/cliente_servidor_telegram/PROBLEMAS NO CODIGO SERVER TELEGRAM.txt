@@ -15,3 +15,5 @@ O  ERROR TA na utilização incorreta do socket
 
 ERROR sendo causado pelo fechamento do socket e a tentativa de tirar ele da lista, sendo que ele já foi tirado ou ainda está em execução, fazendo um loop de tentativas e erros
 - tirar o msg = b'/q'
+
+# O ERROR estava sendo que as funções closeSocket() estavam dentro do while, enquanto era para estar
