@@ -6,7 +6,7 @@ def servInteraction():
     from server_ import addr   
     # se o cliente não estiver na lista de addrClient do dict, ele será incializado com um historico vazio
     if addr not in message_history:
-        # Cria uma lista vazia para o histórico do cliente.    
+        # Cria uma lista vazia com a chave do dict sendo o addr do client.   
         message_history[addr] = []  
 
     # mensagem com espaço para entrar no loop enquanto a mensagem não for vazia
