@@ -1,6 +1,6 @@
 # --------- CONSTANTES -----------------
 
-message_history = {}
+
 PORT_CLIENT  = 5678
 PORT_SERVER  = 5678
 IP_CLIENTE   = 'localhost'

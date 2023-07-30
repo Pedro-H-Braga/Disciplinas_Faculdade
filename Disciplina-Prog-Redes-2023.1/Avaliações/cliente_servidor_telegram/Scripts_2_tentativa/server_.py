@@ -1,6 +1,9 @@
 import socket, threading
 from constantes import *
 
+# incializando o historico
+message_history = {}
+
 # sockConn = objeto de conexão socket do cliente
 # addr = address (IP/PORTA) do cliente
 def cliInteraction(sockConn, addr):
@@ -11,10 +14,8 @@ def cliInteraction(sockConn, addr):
         try:
             # >> Receba a mensagem do CLIENTE
             msg = sockConn.recv(BUFFER_MSG)
-            # transformando mensagem em string para entrar no match case
-            #strMsg = msg.decode(CODE_PAGE) #BUG 
             # toda mensagem é adicionada na chave dict do client, na lista de mensagem
-            #message_history[addr].append(msg.decode(CODE_PAGE))
+            saveHistory(sockConn, msg.decode(CODE_PAGE))
             # pegando da lista do split, o comando e colocando no match case 
             list_msg = split_(msg.decode(CODE_PAGE))
             # pegando da lista splitada da mensagem, apenas o comando dado
@@ -64,11 +65,21 @@ def b(msg, addrSource): # ENVIA MENSAGEM PARA TODOS CONECTADOS MENOS PRA QUEM EN
 
 #                        HISTORICO
 # exibe historico de comandos do client
-def h(sockConn, addrSource):
-    # history recebe do dict com seu addrSource, a lista com suas mensagens, ex: {localhost[]}
-    historico = "\n".join(message_history.get(addrSource, []))
-    # Enviando o histórico de mensagens do cliente.
-    sockConn.send(historico.encode(CODE_PAGE))    
+def h(addrSource):
+    if addrSource in message_history:
+        print(f"\nHistórico de mensagens enviadas por {addrSource}:")
+        for message in message_history[addrSource]:
+            message = f'{addrSource} -> {message}'
+            print(message)
+        print()
+    else:
+        print("\nNenhuma mensagem enviada por este cliente ainda.\n")
+
+def saveHistory(sockConn, msg):
+    client_addr = sockConn.getpeername()  # Obtém o endereço do cliente (IP e porta)
+    if client_addr not in message_history:
+        message_history[client_addr] = [] # senão tiver o cliente no dict, adicione o cliente e a mensagem
+    message_history[client_addr].append(msg)
 
 # ----------------------- FUNÇÕES ---------------------- 
 
@@ -90,7 +101,7 @@ try:
 
     print ("Listening in: ", (IP_SERVER, PORT_SERVER))
     sockServer.listen(5)
-
+    
     # Loop para aguardar conexões com clientes
     while True:
         # quando o cliente se conecta, é guardado na lista de allSock e é criado uma thread >>
