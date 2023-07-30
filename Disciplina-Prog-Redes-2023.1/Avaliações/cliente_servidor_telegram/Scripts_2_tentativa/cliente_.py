@@ -24,7 +24,7 @@ def servInteraction():
             # Adiciona a mensagem ao histórico do client
             #message_history[addr_host].append(strMsg)  
         except Exception as e:
-            print(e)
+            print(f'ERROR em servInteraction: {e}')
             msg = b''
     closeSocket()
 
@@ -37,7 +37,7 @@ def userInteraction():
             if msg != '': sockClient.send(msg.encode(CODE_PAGE))
 
         except Exception as e:
-            print(e)
+            print(f'ERROR em userInteraction: {e}')
             msg = '/q'
     closeSocket()
 
