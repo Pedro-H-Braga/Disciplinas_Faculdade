@@ -35,7 +35,7 @@ def cliInteraction(sockConn, addr):
                     print(COMAND_ERROR)
                 # exibe historico de mensagens do client
                 case '/h':
-                    h(sockConn, addr)
+                    h(addr)
                 # caso default do match case (se não for nenhuma das opções, cairá aqui)
                 case _:
                     print('Comando não existe! Informe /? para ver as opções de comando...')
