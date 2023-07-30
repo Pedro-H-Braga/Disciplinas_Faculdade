@@ -38,28 +38,9 @@ def cliInteraction(sockConn, addr):
                 # caso default do match case (se não for nenhuma das opções, cairá aqui)
                 case _:
                     print('Comando não existe! Informe /? para ver as opções de comando...')
-
-            '''
-            # fazer match case para msg, se encaixar em alguma alternativa, execute uma função
-            match msg_str:
-                case '/q':
-                    # envie mensagem de encerramento
-                    msg = 'Encerrando conexão...'
-                    sockConn.send(msg.encode(CODE_PAGE))
-                    # remova o usuario da lista e feche a conexao
-                    allSocks.remove ((sockConn, addr))
-                    sockConn.close()    
-                    # saia do loop                
-                    exit()
-                case '/l':
-                    l(msg, addr)
-                case '/b':
-                    b(msg, addr)
-                case _:
-                    # envia mensagem de opções de comandos
-                    sock.send(COMAND_ERROR.encode(CODE_PAGE))
-            '''                                
-        except:
+                               
+        except Exception as e:
+            print(e)
             msg = b'/q'
     # retirando host da lista de clientes conectados
     allSocks.remove ((sockConn, addr))
@@ -85,7 +66,7 @@ def h(addrSource):
     # history recebe do dict com seu addrSource, a lista com suas mensagens, ex: {localhost[]}
     historico = "\n".join(message_history.get(addrSource, []))
     # Enviando o histórico de mensagens do cliente.
-    sockConn.send(historico.encode('utf-8'))    
+    sockConn.send(historico.encode(CODE_PAGE))    
 
 
 # ----------------------- FUNÇÕES ---------------------- 
@@ -102,11 +83,11 @@ def split_(msg):
 #                           SERVIDOR: 
 try:
     allSocks = []
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.bind((IP_SERVER, PORT))
+    sockServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sockServer.bind((IP_SERVER, PORT))
 
     print ("Listening in: ", (IP_SERVER, PORT))
-    sock.listen(5)
+    sockServer.listen(5)
 
     # Loop para aguardar conexões com clientes
     while True:
@@ -114,12 +95,12 @@ try:
         # >> para ele que executa a função de interação com o cliente 
         
         # addr é usado como variavel global, sendo usado em client para pegar quem se conectou ao server
-        sockConn, ADDR_CLIENT = sock.accept()
-        print ("Connection from: ", ADDR_CLIENT)
+        sockConn, addr = sockServer.accept()
+        print ("Connection from: ", addr)
 
-        allSocks.append((sockConn, ADDR_CLIENT))
+        allSocks.append((sockConn, addr))
 
-        tClient = threading.Thread(target=cliInteraction, args=(sockConn, ADDR_CLIENT))
+        tClient = threading.Thread(target=cliInteraction, args=(sockConn, addr))
         tClient.start()
 except Exception as e:
     print ("Fail: ", e)
