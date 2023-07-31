@@ -101,7 +101,6 @@ def b(msg, addrSource): # ENVIA MENSAGEM PARA TODOS CONECTADOS MENOS PRA QUEM EN
         if addr != addrSource:
             sockConn.send(msg.encode(CODE_PAGE))
 
-
 # ----------------------- FUNÇÕES ---------------------- 
 
 # função para os comandos com argumentos, pegar os dados 

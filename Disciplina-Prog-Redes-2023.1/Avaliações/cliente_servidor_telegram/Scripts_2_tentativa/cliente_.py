@@ -39,9 +39,13 @@ def closeSocket():
 try:
     sockClient = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sockClient.connect((IP_CLIENTE, PORT_CLIENT))
-    # Obtém o tipo de comunicação para cada socket
-    type_tcp = sockClient.type
-    print(f'type_tcp: {type_tcp}')
+    
+    # Obtém o tipo de comunicação, Se UDP ou TCP
+    if sockClient.type == 1:
+        print(f'\nTipo de conexão TCP!\n')
+    else: 
+        print(f'\nTipo de conexão UDP!\n')
+
     print ("Conectado a: ", (IP_CLIENTE, PORT_CLIENT))
     tServer = threading.Thread(target=servInteraction)
     tUser = threading.Thread(target=userInteraction)
