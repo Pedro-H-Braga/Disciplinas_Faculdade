@@ -36,6 +36,9 @@ def cliInteraction(sockConn, addr):
                 # exibe historico de mensagens do client
                 case '/h':
                     h(addr)
+                # exibe historico de mensagens do client
+                case '/l':
+                    l()                    
                 # caso default do match case (se não for nenhuma das opções, cairá aqui)
                 case _:
                     msg_ = 'Comando não existe! Informe /? para ver as opções de comando...'
@@ -80,6 +83,14 @@ def saveHistory(addr, msg):
     if addr not in message_history:
         message_history[addr] = [] # senão tiver o cliente no dict, adicione o cliente e a mensagem
     message_history[addr].append(msg)
+
+#                   EXIBINDO CLIENTES CONECTADOS
+def l(): # ENVIA MENSAGEM PARA TODOS CONECTADOS MENOS PRA QUEM ENVIOU
+    # percorrendo todos os clientes da lista allSocks e adicionando a string cli
+    clientConn = "\n".join(f'Clientes conectados no server: {addr}' \
+        for _, addr in allSocks)        
+    sockConn.send(clientConn.encode(CODE_PAGE))
+
 
 #                       MENSAGEM PRIVADA
 
