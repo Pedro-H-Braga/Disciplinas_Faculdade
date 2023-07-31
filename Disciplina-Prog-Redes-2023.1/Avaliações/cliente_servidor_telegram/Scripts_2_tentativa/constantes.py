@@ -7,7 +7,7 @@ IP_CLIENTE   = 'localhost'
 IP_SERVER    = '0.0.0.0'
 PROMPT       = 'Digite sua msg (/q para terminar) > '
 CODE_PAGE    = 'utf-8'
-BUFFER_MSG   = 512
+BUFFER_MSG   = 1024
 COMAND_LIST  = [
 '/q',
 '/l',

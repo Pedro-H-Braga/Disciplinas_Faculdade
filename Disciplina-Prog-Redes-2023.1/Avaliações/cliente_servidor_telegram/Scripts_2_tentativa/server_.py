@@ -3,7 +3,7 @@ from constantes import *
 
 # incializando o historico
 message_history = {}
-
+listMessage     = ''
 # sockConn = objeto de conexão socket do cliente
 # addr = address (IP/PORTA) do cliente
 def cliInteraction(sockConn, addr):
@@ -15,7 +15,7 @@ def cliInteraction(sockConn, addr):
             # >> Receba a mensagem do CLIENTE
             msg = sockConn.recv(BUFFER_MSG)
             # toda mensagem é adicionada na chave dict do client, na lista de mensagem
-            saveHistory(sockConn, msg.decode(CODE_PAGE))
+            saveHistory(addr, msg.decode(CODE_PAGE))
             # pegando da lista do split, o comando e colocando no match case 
             list_msg = split_(msg.decode(CODE_PAGE))
             # pegando da lista splitada da mensagem, apenas o comando dado
@@ -32,13 +32,14 @@ def cliInteraction(sockConn, addr):
                     b(msgDest, addr)
                 # mostra comandos
                 case '/?':
-                    print(COMAND_ERROR)
+                    sockConn.send(COMAND_ERROR.encode(CODE_PAGE))
                 # exibe historico de mensagens do client
                 case '/h':
                     h(addr)
                 # caso default do match case (se não for nenhuma das opções, cairá aqui)
                 case _:
-                    print('Comando não existe! Informe /? para ver as opções de comando...')
+                    msg_ = 'Comando não existe! Informe /? para ver as opções de comando...'
+                    sockConn.send(msg_.encode(CODE_PAGE))
                                
         except Exception as e:
             print(f'ERROR em cliInteraction: {e}')
@@ -65,21 +66,24 @@ def b(msg, addrSource): # ENVIA MENSAGEM PARA TODOS CONECTADOS MENOS PRA QUEM EN
 
 #                        HISTORICO
 # exibe historico de comandos do client
-def h(addrSource):
+def h(addrSource):    
     if addrSource in message_history:
         print(f"\nHistórico de mensagens enviadas por {addrSource}:")
-        for message in message_history[addrSource]:
-            message = f'{addrSource} -> {message}'
-            print(message)
-        print()
+        listMessage = "\n".join(f'Historico:{addrSource} -> {msg}' \
+        for msg in message_history[addrSource])
+        #print(listMessage)
+        sockConn.send(listMessage.encode(CODE_PAGE))
     else:
         print("\nNenhuma mensagem enviada por este cliente ainda.\n")
+# salva todos os comando digitados pelo cliente
+def saveHistory(addr, msg):
+    if addr not in message_history:
+        message_history[addr] = [] # senão tiver o cliente no dict, adicione o cliente e a mensagem
+    message_history[addr].append(msg)
 
-def saveHistory(sockConn, msg):
-    client_addr = sockConn.getpeername()  # Obtém o endereço do cliente (IP e porta)
-    if client_addr not in message_history:
-        message_history[client_addr] = [] # senão tiver o cliente no dict, adicione o cliente e a mensagem
-    message_history[client_addr].append(msg)
+#                       MENSAGEM PRIVADA
+
+
 
 # ----------------------- FUNÇÕES ---------------------- 
 
