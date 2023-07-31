@@ -91,9 +91,15 @@ def l(): # ENVIA MENSAGEM PARA TODOS CONECTADOS MENOS PRA QUEM ENVIOU
         for _, addr in allSocks)        
     sockConn.send(clientConn.encode(CODE_PAGE))
 
-
 #                       MENSAGEM PRIVADA
-
+def b(msg, addrSource): # ENVIA MENSAGEM PARA TODOS CONECTADOS MENOS PRA QUEM ENVIOU
+    # adicionando na mensagem o IP PORTA do cliente que enviou
+    msg = f"From: {addrSource} -> {msg}"
+    print(msg)
+    # percorrendo todos os clientes da lista e enviando mensagem a todos hosts conectados menos a quem enviou 
+    for sockConn, addr in allSocks:
+        if addr != addrSource:
+            sockConn.send(msg.encode(CODE_PAGE))
 
 
 # ----------------------- FUNÇÕES ---------------------- 

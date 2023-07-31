@@ -39,7 +39,9 @@ def closeSocket():
 try:
     sockClient = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sockClient.connect((IP_CLIENTE, PORT_CLIENT))
-
+    # Obtém o tipo de comunicação para cada socket
+    type_tcp = sockClient.type
+    print(f'type_tcp: {type_tcp}')
     print ("Conectado a: ", (IP_CLIENTE, PORT_CLIENT))
     tServer = threading.Thread(target=servInteraction)
     tUser = threading.Thread(target=userInteraction)
