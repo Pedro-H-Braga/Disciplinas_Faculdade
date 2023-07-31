@@ -10,7 +10,7 @@ def servInteraction():
             # recebendo dados do servidor
             msg = sockClient.recv(BUFFER_MSG)
             # exibindo a mensagem
-            print ("\n"+msg.decode(CODE_PAGE)+"\n"+PROMPT)
+            print ("\n"+msg.decode(CODE_PAGE)+"\n")
         except Exception as e:
             print(f'ERROR em servInteraction: {e}')
             msg = b''
