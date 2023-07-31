@@ -8,19 +8,7 @@ IP_SERVER    = '0.0.0.0'
 PROMPT       = 'Digite sua msg (/q para terminar) > '
 CODE_PAGE    = 'utf-8'
 BUFFER_MSG   = 1024
-COMAND_LIST  = [
-'/q',
-'/l',
-'/m',
-'/b',
-'/h',
-'/f',
-'/d',
-'/u',
-'/w',
-'/rss',
-'/?'
-]
+COMAND_LIST  = ['/q','/l','/m','/b','/h','/f','/d','/u','/w','/rss','/?']
 COMAND_ERROR = '\n\
 ---------------------------------------------------------------------------------------------------------- \n\
 \t\tCOMANDOS DISPONÍVEIS:\t\
