@@ -1,0 +1,95 @@
+Espelho da correção de prova do aluno pedro henrique
+
+Corrigindo Item a. i
+    |- Arquivo 'resolv.conf' encontrado!
+    |- Conteúdo do arquivo 'resolv.conf' correto!'
+
+Corrigindo Item a. ii
+    X- Arquivo '.prova.txt' NÃO encontrado!
+
+Corrigindo Item a. iii
+    |- Diretório 'documentos/isa' encontrado!
+
+Corrigindo Item a. iv
+    |- Diretório 'antigos' removido!
+
+Corrigindo Item a. v
+    X- Link 'usuarios.txt' NÃO encontrado!
+
+Corrigindo Item a. vi
+    |- Arquivo 'man.txt' encontrado!
+    |- Conteúdo do arquivo 'man.txt' correto!'
+
+Corrigindo Item a. vii
+    X- Conteúdo do arquivo 'uniao.txt' INCORRETO!'
+
+Corrigindo Item a. viii
+    |- Arquivo 'tarefas_diarias.tar.gz' encontrado!
+    X- Conteúdo do arquivo 'tarefas_diarias.tar.gz' INCORRETO!'
+
+Corrigindo Item a. ix
+    |- Arquivo 'local.rtf' encontrado!
+    |- Conteúdo do arquivo 'local.rtf' correto!'
+
+Corrigindo Item a. x
+    |- Arquivo 'hist.txt' encontrado!
+    X- Conteúdo do arquivo 'hist.txt' INCORRETO!'
+
+Corrigindo Item a. xi
+    |- Arquivo 'binarios.txt' encontrado!
+    X- Conteúdo do arquivo 'binarios.txt' INCORRETO!'
+
+Corrigindo Item b.
+    |- Usuário 'pedro' cadastrado no sistema!
+
+Corrigindo Item c.
+    |- Grupo 'henrique' cadastrado no sistema!
+
+Corrigindo Item d.
+    |- Grupo 'henrique' associado ao usuário 'pedro'!
+    |- Grupo 'henrique' NÃO setado como GRUPO PRIMÁRIO do usuário 'pedro'!
+
+Corrigindo Item e.
+    |- Arquivo 'info.txt' encontrado!
+
+Corrigindo Item f.
+    |- Arquivo 'info.txt' com dono = 'pedro'!
+
+Corrigindo Item g.
+    |- Arquivo 'info.txt' com grupo = 'henrique'!
+
+Corrigindo Item h.
+    |- Arquivo 'info.txt' com permissão correta -> 760!
+
+Corrigindo Item i.
+    |- Usuário 'fulano' removido do sistema!
+    |- Arquivos do usuário 'fulano' removidos do sistema!
+
+Corrigindo Item j.
+    X- Shell do usuário 'beltrano' != '/bin/dash'!
+    X- UID do usuário 'beltrano' != '2500'!
+
+Corrigindo Item k.
+    X- Grupo 'professores' cadastrado no sistema!
+
+Corrigindo Item l.
+    |- Senha do usuário 'beltrano' bloqueada!
+    X- Comando 'passwd' com parâmetros '-l e beltrano' NÃO executado no sistema!
+
+Corrigindo Item m.
+    |- Arquivo gerado após finalização normal do processo 'servico_normal.sh' encontrado!
+    |- Comando 'ps' executado no sistema!
+    |- Comando 'kill' executado no sistema!
+ 
+Corrigindo Item n.
+    |- Arquivo gerado após finalização brusca do processo 'servico_travado.sh' encontrado!
+    |- Comando 'ps' executado no sistema!
+    |- Comando 'kill' com parâmetro '-9' executado no sistema!
+ 
+Corrigindo Item o.
+    |- Arquivo gerado após colocar o comando '2o_plano.sh' em BACKGROUND (2o plano) encontrado!
+    |- Arquivo gerado após finalização com CTRL+C do comando '2o_plano.sh' encontrado!
+    |- Comando 'fg' executado no sistema!
+ 
+Questões Corretas = 16
+Pontuação Final = 64
