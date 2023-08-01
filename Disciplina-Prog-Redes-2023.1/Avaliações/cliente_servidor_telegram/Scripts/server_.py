@@ -4,6 +4,7 @@ from constantes import *
 # incializando o historico
 message_history = {}
 listMessage     = ''
+
 # sockConn = objeto de conexão socket do cliente (utilizando para enviar os dados para cada cliente)
 # addr = address (IP/PORTA) do cliente
 def cliInteraction(sockConn, addr):
