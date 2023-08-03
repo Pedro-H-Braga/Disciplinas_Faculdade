@@ -1,3 +1,16 @@
+# P1
+## Domínio de colisão:
+
+Um domínio de colisão é onde pode haver colisões de pacote, ocorrido normalmente em HUBS, tendo em vista que cada porta/interface de um switch é um domínio de colisão, os objetos de domínio de colisão podem ser SWITCHS, HUBS e ROTEADORES.
+
+##Domínio de Broadcast:
+
+Os domínios de broadcast são onde um protocolo enviado em modo de broadcast não passará. Sendo caracterizado os 'dominadores de broadcast' os ROTEADORES, pois eles são os equipamentos mais sensíveis da rede, sendo o único equipamento que CADA porta dele É UM DOMÍNIO de broadcast
+
+## Switch em modo CUT-THROUGH ou STORE AND FORWARD:
+
+# P2
+
 # Configurando VLAN no switch e atribuindo IP as interfaces da VLAN
 
 1. Entre no modo de configuração global:
