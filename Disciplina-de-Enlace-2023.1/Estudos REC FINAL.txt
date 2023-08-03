@@ -1,0 +1,17 @@
+# Configurando VLAN no switch e atribuindo IP as interfaces da VLAN
+
+1. Entre no modo de configuração global:
+
+- enable
+- configure terminal
+
+2. Crie uma interface VLAN virtual (SVI) para a VLAN 1 e atribua o endereço IP 192.168.1.2/24 a ela:
+
+- interface vlan 1 (entra na vlan)
+- ip address 192.168.1.2 255.255.255.0 (atribui ip a vlan 1)
+- no shutdown (Liga a interface)
+- exit (sai do modo conf t)
+
+3. Salve a configuração:
+
+- write (salva as alterações; não funciona no packet)
