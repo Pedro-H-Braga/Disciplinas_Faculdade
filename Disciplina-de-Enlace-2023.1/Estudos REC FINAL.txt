@@ -12,19 +12,19 @@ Os domínios de broadcast são onde um protocolo enviado em modo de broadcast n�
 Um switch tem basicamente dois modos de operação, do mais comum ao menos utilizado:
 
 - STORE AND FORWARD: 
-processa todo o dado para enviar para a interface desejada, ou seja, espera todo o pacote cehgar para ler o FCS(indicador de erro) para poder enviar o pacote. 
+processa todo o dado para enviar para a interface desejada, ou seja, espera todo o pacote chegar para ler o FCS(indicador de erro) para poder enviar o pacote. 
 Vantagem: Mais seguro.
 Desvantagem: Mais lento.
 
 - CUT-THROUGH:
+Existem dois tipos de switch's cut-through:
+--Fast-Forward:
+assim que recebe o quadro destino do pacote, verifica na tabela CAM onde está o IP-MAC e envia para a interface.
+--Fragment Free:
+ainda ler os endereços de Destino/Origem e mais 46 bytes da área de dados do pacote (ler o cabeçalho da área de dados). Lendo um total de 64 bytes para poder enviar para o Destino.
+
 Vantagem: Mais rápido.
 Desvantagem: Menos seguro.
-
-Existem dois tipos de switch's cut-through:
-- Fast-Forward:
-assim que recebe o quadro destino do pacote, verifica na tabela CAM onde está o IP-MAC e envia para a interface.
--Fragment Free:
-ainda ler os endereços de Destino/Origem e mais 46 bytes da área de dados do pacote (ler o cabeçalho da área de dados). Lendo um total de 64 bytes para poder enviar para o Destino.
 
 # P2
 
