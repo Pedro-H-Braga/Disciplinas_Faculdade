@@ -1,4 +1,0 @@
-- Ter um validador de quando a mensagem chegar
-- Pegar os códigos já feitos para adiantar o processo do servidor
-- broadcast para saber que a mensagem chegou: 
-ex: \b:len(msg) - > para saber o tamanho da msg primeiro, para ver quantas vezes terá que quebrar a mensagem
