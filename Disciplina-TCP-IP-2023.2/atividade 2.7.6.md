@@ -12,6 +12,9 @@
 
 
 # Configurando conexão SSH
+## Configurar secret para enable
+`enable` >> `conf t` >> `enable secret class` <br> 
+
 ## Gerando par de chaves, mudar nome e domínio
 - `enable` >> `conf t`
 - `crypto key generate rsa` -> Tem que ter um hostname no switch
@@ -23,3 +26,5 @@
 - `line vty 0 15` -> deixando todas as vty com a mesma configuração
 - `transport input ssh` -> modos de conexão
 - `login local`
+## Se conectando no terminal ssh do pc
+Em Desktop >> Telnet / SSH Cliente >> Connection type: `SSH` >> Hostname or IP: `192.168.1.253` >> Username: `admin` >> Password: `1324`
