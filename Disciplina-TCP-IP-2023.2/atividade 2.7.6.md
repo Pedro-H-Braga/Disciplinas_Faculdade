@@ -7,3 +7,5 @@
 `enable` >> `conf t` >> `enable secret class` <br> 
 **banner para exibição**: <br> 
 `enable` >> `conf t` >> `banner motd # Somente Acesso Autorizado. Infratores sofrerao as consequencias da lei. #` <br> 
+**Salvando configurações**: <br> 
+`enable` >> `copy running-config startup-config` <br> 
