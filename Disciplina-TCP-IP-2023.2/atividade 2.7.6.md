@@ -13,6 +13,7 @@
 
 # Configurando conexão SSH
 ## Gerando par de chaves, mudar nome e domínio
+- `enable` >> `conf t`
 - `crypto key generate rsa` -> Tem que ter um hostname no switch
 - `ip domain-name ifrn.local` -> criando dominio numa rede local
 - `crypto key generate rsa` -> 1024
