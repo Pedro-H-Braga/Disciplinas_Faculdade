@@ -20,6 +20,9 @@ layer default: 0
 - Selecionar as linhas para copiar usar comando `copy` <br> 
 - Pegar a aresta inferior como ponto base envés da aresta superior <br>
 - `DEIXAR OBJECT SNAP HABILITADO`: um quadrado dentro de outro
- <br>
+ <br> 
 - Ultilizar para fazer a casa `coordenada polar`
 - fazer angulo de 315° 
+ <br>
+- comando `mirror` (espelhar) para fazer a estrela
+- ultilizar agulo negativo quando for fazer as linhas
