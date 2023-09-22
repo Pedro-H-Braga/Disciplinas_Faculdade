@@ -22,3 +22,4 @@ layer default: 0
 - `DEIXAR OBJECT SNAP HABILITADO`: um quadrado dentro de outro
  <br>
 - Ultilizar para fazer a casa `coordenada polar`
+- fazer angulo de 315° 
