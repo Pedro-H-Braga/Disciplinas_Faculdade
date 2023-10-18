@@ -1,0 +1,27 @@
+# COMANDO IMPORTANTES
+
+- Router#show ip route 
+- Router#show ip interface brief 
+- Router(config)#interface G0/0
+- Router(config-if)#ip address 192.168.10.1 255.255.255.0
+- Router(config-if)#no shutdown 
+- Router(config)#ip route 10.1.1.0 255.255.255.0 206.165.200.226
+
+# ANOTAÇÕES
+
+ROUTER 1
+
+Router#show ip interface brief 
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     unassigned      YES manual administratively down down 
+GigabitEthernet0/1     unassigned      YES NVRAM  administratively down down 
+GigabitEthernet0/2     unassigned      YES NVRAM  administratively down down 
+Serial0/0/0            unassigned      YES manual administratively down down 
+Serial0/0/1            unassigned      YES manual administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+
+
+# métodos a serem seguidos
+
+- configurar ip/porta de cada porta conectada nos roteadores
+- configurar rota padrão de saída
